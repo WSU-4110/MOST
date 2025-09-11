@@ -1,0 +1,34 @@
+minutes meeting 9/10/25
+
+ben explains app idea with flashcard and multiple chouice quiz features of app
+ben explains tech stack qt and presented a 10 week plan for our project 
+john and justin just asked him questions and clarifications
+
+Responsibilities 
+person a - flashcard module
+person b - multiple-choice quiz section
+person c - File I/O + data + overall structure+ UI polise 
+
+can break things up with more people in group 
+
+can add more features and enhancements
+dark mode and shuffle and stuff
+
+Stack c++ QT
+
+time line 
+-set up
+-learn qt
+-implement build feature 
+-save and load 
+-UI data improvements 
+-minor features
+-bug fixes 
+-final presentation
+
+presentation planning
+ben intro + tech stack 
+justin: responsibilities
+john: timeline
+
+
