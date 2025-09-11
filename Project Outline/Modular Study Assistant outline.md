@@ -10,13 +10,13 @@ This applications will help individuals study more effectively through interacti
 
 
 
-##### What are the roles for the project (3 people)?
+##### What are the roles for the project ?
 
-Person A - Flashcard module(UI + logic)
+Role A - Flashcard module(UI + logic)
 
-Person B - Multiple-choice quiz module(UI + logic)
+Role B - Multiple-choice quiz module(UI + logic)
 
-Person C - File I/O + data models + overall structure + UI polish
+Role C - File I/O + data models + overall structure + UI polish
 
 
 
@@ -375,6 +375,7 @@ Fully working Flashcard UI (data existing in memory)
 │   ├── icons/
 
 │   └── stylesheets/
+
 
 
 
