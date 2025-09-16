@@ -56,3 +56,12 @@ NON FUNCTIONAL
 6.The app will not collect or transmit any personal data.(Kaliph)
 
 
+
+after selecting requirments, decided which requirements will be given to who so that they can fill out an SRS form for each individual requirement
+
+John will upload the requirments to the github under the issues tab in accordance with assignment structure. 
+
+goal for next meeting is to familiarize with tools such as qt, version control, and be ready to start implementation next week
+
+
+
