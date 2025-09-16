@@ -1,0 +1,58 @@
+9/16 meeting info 
+Requirements and assigment 2
+
+went through word doc with requirement contributions we all submitted together
+
+highlighted yellow the ones that were nice
+highlighted red the ones that we felt were required/high priority
+
+selected a final 15
+OVERVIEW (JOHN)
+
+1.saving flashcards locally to the user's hard drive via .json file format (Ben)
+
+2.can swap between sets of cards/quizzes, The app will allow for users to navigate between modules(Wei)
+
+3.can create,edit,delete,export,import cards/quizzes (John)
+The app will allow for users to delete quiz questions or flashcards from local storage.
+The app will allow for users to edit existing flashcards.
+
+4.The app will allow users to designate one or more answers as correct. (Justin)
+
+5.The app will be able to display results after completion of a quiz.  (Justin)
+
+6.The app will provide a graphical user interface that is intuitive such that the core features are accessible within a few clicks. (Justin)
+
+7.The app will operate without requiring an internet connection and be usable at anytime on the device on which it is installed.(Justin)
+
+8.The app will prevent incomplete data from being stored.(Justin)
+
+9.The user could select an icon for the card to be added to the study deck if they missed the question (WEi)
+
+10.The app will allow for users to load/save their study progress in either module. (WEI)
+
+11.The app will allow for users to review flashcards in a randomized order. (Kaliph)
+
+12.The app will allow users to create multiple-choice quiz questions with at least two answer choices and up to six answer choices.
+    allow users to create MC questions with multiple correct answers(Kaliph)
+
+13.The app will allow for users to flip through flashcards in sequence. flipping flashcars to reveals term or definition (BEN)
+ 
+14.The app will allow for users to receive quiz questions in a randomized order. (kaliph)
+
+15.Setting the default quiz template to multiple-choice (BEN)
+
+NON FUNCTIONAL 
+1. application minimum hardware requirements will be 2GB of memory and 500 MB of storage(BEN)
+ 
+2. the application recomended hardware requirements will be 4 GB of memory and 1GB of storage(BEN)
+
+3. the app will have no advirtisement(KAliph)
+
+4. Can handle up to 500 flashcards and 200 questions quizzes (WEI)
+
+5. Takes 2 or less second for actions like flip card, answer question(WEI)
+
+6.The app will not collect or transmit any personal data.(Kaliph)
+
+
