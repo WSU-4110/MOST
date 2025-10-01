@@ -27,7 +27,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-// add buttons
+    // add buttons
 private slots:
     // menu to subpage buttons
     void on_pushButtonCreatePage_clicked();

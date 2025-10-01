@@ -104,13 +104,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Literally Nothing</string>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <resources/>
