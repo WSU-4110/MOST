@@ -229,3 +229,22 @@ int MainWindow::currentStudySelection() const {
     if (ui->radioButtonAnswer6->isChecked()) return 5;
     return -1;
 }
+
+// study page -> results
+void MainWindow::on_pushButtonSubmitQuiz_clicked() {
+    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
+    int correct = 0;
+    for (int i = 0; i < questionBank.size(); i++) {
+        if (questionBank[i].userIndex == questionBank[i].correctIndex) {
+            correct++;
+        }
+    }
+    double percentage = static_cast<double>(correct) / questionBank.size();
+
+    QString numerator = QString::number(correct);
+    QString denominator = QString::number(questionBank.size());
+    QString result = QString::number(percentage*100, 'f', 2);
+    ui->textResultNum->setPlainText(numerator);
+    ui->textResultDen->setPlainText(denominator);
+    ui->textResultPer->setPlainText(result);
+}

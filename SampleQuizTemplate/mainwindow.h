@@ -48,6 +48,7 @@ private slots:
     // study quiz page buttons
     void on_pushButtonNextQuestion_2_clicked();
     void on_pushButtonPreviousQuestion_2_clicked();
+    void on_pushButtonSubmitQuiz_clicked();
 
 private:
     Ui::MainWindow *ui;
