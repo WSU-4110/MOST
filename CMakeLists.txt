@@ -27,6 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         homepage.h homepage.cpp
         homepage.ui
+        Icons.qrc
+        .gitignore
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET flashCardMakeSection APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

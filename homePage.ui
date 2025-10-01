@@ -6,157 +6,353 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1744</width>
+    <height>829</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="homeLabel">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>10</y>
-      <width>41</width>
-      <height>16</height>
-     </rect>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
     </property>
-    <property name="text">
-     <string>home</string>
+    <property name="leftMargin">
+     <number>0</number>
     </property>
-   </widget>
-   <widget class="QPushButton" name="closeButton">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>10</y>
-      <width>56</width>
-      <height>18</height>
-     </rect>
+    <property name="topMargin">
+     <number>0</number>
     </property>
-    <property name="text">
-     <string>close</string>
+    <property name="rightMargin">
+     <number>0</number>
     </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>371</width>
-      <height>23</height>
-     </rect>
+    <property name="bottomMargin">
+     <number>0</number>
     </property>
-    <property name="value">
-     <number>24</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="progressLabel">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>30</y>
-      <width>51</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Progress</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="studyMateriels">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>80</y>
-      <width>81</width>
-      <height>192</height>
-     </rect>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-hr { height: 1px; border-width: 0; }
-li.unchecked::marker { content: &quot;\2610&quot;; }
-li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Study Materials&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Flash Card Set 1&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Flash Card Set 2 &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;etc....&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Multiple Choice 1&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Multiple Choice 2&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;etc&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="studyFlashCardsButton">
-    <property name="geometry">
-     <rect>
-      <x>135</x>
-      <y>167</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Study Flash Cards</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="studyMultipleChoiceButton">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>170</y>
-      <width>111</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Multiple Choice quizzes</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="createFlashCardButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>280</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Create Flash Cards</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="createMultipleChoiceButton">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>330</y>
-      <width>131</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Create Multiple Choice</string>
-    </property>
-   </widget>
+    <item>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="leftMargin">
+        <number>30</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="lblMost">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Sans Serif Collection</family>
+           <pointsize>26</pointsize>
+           <bold>false</bold>
+           <underline>false</underline>
+           <kerning>true</kerning>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: black;
+padding-left: 30px;</string>
+         </property>
+         <property name="text">
+          <string>MOST</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+         </property>
+         <property name="margin">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>70</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnStudyModules">
+         <property name="minimumSize">
+          <size>
+           <width>1</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LayoutDirection::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+
+QPushButton {
+	background-color: transparent;
+	border: none;
+	color: black;
+	border-radius: 10px;
+	text-align: left;
+	padding-left: 30px;
+}
+
+QPushButton:hover {
+	background-color: rgba(100, 100, 100, 0.2);
+	border: 1px solid #888888;
+}
+
+QPushButton:pressed {
+	background-color: rgba(100, 100, 100, 0.4);
+	border: 1px solid #444444;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Study Modules</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/modules.png</normaloff>Icons/modules.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnProgress">
+         <property name="minimumSize">
+          <size>
+           <width>1</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+
+QPushButton {
+	background-color: transparent;
+	border: none;
+	color: black;
+	border-radius: 10px;
+	text-align: left;
+	padding-left: 30px;
+}
+
+QPushButton:hover {
+	background-color: rgba(100, 100, 100, 0.2);
+	border: 1px solid #888888;
+}
+
+QPushButton:pressed {
+	background-color: rgba(100, 100, 100, 0.4);
+	border: 1px solid #444444;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Progress</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/progress.png</normaloff>Icons/progress.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnSettings">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>16</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+
+QPushButton {
+	background-color: transparent;
+	border: none;
+	color: black;
+	border-radius: 10px;
+	text-align: left;
+	padding-left: 30px;
+}
+
+QPushButton:hover {
+	background-color: rgba(100, 100, 100, 0.2);
+	border: 1px solid #888888;
+}
+
+QPushButton:pressed {
+	background-color: rgba(100, 100, 100, 0.4);
+	border: 1px solid #444444;
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Settings</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/settings.png</normaloff>Icons/settings.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Policy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>600</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_2" native="true">
+      <widget class="QWidget" name="verticalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1301</width>
+         <height>831</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QWidget" name="widget_3" native="true">
+          <property name="styleSheet">
+           <string notr="true">
+background-color: #E0E0E0;
+</string>
+          </property>
+          <widget class="QWidget" name="verticalLayoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>1301</width>
+             <height>121</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="lblDashboard">
+              <property name="font">
+               <font>
+                <pointsize>20</pointsize>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+	color: black;
+	padding-left: 40px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Dashboard</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="verticalLayoutWidget_3">
+           <property name="geometry">
+            <rect>
+             <x>50</x>
+             <y>170</y>
+             <width>1201</width>
+             <height>621</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QWidget" name="widget_4" native="true">
+              <property name="styleSheet">
+               <string notr="true">
+QWidget {
+	background-color: white;
+	border-radius: 30px;
+}
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>18</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

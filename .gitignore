@@ -1,0 +1,71 @@
+# Ignore build directories
+build*/
+*.autosave
+*.user
+*.pro.user*
+*.qmake.stash
+*.qmake.cache
+
+# Ignore Qt Creator project-specific files
+*.creator*
+*.pro.user
+*.pro.user.*
+*.workspace
+*.log
+
+# CMake build directories (if you use CMake)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Generated files
+*.o
+*.obj
+*.so
+*.a
+*.dll
+*.exe
+*.moc
+*.pb.cc
+*.pb.h
+*.ncb
+*.sdf
+*.suo
+*.idb
+*.ipch
+*.pdb
+
+# moc/auto-generated files
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# Temporary files
+*.bak
+*.swp
+*~
+*.tmp
+
+# Qt Creator settings backup
+*.orig
+
+# Debug and release folders (especially on Windows)
+debug/
+release/
+
+# Visual Studio build folders (if cross-platform)
+x64/
+x86/
+ipch/
+
+# Clangd index (if using clangd)
+.cache/
+.clangd/
+
+# MacOS junk
+.DS_Store
+
+# Windows junk
+Thumbs.db
