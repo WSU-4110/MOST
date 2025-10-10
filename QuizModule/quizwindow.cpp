@@ -1,8 +1,8 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "../QuizModule/quizwindow.h"
+#include "QuizModule/ui_quizwindow.h"
 //#include <QMessageBox> commented out, but may be used for pop up messages
 
-MainWindow::MainWindow(QWidget *parent)
+QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 }
 
-MainWindow::~MainWindow()
+QuizWindow::~QuizWindow()
 {
     delete ui;
 }
@@ -23,7 +23,7 @@ void MainWindow::showInfo(const QString& msg) {
 */
 
 // this will clear the fields from the create page
-void MainWindow::clearCreateForm() {
+void QuizWindow::clearCreateForm() {
     ui->lineEditQuestion->clear();
     ui->lineEditAnswer1->clear();
     ui->lineEditAnswer2->clear();
@@ -34,7 +34,7 @@ void MainWindow::clearCreateForm() {
     ui->comboBoxCorrect->setCurrentIndex(0);
 }
 
-void MainWindow::writeCreateForm(const QuizQuestion &q) {
+void QuizWindow::writeCreateForm(const QuizQuestion &q) {
     ui->lineEditQuestion->setText(q.prompt);
     ui->lineEditAnswer1->setText(q.answers[0]);
     ui->lineEditAnswer2->setText(q.answers[1]);
@@ -47,7 +47,7 @@ void MainWindow::writeCreateForm(const QuizQuestion &q) {
     ui->comboBoxCorrect->setCurrentIndex(index);
 }
 
-bool MainWindow::readCreateForm(QuizQuestion &out, QString &err) const {
+bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
     out.prompt       = ui->lineEditQuestion->text();
     out.answers[0]   = ui->lineEditAnswer1->text();
     out.answers[1]   = ui->lineEditAnswer2->text();
@@ -65,12 +65,12 @@ bool MainWindow::readCreateForm(QuizQuestion &out, QString &err) const {
 }
 
 // menu -> create page
-void MainWindow::on_pushButtonCreatePage_clicked() {
+void QuizWindow::on_pushButtonCreatePage_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizCreate);
 }
 
 // menu -> study page
-void MainWindow::on_pushButtonStudyPage_clicked() {
+void QuizWindow::on_pushButtonStudyPage_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
     if (!questionBank.isEmpty()) {
         questionStudyIndex = 0;
@@ -79,15 +79,15 @@ void MainWindow::on_pushButtonStudyPage_clicked() {
 }
 
 // "non-menu page" -> menu
-void MainWindow::on_pushButtonReturn_clicked() {
+void QuizWindow::on_pushButtonReturn_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 }
 
-void MainWindow::on_pushButtonReturn_2_clicked() {
+void QuizWindow::on_pushButtonReturn_2_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 }
 
-void MainWindow::on_pushButtonReturn_3_clicked() {
+void QuizWindow::on_pushButtonReturn_3_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 }
 
@@ -95,7 +95,7 @@ void MainWindow::on_pushButtonReturn_3_clicked() {
 // create page (add better error handling later)
 
 // create question
-void MainWindow::on_pushButtonCreateQuestion_clicked() {
+void QuizWindow::on_pushButtonCreateQuestion_clicked() {
     QuizQuestion q; QString err;
     if (!readCreateForm(q, err)) {
         return;
@@ -105,7 +105,7 @@ void MainWindow::on_pushButtonCreateQuestion_clicked() {
 }
 
 // overwrite question
-void MainWindow::on_pushButtonOverwriteQuestion_clicked() {
+void QuizWindow::on_pushButtonOverwriteQuestion_clicked() {
     if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
         return;
     }
@@ -116,7 +116,7 @@ void MainWindow::on_pushButtonOverwriteQuestion_clicked() {
     writeCreateForm(questionBank[questionCurrent]);
 }
 
-void MainWindow::on_pushButtonDeleteQuestion_clicked() {
+void QuizWindow::on_pushButtonDeleteQuestion_clicked() {
     if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
         return;
     }
@@ -133,7 +133,7 @@ void MainWindow::on_pushButtonDeleteQuestion_clicked() {
     writeCreateForm(questionBank[questionCurrent]);
 }
 
-void MainWindow::on_pushButtonPreviousQuestion_clicked() {
+void QuizWindow::on_pushButtonPreviousQuestion_clicked() {
     if (questionBank.isEmpty()) return;
     if (questionCurrent <= 0) {             // temp fix for out of bounds errors? something would cause app to crash
         questionCurrent = 0;
@@ -143,7 +143,7 @@ void MainWindow::on_pushButtonPreviousQuestion_clicked() {
     writeCreateForm(questionBank[questionCurrent]);
 }
 
-void MainWindow::on_pushButtonNextQuestion_clicked() {
+void QuizWindow::on_pushButtonNextQuestion_clicked() {
     if (questionBank.isEmpty()) return;
     if (questionCurrent + 1 >= questionBank.size()) {       // temp fix for out of bounds errors? something would cause app to crash
         questionCurrent = questionBank.size() - 1;
@@ -156,7 +156,7 @@ void MainWindow::on_pushButtonNextQuestion_clicked() {
 
 // study page
 
-void MainWindow::showStudyQuestion(int i) {
+void QuizWindow::showStudyQuestion(int i) {
     if (questionBank.isEmpty()) return;
     if (i < 0) i = 0;
     if (i >= questionBank.size()) i = questionBank.size() - 1;
@@ -198,7 +198,7 @@ void MainWindow::showStudyQuestion(int i) {
     ui->radioButtonAnswer6->setAutoExclusive(true);
 }
 
-void MainWindow::on_pushButtonNextQuestion_2_clicked() {
+void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
     if (questionBank.isEmpty()) return;
 
     questionBank[questionStudyIndex].userIndex = currentStudySelection();
@@ -209,7 +209,7 @@ void MainWindow::on_pushButtonNextQuestion_2_clicked() {
     }
 }
 
-void MainWindow::on_pushButtonPreviousQuestion_2_clicked() {
+void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
     if (questionBank.isEmpty()) return;
 
     questionBank[questionStudyIndex].userIndex = currentStudySelection();
@@ -220,7 +220,7 @@ void MainWindow::on_pushButtonPreviousQuestion_2_clicked() {
     }
 }
 
-int MainWindow::currentStudySelection() const {
+int QuizWindow::currentStudySelection() const {
     if (ui->radioButtonAnswer1->isChecked()) return 0;
     if (ui->radioButtonAnswer2->isChecked()) return 1;
     if (ui->radioButtonAnswer3->isChecked()) return 2;
@@ -231,7 +231,7 @@ int MainWindow::currentStudySelection() const {
 }
 
 // study page -> results
-void MainWindow::on_pushButtonSubmitQuiz_clicked() {
+void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
     int correct = 0;
     for (int i = 0; i < questionBank.size(); i++) {

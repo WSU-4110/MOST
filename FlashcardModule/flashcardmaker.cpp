@@ -1,5 +1,5 @@
 #include "flashcardmaker.h"
-#include "./ui_flashcardmaker.h"
+#include "FlashcardModule/ui_flashcardmaker.h"
 #include <QMessageBox> //added
 #include <QFile> //added
 #include <QTextStream> //added

@@ -1,5 +1,5 @@
 #include "homepage.h"
-#include "./ui_homepage.h"
+#include "Homepage/ui_homepage.h"
 homePage::homePage(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::homePage)
@@ -39,7 +39,7 @@ void homePage::on_createFlashCardButton_clicked()
 void homePage::on_studyMultipleChoiceButton_clicked(){
 
     if(!quizWindow){
-        quizWindow=new MainWindow(this);
+        quizWindow=new QuizWindow(this);
     }
 
     quizWindow->show();

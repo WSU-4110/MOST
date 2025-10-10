@@ -1,14 +1,13 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
-#include "flashcardmaker.h"
-#include "SampleQuizTemplate/mainwindow.h"
+#include "../FlashcardModule/flashcardmaker.h"
+#include "../QuizModule/quizwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class homePage; }
 QT_END_NAMESPACE
-
 
 
 class homePage : public QMainWindow
@@ -26,7 +25,7 @@ private slots:
 private:
     Ui::homePage *ui;
     flashCardMaker *flashCardCreatorWindow;  // pointer to child window
-    MainWindow *quizWindow;
+    QMainWindow *quizWindow;
 };
 
 #endif // HOMEPAGE_H

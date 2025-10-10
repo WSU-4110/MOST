@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "quizwindow.h"
 
 #include <QApplication>
 

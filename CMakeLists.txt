@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(flashCardMakeSection VERSION 0.1 LANGUAGES CXX)
+project(MOST VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -14,51 +14,46 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         main.cpp
-        flashcardmaker.cpp
-        flashcardmaker.h
-        flashcardmaker.ui
+
+
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-    qt_add_executable(flashCardMakeSection
+    qt_add_executable(MOST
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        homepage.h homepage.cpp
-        homepage.ui
-        SampleQuizTemplate/mainwindow.h
-        SampleQuizTemplate/mainwindow.ui
-        SampleQuizTemplate/mainwindow.cpp
+        FlashcardModule/flashcardmaker.cpp FlashcardModule/flashcardmaker.h FlashcardModule/flashcardmaker.ui
+        QuizModule/quizwindow.cpp QuizModule/quizwindow.h QuizModule/quizwindow.ui
+        Homepage/homepage.cpp Homepage/homepage.h Homepage/homepage.ui
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET flashCardMakeSection APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(flashCardMakeSection SHARED
+        add_library(MOST SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(flashCardMakeSection
+        add_executable(MOST
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_link_libraries(flashCardMakeSection PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(flashCardMakeSection PRIVATE Qt6::Widgets)
+target_link_libraries(MOST PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.flashCardMakeSection)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.MOST)
 endif()
-set_target_properties(flashCardMakeSection PROPERTIES
+set_target_properties(MOST PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -67,12 +62,12 @@ set_target_properties(flashCardMakeSection PROPERTIES
 )
 
 include(GNUInstallDirs)
-install(TARGETS flashCardMakeSection
+install(TARGETS MOST
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(flashCardMakeSection)
+    qt_finalize_executable(MOST)
 endif()

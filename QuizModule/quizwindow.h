@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef QUIZWINDOW_H
+#define QUIZWINDOW_H
 
 #include <QMainWindow>
 #include <QVector>
@@ -19,13 +19,13 @@ struct QuizQuestion {
     int userIndex = -1;
 };
 
-class MainWindow : public QMainWindow
+class QuizWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    QuizWindow(QWidget *parent = nullptr);
+    ~QuizWindow();
 
     // add buttons
 private slots:
@@ -71,4 +71,4 @@ private:
 
 
 };
-#endif // MAINWINDOW_H
+#endif // QUIZWINDOW_H
