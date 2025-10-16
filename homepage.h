@@ -3,6 +3,7 @@
 
 #include "flashcardmaker.h"
 #include "SampleQuizTemplate/mainwindow.h"
+#include "flashcardstudy.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -22,10 +23,12 @@ public:
 private slots:
     void on_createFlashCardButton_clicked();
     void on_studyMultipleChoiceButton_clicked();
+    void on_studyFlashCardsButton_clicked();
 
 private:
     Ui::homePage *ui;
     flashCardMaker *flashCardCreatorWindow;  // pointer to child window
+    FlashCardStudy *flashCardStudyWindow;
     MainWindow *quizWindow;
 };
 

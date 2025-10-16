@@ -5,6 +5,7 @@ homePage::homePage(QWidget *parent)
     , ui(new Ui::homePage)
     , flashCardCreatorWindow(nullptr)
     , quizWindow(nullptr)
+    , flashCardStudyWindow(nullptr)
 {
     ui->setupUi(this);
 
@@ -22,6 +23,8 @@ homePage::~homePage()
         delete flashCardCreatorWindow;
     if(quizWindow)
         delete quizWindow;
+    if(flashCardStudyWindow)
+        delete flashCardStudyWindow;
 }
 
 void homePage::on_createFlashCardButton_clicked()
@@ -45,5 +48,17 @@ void homePage::on_studyMultipleChoiceButton_clicked(){
     quizWindow->show();
     quizWindow->raise();
     quizWindow->activateWindow();
+
+}
+void homePage::on_studyFlashCardsButton_clicked()
+{
+
+    if (!flashCardStudyWindow) {
+        flashCardStudyWindow = new FlashCardStudy();
+    }
+    this->hide();
+    flashCardStudyWindow->show();
+    flashCardStudyWindow->raise();
+    flashCardStudyWindow->activateWindow();
 
 }
