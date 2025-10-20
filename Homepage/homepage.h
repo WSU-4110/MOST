@@ -3,6 +3,7 @@
 
 #include "../FlashcardModule/flashcardmaker.h"
 #include "../FlashcardModule/flashcardstudy.h"
+#include "../QuizModule/quizwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
