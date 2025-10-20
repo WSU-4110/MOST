@@ -1,10 +1,11 @@
 #include "homepage.h"
-#include "Homepage/ui_homepage.h"
+#include "./ui_homepage.h"
 homePage::homePage(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::homePage)
     , flashCardCreatorWindow(nullptr)
     , quizWindow(nullptr)
+    , flashCardStudyWindow(nullptr)
 {
     ui->setupUi(this);
 
@@ -22,6 +23,8 @@ homePage::~homePage()
         delete flashCardCreatorWindow;
     if(quizWindow)
         delete quizWindow;
+    if(flashCardStudyWindow)
+        delete flashCardStudyWindow;
 }
 
 void homePage::on_createFlashCardButton_clicked()
@@ -39,11 +42,23 @@ void homePage::on_createFlashCardButton_clicked()
 void homePage::on_studyMultipleChoiceButton_clicked(){
 
     if(!quizWindow){
-        quizWindow=new QuizWindow(this);
+        quizWindow=new MainWindow(this);
     }
 
     quizWindow->show();
     quizWindow->raise();
     quizWindow->activateWindow();
+
+}
+void homePage::on_studyFlashCardsButton_clicked()
+{
+
+    if (!flashCardStudyWindow) {
+        flashCardStudyWindow = new FlashCardStudy();
+    }
+    this->hide();
+    flashCardStudyWindow->show();
+    flashCardStudyWindow->raise();
+    flashCardStudyWindow->activateWindow();
 
 }
