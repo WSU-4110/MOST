@@ -26,6 +26,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         FlashcardModule/flashcardmaker.cpp FlashcardModule/flashcardmaker.h FlashcardModule/flashcardmaker.ui
         QuizModule/quizwindow.cpp QuizModule/quizwindow.h QuizModule/quizwindow.ui
         Homepage/homepage.cpp Homepage/homepage.h Homepage/homepage.ui
+        FlashcardModule/flashcardmaker.cpp FlashcardModule/flashcardmaker.h FlashcardModule/flashcardmaker.ui FlashcardModule/flashcardstudy.cpp FlashcardModule/flashcardstudy.h FlashcardModule/flashcardstudy.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

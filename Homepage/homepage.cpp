@@ -42,7 +42,7 @@ void homePage::on_createFlashCardButton_clicked()
 void homePage::on_studyMultipleChoiceButton_clicked(){
 
     if(!quizWindow){
-        quizWindow=new MainWindow(this);
+        quizWindow=new QMainWindow(this);
     }
 
     quizWindow->show();
