@@ -5,5 +5,6 @@
         <file>images/home.png</file>
         <file>images/quiz.png</file>
         <file>images/quiz-color.png</file>
+        <file>images/flash-card.png</file>
     </qresource>
 </RCC>
