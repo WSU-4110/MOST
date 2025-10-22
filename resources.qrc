@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>images/flash-card-color.png</file>
+        <file>images/flash-cards.png</file>
+        <file>images/home.png</file>
+        <file>images/quiz.png</file>
+        <file>images/quiz-color.png</file>
+    </qresource>
+</RCC>
