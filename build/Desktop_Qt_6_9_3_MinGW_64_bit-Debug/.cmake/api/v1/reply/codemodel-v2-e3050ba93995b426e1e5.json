@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-58351ac986875a9a1d1c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "MOST",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "MOST::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MOST-Debug-8aa8b3361f7213e85f02.json",
+					"name" : "MOST",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MOST_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MOST_autogen-Debug-cdfbdc45a719def0acb8.json",
+					"name" : "MOST_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MOST_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MOST_autogen_timestamp_deps-Debug-5aab1eb44b4b9f74f5d3.json",
+					"name" : "MOST_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/itsli/Documents/GitHub/MOST/build/Desktop_Qt_6_9_3_MinGW_64_bit-Debug",
+		"source" : "C:/Users/itsli/Documents/GitHub/MOST"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
