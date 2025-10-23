@@ -2,6 +2,7 @@
 #define FLASHCARDMAKER_H
 
 #include <QWidget>
+#include <QtSql/QSqlDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,5 +25,7 @@ private:
     Ui::flashCardMaker *ui;
     int cardCount=0; //added
     QVector<QPair<QString, QString>> flashcards; //added
+
+    QSqlDatabase db; // SQLite connection
 };
 #endif // FLASHCARDMAKER_H
