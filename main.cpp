@@ -11,5 +11,6 @@ int main(int argc, char *argv[])
     flashCardMaker makeCardWindow;
     QuizWindow quizWindow;
     homeWindow.show();
+
     return a.exec();
 }
