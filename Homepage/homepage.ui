@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1975</width>
-    <height>1350</height>
+    <width>1481</width>
+    <height>880</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,7 @@ border: 1px black;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="btnHome">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>0</horstretch>
@@ -85,7 +85,7 @@ QPushButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="btnFlashcards">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 color: white;
@@ -112,7 +112,7 @@ QPushButton:hover {
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="btnQuizzes">
          <property name="styleSheet">
           <string notr="true">QPushButton {
 color: white;
@@ -157,7 +157,7 @@ QPushButton:hover {
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="lblMost">
         <property name="font">
          <font>
           <family>Freestyle Script</family>
@@ -177,7 +177,7 @@ background-color: #91a3b0;</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="lblRecentlyViewd">
         <property name="font">
          <font>
           <pointsize>16</pointsize>
@@ -197,7 +197,7 @@ border-radius: 8px;</string>
        </widget>
       </item>
       <item>
-       <widget class="QListWidget" name="listWidget">
+       <widget class="QListWidget" name="listRecents">
         <property name="maximumSize">
          <size>
           <width>800</width>
@@ -322,7 +322,7 @@ margin-bottom: 25px;</string>
         </spacer>
        </item>
        <item alignment="Qt::AlignmentFlag::AlignVCenter">
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="quizIcon">
          <property name="styleSheet">
           <string notr="true">padding-left: 40px;
 border: none;
@@ -547,7 +547,7 @@ margin-bottom: 25px;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="flashcardIcon">
          <property name="styleSheet">
           <string notr="true">border: none;
 background: transparent;
@@ -585,7 +585,7 @@ border-radius: 12px;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="lbFlashcardModule">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
