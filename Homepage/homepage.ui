@@ -75,9 +75,11 @@ border: 1px black;</string>
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
 </string>
          </property>
@@ -85,7 +87,7 @@ QPushButton:hover {
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resources.qrc">
+          <iconset>
            <normaloff>:/icons/images/home.png</normaloff>:/icons/images/home.png</iconset>
          </property>
          <property name="iconSize">
@@ -102,17 +104,20 @@ QPushButton:hover {
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
+
 </string>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resources.qrc">
+          <iconset>
            <normaloff>:/icons/images/flash-cards.png</normaloff>:/icons/images/flash-cards.png</iconset>
          </property>
          <property name="iconSize">
@@ -129,9 +134,11 @@ QPushButton:hover {
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
 </string>
          </property>
@@ -139,7 +146,7 @@ QPushButton:hover {
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resources.qrc">
+          <iconset>
            <normaloff>:/icons/images/quiz.png</normaloff>:/icons/images/quiz.png</iconset>
          </property>
          <property name="iconSize">
@@ -393,7 +400,7 @@ background: transparent;</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resources.qrc">
+          <iconset>
            <normaloff>:/icons/images/quiz-color.png</normaloff>:/icons/images/quiz-color.png</iconset>
          </property>
          <property name="iconSize">
@@ -661,7 +668,7 @@ border-radius: 12px;</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="../resources.qrc">
+          <iconset>
            <normaloff>:/icons/images/flash-card.png</normaloff>:/icons/images/flash-card.png</iconset>
          </property>
          <property name="iconSize">
@@ -844,8 +851,6 @@ QPushButton:pressed {
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="../resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
