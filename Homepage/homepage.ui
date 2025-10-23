@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1481</width>
-    <height>880</height>
+    <width>1223</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1223</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>2560</width>
+    <height>1440</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -158,6 +170,18 @@ QPushButton:hover {
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
        <widget class="QLabel" name="lblMost">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>100</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <family>Freestyle Script</family>
@@ -178,6 +202,18 @@ background-color: #91a3b0;</string>
       </item>
       <item>
        <widget class="QLabel" name="lblRecentlyViewd">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>350</width>
+          <height>30</height>
+         </size>
+        </property>
         <property name="font">
          <font>
           <pointsize>16</pointsize>
@@ -198,9 +234,21 @@ border-radius: 8px;</string>
       </item>
       <item>
        <widget class="QListWidget" name="listRecents">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>280</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
-          <width>800</width>
+          <width>350</width>
           <height>1500</height>
          </size>
         </property>
@@ -213,6 +261,7 @@ QListWidget {
         stop: 0 #91a3b0,
         stop: 1 #68228b
     );
+border-radius: 8px;
 }
 
 /* Style individual list items */
@@ -264,6 +313,22 @@ QListWidget::item:hover {
      </layout>
     </item>
     <item>
+     <spacer name="horizontalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
      <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Orientation::Horizontal</enum>
@@ -273,8 +338,8 @@ QListWidget::item:hover {
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>100</width>
-        <height>20</height>
+        <width>0</width>
+        <height>10</height>
        </size>
       </property>
      </spacer>
@@ -282,14 +347,20 @@ QListWidget::item:hover {
     <item>
      <widget class="QWidget" name="widget_2" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>350</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>700</width>
+        <width>2000</width>
         <height>16777215</height>
        </size>
       </property>
@@ -305,24 +376,14 @@ margin-top: 25px;
 margin-bottom: 25px;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Policy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>10</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item alignment="Qt::AlignmentFlag::AlignVCenter">
         <widget class="QPushButton" name="quizIcon">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">padding-left: 40px;
 border: none;
@@ -386,7 +447,19 @@ background: transparent;</string>
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="lblQuizDescription">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>800</height>
+          </size>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
@@ -397,12 +470,7 @@ background: transparent;</string>
 </string>
          </property>
          <property name="text">
-          <string>&lt;ul&gt;
-    &lt;li&gt;Create Multiple Choice Quizzes&lt;/li&gt;&lt;br&gt;&lt;br&gt;
-    &lt;li&gt;Challenge Yourself By Studying Questions In Random Order&lt;/li&gt;&lt;br&gt;&lt;br&gt;
-    &lt;li&gt;Save Multiple Sets So You Can Return To Previously Created Quizzes&lt;/li&gt;
-&lt;/ul&gt;
-</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;-Create multiple choice quizzes&lt;/p&gt;&lt;p&gt;-Study questions in random order&lt;/p&gt;&lt;p&gt;-Save multiple sets&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -415,14 +483,26 @@ background: transparent;</string>
           <item>
            <widget class="QPushButton" name="createMultipleChoiceButton">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="font">
              <font>
-              <pointsize>19</pointsize>
+              <pointsize>13</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -452,9 +532,21 @@ QPushButton:pressed {
           </item>
           <item>
            <widget class="QPushButton" name="studyMultipleChoiceButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="font">
              <font>
-              <pointsize>19</pointsize>
+              <pointsize>13</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -498,8 +590,8 @@ QPushButton:pressed {
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>40</width>
-        <height>20</height>
+        <width>20</width>
+        <height>10</height>
        </size>
       </property>
      </spacer>
@@ -507,14 +599,20 @@ QPushButton:pressed {
     <item>
      <widget class="QWidget" name="widget_3" native="true">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="minimumSize">
+       <size>
+        <width>350</width>
+        <height>0</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
-        <width>700</width>
+        <width>2000</width>
         <height>16777215</height>
        </size>
       </property>
@@ -531,7 +629,7 @@ margin-bottom: 25px;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <spacer name="verticalSpacer_3">
+        <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
          </property>
@@ -541,13 +639,19 @@ margin-bottom: 25px;</string>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>55</height>
+           <height>0</height>
           </size>
          </property>
         </spacer>
        </item>
        <item>
         <widget class="QPushButton" name="flashcardIcon">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: none;
 background: transparent;
@@ -569,23 +673,13 @@ border-radius: 12px;</string>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_5">
-         <property name="orientation">
-          <enum>Qt::Orientation::Vertical</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Policy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>45</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
         <widget class="QLabel" name="lbFlashcardModule">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -611,7 +705,13 @@ border-radius: 12px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="lblFlashCardDescription">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="font">
           <font>
            <pointsize>16</pointsize>
@@ -621,12 +721,7 @@ border-radius: 12px;</string>
           <string notr="true">background: transparent;</string>
          </property>
          <property name="text">
-          <string>&lt;ul&gt;
-    &lt;li&gt;Create Multiple Flashcards&lt;/li&gt;&lt;br&gt;&lt;br&gt;
-    &lt;li&gt;Challenge Yourself By Studying Flashcards In Random Order&lt;/li&gt;&lt;br&gt;&lt;br&gt;
-    &lt;li&gt;Save Multiple Sets So You Can Return To Previously Created Flashcards&lt;/li&gt;
-&lt;/ul&gt;
-</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;-Create multiple flashcards&lt;/p&gt;&lt;p&gt;-Study in random order&lt;/p&gt;&lt;p&gt;-Save multiple sets&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -638,9 +733,21 @@ border-radius: 12px;</string>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QPushButton" name="createFlashCardButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="font">
              <font>
-              <pointsize>19</pointsize>
+              <pointsize>13</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -670,9 +777,21 @@ QPushButton:pressed {
           </item>
           <item>
            <widget class="QPushButton" name="studyFlashCardsButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>400</width>
+              <height>100</height>
+             </size>
+            </property>
             <property name="font">
              <font>
-              <pointsize>19</pointsize>
+              <pointsize>14</pointsize>
              </font>
             </property>
             <property name="styleSheet">
