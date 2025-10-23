@@ -29,6 +29,9 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-radius: 10px</string>
+      </property>
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -155,9 +158,9 @@ border-radius: 10px;
         <widget class="QPushButton" name="pushButtonStudyPage">
          <property name="geometry">
           <rect>
-           <x>80</x>
+           <x>79</x>
            <y>190</y>
-           <width>80</width>
+           <width>81</width>
            <height>24</height>
           </rect>
          </property>
@@ -182,6 +185,44 @@ border-radius: 10px;
          </property>
          <property name="alignment">
           <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="widget" native="true">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>129</y>
+          <width>751</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>0</y>
+           <width>71</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Current Set:</string>
+         </property>
+        </widget>
+        <widget class="QPlainTextEdit" name="plainTextEdit">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>0</y>
+           <width>661</width>
+           <height>21</height>
+          </rect>
          </property>
         </widget>
        </widget>
@@ -838,6 +879,42 @@ border-radius: 10px;</string>
          </item>
         </widget>
        </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit_2">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>70</y>
+          <width>431</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>70</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+        <property name="text">
+         <string>Title:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
        <zorder>quizCreateFrame</zorder>
        <zorder>pushButtonCreateQuestion</zorder>
        <zorder>pushButtonOverwriteQuestion</zorder>
@@ -845,6 +922,8 @@ border-radius: 10px;</string>
        <zorder>pushButtonPreviousQuestion</zorder>
        <zorder>pushButtonNextQuestion</zorder>
        <zorder>pushButtonReturn</zorder>
+       <zorder>plainTextEdit_2</zorder>
+       <zorder>label_5</zorder>
       </widget>
       <widget class="QWidget" name="pageQuizStudy">
        <widget class="QPushButton" name="pushButtonReturn_2">
@@ -1144,6 +1223,42 @@ border-radius: 10px;</string>
          </property>
         </widget>
        </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>70</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+        <property name="text">
+         <string>Title:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit_3">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>70</y>
+          <width>431</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="pageQuizResults">
        <widget class="QPushButton" name="pushButtonReturn_3">
@@ -1251,6 +1366,42 @@ border-radius: 10px</string>
           <string>Result:</string>
          </property>
         </widget>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>260</x>
+          <y>70</y>
+          <width>41</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
+        <property name="text">
+         <string>Title:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="plainTextEdit_4">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>70</y>
+          <width>431</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+        </property>
        </widget>
       </widget>
      </widget>
