@@ -23,1390 +23,1707 @@
    <string notr="true">background-color: rgba(9, 2, 17, 64);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QStackedWidget" name="stackedQuizWidget">
-      <property name="autoFillBackground">
-       <bool>false</bool>
+   <widget class="QStackedWidget" name="stackedQuizWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>909</width>
+      <height>597</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 10px</string>
+    </property>
+    <property name="currentIndex">
+     <number>4</number>
+    </property>
+    <widget class="QWidget" name="pageQuizMenu">
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>170</y>
+        <width>231</width>
+        <height>251</height>
+       </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-radius: 10px</string>
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;</string>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="pageQuizMenu">
-       <widget class="QWidget" name="widget_2" native="true">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>170</y>
-          <width>231</width>
-          <height>251</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;</string>
-        </property>
-        <widget class="QPushButton" name="pushButtonSave">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>190</y>
-           <width>80</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Save</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButtonLoad">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>190</y>
-           <width>80</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Load</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_2">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>20</y>
-           <width>131</width>
-           <height>151</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/images/save-file-icon-14.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="widget_3" native="true">
-        <property name="geometry">
-         <rect>
-          <x>340</x>
-          <y>170</y>
-          <width>231</width>
-          <height>251</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;</string>
-        </property>
-        <widget class="QPushButton" name="pushButtonCreatePage">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>190</y>
-           <width>80</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Create/Edit</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_3">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>20</y>
-           <width>131</width>
-           <height>151</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/images/pngfind.com-phone-symbol-png-2755033.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="widget_4" native="true">
-        <property name="geometry">
-         <rect>
-          <x>600</x>
-          <y>170</y>
-          <width>231</width>
-          <height>251</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-        <widget class="QPushButton" name="pushButtonStudyPage">
-         <property name="geometry">
-          <rect>
-           <x>79</x>
-           <y>190</y>
-           <width>81</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Study</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_4">
-         <property name="geometry">
-          <rect>
-           <x>50</x>
-           <y>20</y>
-           <width>131</width>
-           <height>151</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">image: url(:/icons/images/open-book-icon-19.png);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignmentFlag::AlignCenter</set>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="widget" native="true">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>129</y>
-          <width>751</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-        <widget class="QLabel" name="label">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>0</y>
-           <width>71</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Current Set:</string>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="plainTextEdit">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>0</y>
-           <width>661</width>
-           <height>21</height>
-          </rect>
-         </property>
-        </widget>
-       </widget>
+      <widget class="QPushButton" name="pushButtonSave">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>190</y>
+         <width>80</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
       </widget>
-      <widget class="QWidget" name="pageQuizCreate">
-       <widget class="QPushButton" name="pushButtonCreateQuestion">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>500</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Create</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonOverwriteQuestion">
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>500</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Overwrite</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonDeleteQuestion">
-        <property name="geometry">
-         <rect>
-          <x>380</x>
-          <y>500</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Delete</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonPreviousQuestion">
-        <property name="geometry">
-         <rect>
-          <x>550</x>
-          <y>500</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Back</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonNextQuestion">
-        <property name="geometry">
-         <rect>
-          <x>660</x>
-          <y>500</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Next</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonReturn">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>70</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Menu</string>
-        </property>
-       </widget>
-       <widget class="QFrame" name="quizCreateFrame">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>100</y>
-          <width>581</width>
-          <height>391</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QLineEdit" name="lineEditAnswer3">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>160</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer3">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>170</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 3</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer6">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>320</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 6</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer2">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>120</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 2</string>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QLabel" name="labelCorrectAnswer">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>360</y>
-           <width>81</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Correct Answer</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditAnswer4">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>210</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer1">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>70</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 1</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer4">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>220</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 4</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelAnswer5">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>270</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Answer 5</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditAnswer6">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>310</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelQuestion">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>20</y>
-           <width>81</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string>Insert Question</string>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditAnswer1">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>60</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditAnswer2">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>110</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditQuestion">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>10</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="lineEditAnswer5">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>260</y>
-           <width>471</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect_2">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect_3">
-         <property name="geometry">
-          <rect>
-           <x>260</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect_4">
-         <property name="geometry">
-          <rect>
-           <x>340</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect_5">
-         <property name="geometry">
-          <rect>
-           <x>420</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-        <widget class="QComboBox" name="comboBoxCorrect_6">
-         <property name="geometry">
-          <rect>
-           <x>500</x>
-           <y>360</y>
-           <width>72</width>
-           <height>24</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string>background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>N/A</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>1</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>2</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>3</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>4</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>5</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>6</string>
-          </property>
-         </item>
-        </widget>
-       </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_2">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>70</y>
-          <width>431</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>70</y>
-          <width>41</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-        <property name="text">
-         <string>Title:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-       <zorder>quizCreateFrame</zorder>
-       <zorder>pushButtonCreateQuestion</zorder>
-       <zorder>pushButtonOverwriteQuestion</zorder>
-       <zorder>pushButtonDeleteQuestion</zorder>
-       <zorder>pushButtonPreviousQuestion</zorder>
-       <zorder>pushButtonNextQuestion</zorder>
-       <zorder>pushButtonReturn</zorder>
-       <zorder>plainTextEdit_2</zorder>
-       <zorder>label_5</zorder>
+      <widget class="QPushButton" name="pushButtonLoad">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>190</y>
+         <width>80</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Load</string>
+       </property>
       </widget>
-      <widget class="QWidget" name="pageQuizStudy">
-       <widget class="QPushButton" name="pushButtonReturn_2">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>70</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Menu</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonPreviousQuestion_2">
-        <property name="geometry">
-         <rect>
-          <x>300</x>
-          <y>490</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Previous</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonNextQuestion_2">
-        <property name="geometry">
-         <rect>
-          <x>520</x>
-          <y>490</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Next</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="pushButtonSubmitQuiz">
-        <property name="geometry">
-         <rect>
-          <x>410</x>
-          <y>490</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Submit</string>
-        </property>
-       </widget>
-       <widget class="QFrame" name="frame">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>100</y>
-          <width>581</width>
-          <height>381</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QRadioButton" name="radioButtonAnswer5">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>290</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer6">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>330</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButtonAnswer4">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>240</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer5">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>280</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButtonAnswer1">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>90</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer2">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>130</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer3">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>180</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButtonAnswer6">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>340</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer4">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>230</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButtonAnswer2">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>140</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayAnswer1">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>80</y>
-           <width>531</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
-        </widget>
-        <widget class="QRadioButton" name="radioButtonAnswer3">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>190</y>
-           <width>21</width>
-           <height>21</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textDisplayQuestion">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>561</width>
-           <height>61</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Sans Serif Collection</family>
-           <pointsize>16</pointsize>
-           <bold>true</bold>
-          </font>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>70</y>
-          <width>41</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-        <property name="text">
-         <string>Title:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_3">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>70</y>
-          <width>431</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="pageQuizResults">
-       <widget class="QPushButton" name="pushButtonReturn_3">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>70</y>
-          <width>80</width>
-          <height>24</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px;</string>
-        </property>
-        <property name="text">
-         <string>Menu</string>
-        </property>
-       </widget>
-       <widget class="QFrame" name="frame_2">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>100</y>
-          <width>581</width>
-          <height>381</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 100);
-border-radius: 10px</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QLabel" name="labelFractionSign">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>130</y>
-           <width>16</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>/</string>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textResultNum">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>120</y>
-           <width>104</width>
-           <height>31</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textResultDen">
-         <property name="geometry">
-          <rect>
-           <x>300</x>
-           <y>120</y>
-           <width>104</width>
-           <height>31</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelPercentSign">
-         <property name="geometry">
-          <rect>
-           <x>290</x>
-           <y>170</y>
-           <width>16</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>%</string>
-         </property>
-        </widget>
-        <widget class="QPlainTextEdit" name="textResultPer">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>160</y>
-           <width>104</width>
-           <height>31</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="labelResult">
-         <property name="geometry">
-          <rect>
-           <x>140</x>
-           <y>130</y>
-           <width>41</width>
-           <height>16</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Result:</string>
-         </property>
-        </widget>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>260</x>
-          <y>70</y>
-          <width>41</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-        <property name="text">
-         <string>Title:</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignmentFlag::AlignCenter</set>
-        </property>
-       </widget>
-       <widget class="QPlainTextEdit" name="plainTextEdit_4">
-        <property name="geometry">
-         <rect>
-          <x>310</x>
-          <y>70</y>
-          <width>431</width>
-          <height>21</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-        </property>
-       </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>20</y>
+         <width>131</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/icons/images/save-file-icon-14.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
       </widget>
      </widget>
-    </item>
-   </layout>
+     <widget class="QWidget" name="widget_3" native="true">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>170</y>
+        <width>231</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;</string>
+      </property>
+      <widget class="QPushButton" name="pushButtonCreatePage">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>190</y>
+         <width>80</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Create/Edit</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>20</y>
+         <width>131</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/icons/images/pngfind.com-phone-symbol-png-2755033.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget_4" native="true">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>170</y>
+        <width>231</width>
+        <height>251</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <widget class="QPushButton" name="pushButtonStudyPage">
+       <property name="geometry">
+        <rect>
+         <x>79</x>
+         <y>190</y>
+         <width>81</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Study</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>20</y>
+         <width>131</width>
+         <height>151</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/icons/images/open-book-icon-19.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="widget" native="true">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>129</y>
+        <width>751</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Current Set:</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>0</y>
+         <width>661</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageQuizCreate">
+     <widget class="QPushButton" name="pushButtonCreateQuestion">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>500</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Create</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonOverwriteQuestion">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>500</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Overwrite</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonDeleteQuestion">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>500</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonPreviousQuestion">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>500</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonNextQuestion">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>500</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonReturn">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Menu</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="quizCreateFrame">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>581</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLineEdit" name="lineEditAnswer3">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>160</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 3</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>320</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 6</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 2</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="labelCorrectAnswer">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>360</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Correct Answer</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditAnswer4">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>210</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 1</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>220</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 4</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelAnswer5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>270</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Answer 5</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditAnswer6">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>310</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelQuestion">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string>Insert Question</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditAnswer1">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>60</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditAnswer2">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>110</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditQuestion">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>10</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditAnswer5">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>260</y>
+         <width>471</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect_2">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect_3">
+       <property name="geometry">
+        <rect>
+         <x>260</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect_4">
+       <property name="geometry">
+        <rect>
+         <x>340</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect_5">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="comboBoxCorrect_6">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>360</y>
+         <width>72</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string>background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>6</string>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>70</y>
+        <width>431</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>70</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <property name="text">
+       <string>Title:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <zorder>quizCreateFrame</zorder>
+     <zorder>pushButtonCreateQuestion</zorder>
+     <zorder>pushButtonOverwriteQuestion</zorder>
+     <zorder>pushButtonDeleteQuestion</zorder>
+     <zorder>pushButtonPreviousQuestion</zorder>
+     <zorder>pushButtonNextQuestion</zorder>
+     <zorder>pushButtonReturn</zorder>
+     <zorder>plainTextEdit_2</zorder>
+     <zorder>label_5</zorder>
+    </widget>
+    <widget class="QWidget" name="pageQuizStudy">
+     <widget class="QPushButton" name="pushButtonReturn_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Menu</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonPreviousQuestion_2">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>490</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Previous</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonNextQuestion_2">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>490</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSubmitQuiz">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>490</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Submit</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>581</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QRadioButton" name="radioButtonAnswer5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>290</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer6">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>330</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonAnswer4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer5">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>280</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonAnswer1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>130</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer3">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>180</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonAnswer6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>340</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer4">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>230</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonAnswer2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer1">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="radioButtonAnswer3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>21</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 100);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayQuestion">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>561</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>70</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <property name="text">
+       <string>Title:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_3">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>70</y>
+        <width>431</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageQuizResults">
+     <widget class="QPushButton" name="pushButtonReturn_3">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Menu</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>100</y>
+        <width>581</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QLabel" name="labelFractionSign">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>130</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textResultNum">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>120</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textResultDen">
+       <property name="geometry">
+        <rect>
+         <x>300</x>
+         <y>120</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelPercentSign">
+       <property name="geometry">
+        <rect>
+         <x>290</x>
+         <y>170</y>
+         <width>16</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>%</string>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textResultPer">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>160</y>
+         <width>104</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelResult">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>130</y>
+         <width>41</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Result:</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonReview">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>320</y>
+         <width>131</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Review Questions</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>70</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <property name="text">
+       <string>Title:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_4">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>70</y>
+        <width>431</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageQuizReview">
+     <widget class="QPushButton" name="pushButtonReturn_4">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>50</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Menu</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_5">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>50</y>
+        <width>431</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>50</y>
+        <width>41</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <property name="text">
+       <string>Title:</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_3">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>90</y>
+        <width>581</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Shape::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Shadow::Raised</enum>
+      </property>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer6_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>330</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer5_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>280</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer2_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>130</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer3_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>180</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer4_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>230</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayAnswer1_2">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>80</y>
+         <width>531</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPlainTextEdit" name="textDisplayQuestion_2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>561</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Sans Serif Collection</family>
+         <pointsize>16</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck5">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>290</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="labelCheck6">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>340</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="pushButtonNextQuestion_3">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>480</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Next</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonPreviousQuestion_3">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>480</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Previous</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
