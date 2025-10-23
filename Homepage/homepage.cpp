@@ -9,6 +9,9 @@ homePage::homePage(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->lblQuizDescription->setWordWrap(true);
+    ui->lblFlashCardDescription->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
     // Connect the createFlashCardButton clicked signal if needed:
     connect(ui->createFlashCardButton, &QPushButton::clicked,
             this, &homePage::on_createFlashCardButton_clicked);
