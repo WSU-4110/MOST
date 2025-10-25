@@ -26,6 +26,5 @@ private:
     int cardCount=0; //added
     QVector<QPair<QString, QString>> flashcards; //added
 
-    QSqlDatabase db; // SQLite connection
 };
 #endif // FLASHCARDMAKER_H
