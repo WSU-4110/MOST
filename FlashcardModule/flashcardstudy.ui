@@ -24,7 +24,7 @@
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QPushButton" name="homeButton_3">
+     <widget class="QPushButton" name="homeButton">
       <property name="text">
        <string>Home</string>
       </property>
