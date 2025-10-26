@@ -73,3 +73,7 @@ void flashCardMaker::on_nextQuestionButton_clicked()
 void flashCardMaker::on_saveButton_clicked(){
 
 }
+void flashCardMaker::on_homeButton_clicked(){
+    emit goHome();
+    this->close();
+}

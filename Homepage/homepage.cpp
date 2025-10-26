@@ -36,6 +36,7 @@ void homePage::on_createFlashCardButton_clicked()
     if (!flashCardCreatorWindow) {
         flashCardCreatorWindow = new flashCardMaker();
     }
+    connect(flashCardCreatorWindow, &flashCardMaker::goHome,this, &homePage::show);
     this->hide();
     flashCardCreatorWindow->show();
     flashCardCreatorWindow->raise();
@@ -59,6 +60,7 @@ void homePage::on_studyFlashCardsButton_clicked()
     if (!flashCardStudyWindow) {
         flashCardStudyWindow = new FlashCardStudy();
     }
+    connect(flashCardStudyWindow, &FlashCardStudy::goHome,this, &homePage::show);
     this->hide();
     flashCardStudyWindow->show();
     flashCardStudyWindow->raise();

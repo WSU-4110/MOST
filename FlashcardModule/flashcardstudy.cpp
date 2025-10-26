@@ -38,3 +38,11 @@ void FlashCardStudy::on_flipButton_clicked()
         showingQuestion = true;
     }
 }
+void FlashCardStudy::on_nextButton_clicked(){
+
+}
+void FlashCardStudy::on_homeButton_clicked()
+{
+    emit goHome();
+    this->close();
+}
