@@ -15,9 +15,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 set(PROJECT_SOURCES
         main.cpp
-
-
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -30,19 +27,13 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         FlashcardModule/flashcardmaker.cpp FlashcardModule/flashcardmaker.h FlashcardModule/flashcardmaker.ui FlashcardModule/flashcardstudy.cpp FlashcardModule/flashcardstudy.h FlashcardModule/flashcardstudy.ui
         images/flash-card-color.png images/flash-cards.png images/home.png images/quiz-color.png images/quiz.png
         resources.qrc
-        Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
+        Database/database.cpp Database/database.h Database/databasequiz.cpp Database/databasequiz.h
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
         add_library(MOST SHARED
             ${PROJECT_SOURCES}
         )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
         add_executable(MOST
             ${PROJECT_SOURCES}
@@ -76,3 +67,33 @@ install(TARGETS MOST
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
+
+# *** ADDED FOR UNIT TEST ***
+# Find Qt Test module
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
+
+# Add a new executable for unit tests
+set(TEST_SOURCES
+    UnitTest/UnitTest.cpp          # <-- Path to your UnitTest folder
+    FlashcardModule/flashcardmaker.cpp
+    QuizModule/quizwindow.cpp
+    Homepage/homepage.cpp
+    FlashcardModule/flashcardstudy.cpp
+    Database/database.cpp
+    Database/databasequiz.cpp
+)
+
+add_executable(UnitTests ${TEST_SOURCES})
+
+# Fix the WinMain error for MinGW (console app)
+set_target_properties(UnitTests PROPERTIES WIN32_EXECUTABLE OFF)
+
+# Link Qt Widgets, SQL and Test modules
+target_link_libraries(UnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Test)
+
+# Optional: Make the test executable run automatically after build
+add_custom_target(run_tests
+    COMMAND UnitTests
+    DEPENDS UnitTests
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)

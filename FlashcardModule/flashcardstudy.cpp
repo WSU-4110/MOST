@@ -6,17 +6,22 @@ FlashCardStudy::FlashCardStudy(QWidget *parent)
     , ui(new Ui::FlashCardStudy)
 {
     ui->setupUi(this);
-    displayQuestion = "whats a process";
-    displayAnswer = "executing program in computer";
+    displayQuestion = "What's a process?";
+    displayAnswer = "Executing a program in a computer";
 
     // Show the question initially
     ui->questionLabel->setText(displayQuestion);
+
+    // Ensure the next button is connected to the correct slot
+    connect(ui->nextButton, &QPushButton::clicked, this, &FlashCardStudy::on_nextButton_clicked);
+
 }
 
 FlashCardStudy::~FlashCardStudy()
 {
     delete ui;
 }
+
 void FlashCardStudy::setFlashCard(const QString &question, const QString &answer)
 {
     displayQuestion = question;
@@ -25,6 +30,7 @@ void FlashCardStudy::setFlashCard(const QString &question, const QString &answer
 
     ui->questionLabel->setText(displayQuestion);
 }
+
 void FlashCardStudy::on_flipButton_clicked()
 {
     if (showingQuestion)
@@ -38,9 +44,12 @@ void FlashCardStudy::on_flipButton_clicked()
         showingQuestion = true;
     }
 }
-void FlashCardStudy::on_nextButton_clicked(){
 
+void FlashCardStudy::on_nextButton_clicked()
+{
+    setFlashCard("What's a variable?", "A container for storing data");
 }
+
 void FlashCardStudy::on_homeButton_clicked()
 {
     emit goHome();
