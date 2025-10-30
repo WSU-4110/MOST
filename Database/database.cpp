@@ -1,6 +1,7 @@
 #include "database.h"
 #include <QDir>
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QFile>
 #include <QDebug>
 #include <QApplication>
@@ -66,6 +67,7 @@ bool Database::createDatabase(QString dbName) {
         }
 
         QSqlQuery query;
+        query.exec("PRAGMA foreign_keys = ON;");
 
         if (dbName.startsWith("flashcards_")) {
             if (!query.exec("CREATE TABLE IF NOT EXISTS flashcards (id INTEGER PRIMARY KEY, front TEXT, back TEXT)")) {
@@ -73,8 +75,15 @@ bool Database::createDatabase(QString dbName) {
             }
 
         } else if (dbName.startsWith("quiz_")) {
-            if (!query.exec("CREATE TABLE IF NOT EXISTS quiz (id INTEGER PRIMARY KEY, question TEXT, answer1 TEXT, answer2 TEXT, answer3 TEXT, answer4 TEXT, correct INTEGER)")) {
-                qDebug() << "Failed to create quiz table";
+            // The quiz database will have 3 tables questions, answers, correct
+            if (!query.exec("CREATE TABLE IF NOT EXISTS questions (id INTEGER PRIMARY KEY, question TEXT)")) {
+                qDebug() << "Failed to make quiz db questions table: " << query.lastError().text();
+            }
+            if (!query.exec("CREATE TABLE IF NOT EXISTS answers (id INTEGER PRIMARY KEY, question_id INTEGER, answer TEXT, FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE)")) {
+                qDebug() << "Failed to make quiz db answers table:" << query.lastError().text();
+            }
+            if (!query.exec("CREATE TABLE IF NOT EXISTS correct (question_id INTEGER, answer_id INTEGER, PRIMARY KEY (question_id, answer_id), FOREIGN KEY (question_id) REFERENCES questions(id) ON DELETE CASCADE, FOREIGN KEY (answer_id) REFERENCES answers(id) ON DELETE CASCADE)")) {
+                qDebug() << "Failed to make quiz db correct table" << query.lastError().text();
             }
 
         } else {
@@ -108,9 +117,12 @@ bool Database::openDatabase(QString dbName) {
 }
 
 void Database::closeDatabase() {
-    if (db.open()) {
+    if (db.isOpen()) {
         db.close();
         QSqlDatabase::removeDatabase("QSQLITE");
-        qDebug() << "Closed database" + dbName;
+        qDebug() << "Closed database " + dbName;
+    } else {
+        qDebug() << dbName + " already closed";
     }
 }
+
