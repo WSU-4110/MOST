@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
 #include "flashCardData.h"
+#include "flashCards.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class flashCardMaker;
