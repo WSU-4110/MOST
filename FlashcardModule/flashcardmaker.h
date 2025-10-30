@@ -18,14 +18,13 @@ public:
     explicit flashCardMaker(const QString &setName, QWidget *parent = nullptr); //added explicit
     ~flashCardMaker();
 private slots:
-    //added
-    void on_nextQuestionButton_clicked(); //added
+    void on_nextQuestionButton_clicked();
     void on_saveButton_clicked();
     void on_homeButton_clicked();
 private:
     Ui::flashCardMaker *ui;
-    int cardCount=0; //added
-    QVector<QPair<QString, QString>> flashcards; //added
+    int cardCount=0; 
+    QVector<QPair<QString, QString>> flashcards; 
     flashCardData *cardData;
 signals:
     void goHome();
