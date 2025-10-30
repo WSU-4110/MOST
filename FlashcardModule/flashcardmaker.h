@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
-
+#include "flashCardData.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class flashCardMaker;
@@ -15,7 +15,7 @@ class flashCardMaker : public QWidget
     Q_OBJECT
 
 public:
-    explicit flashCardMaker(QWidget *parent = nullptr); //added explicit
+    explicit flashCardMaker(const QString &setName, QWidget *parent = nullptr); //added explicit
     ~flashCardMaker();
 private slots:
     //added
@@ -26,6 +26,7 @@ private:
     Ui::flashCardMaker *ui;
     int cardCount=0; //added
     QVector<QPair<QString, QString>> flashcards; //added
+    flashCardData *cardData;
 signals:
     void goHome();
 };

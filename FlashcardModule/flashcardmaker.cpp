@@ -1,5 +1,7 @@
 #include "flashcardmaker.h"
 #include "FlashcardModule/ui_flashcardmaker.h"
+#include "flashCardData.h"
+
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
@@ -12,45 +14,19 @@
 #include <QStandardPaths>
 #include <QDir>
 
-flashCardMaker::flashCardMaker(QWidget *parent)
+flashCardMaker::flashCardMaker(const QString &setName,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::flashCardMaker)
 {
     ui->setupUi(this);
     ui->cardCount->setText("Card Count: 0");
-
-    // initialize sqlite
-    // get the current project directory
-    QString projectDir = QDir::currentPath();  // get the path where the program is running
-
-    // set the database filename based on the user input
-    QString dbFile = projectDir + "/flashcards.db";  // default name to test with
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-
-    db.setDatabaseName(dbFile);  // use the filename
-
-    if (!db.open()) {
-        QMessageBox::critical(this, "Database Error", db.lastError().text());
-        return;
-    }
-
-    qDebug() << "Database opened at:" << db.databaseName(); // debug to see where the file is saved
-
-    // create table if it doesn't already exist
-    QSqlQuery query;
-    if (!query.exec("CREATE TABLE IF NOT EXISTS flashcards ("
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    "set_name TEXT, "
-                    "question TEXT, "
-                    "answer TEXT)")) {
-        QMessageBox::critical(this, "Database Error", query.lastError().text());
-    }
+    cardData=new flashCardData(setName);
 }
 
 flashCardMaker::~flashCardMaker()
 {
     delete ui;
+    delete cardData;
 }
 
 void flashCardMaker::on_nextQuestionButton_clicked()
@@ -71,8 +47,34 @@ void flashCardMaker::on_nextQuestionButton_clicked()
 }
 
 void flashCardMaker::on_saveButton_clicked(){
+    bool saveSuccess=false;
+        for (const auto& card : flashcards) {
+            QString question = card.first;
+            QString answer = card.second;
+            if(cardData->addCard(question, answer)){
+                saveSuccess=true;
+            }
+            else{
+                saveSuccess=false;
+                break;
+            }
+
+        }
+        if(saveSuccess){
+        flashcards.clear();
+        cardCount = 0;
+        ui->cardCount->setText("Card Count: 0");
+        QMessageBox::critical(this,"Save Successful","cards successfully saved");
+        }
+        else {
+        QMessageBox::critical(this, "Save Error", "Failed to save any cards.");
+        }
+
 
 }
+
+
+
 void flashCardMaker::on_homeButton_clicked(){
     emit goHome();
     this->close();

@@ -34,7 +34,7 @@ void homePage::on_createFlashCardButton_clicked()
 {
 
     if (!flashCardCreatorWindow) {
-        flashCardCreatorWindow = new flashCardMaker();
+        flashCardCreatorWindow = new flashCardMaker("newSetName");
     }
     connect(flashCardCreatorWindow, &flashCardMaker::goHome,this, &homePage::show);
     this->hide();
