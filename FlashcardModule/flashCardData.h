@@ -1,6 +1,7 @@
 #ifndef FLASHCARDDATA_H
 #define FLASHCARDDATA_H
 #include "../Database/database.h"
+#include "flashCards.h"
 #include <QString>
 #include <QList>
 
