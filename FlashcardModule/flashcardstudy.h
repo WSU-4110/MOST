@@ -14,16 +14,10 @@ class FlashCardStudy : public QWidget
 public:
     explicit FlashCardStudy(QWidget *parent = nullptr);
     ~FlashCardStudy();
-    void setFlashCard(const QString &question, const QString &answer);
 private slots:
-    void on_flipButton_clicked();
 
 private:
     Ui::FlashCardStudy *ui;
-
-    QString displayQuestion;
-    QString displayAnswer;
-    bool showingQuestion = true;
 
 };
 
