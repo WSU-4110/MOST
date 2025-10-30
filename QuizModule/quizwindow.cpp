@@ -59,7 +59,7 @@ bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
     int index = ui->comboBoxCorrect->currentIndex();
     if (index < 0) index = 0;
     if (index > 5) index = 5;
-    out.correctIndex = index;
+    out.correctIndex = index-1;
 
     return true;
 }
@@ -88,6 +88,10 @@ void QuizWindow::on_pushButtonReturn_2_clicked() {
 }
 
 void QuizWindow::on_pushButtonReturn_3_clicked() {
+    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
+}
+
+void QuizWindow::on_pushButtonReturn_4_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 }
 
@@ -247,4 +251,75 @@ void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
     ui->textResultNum->setPlainText(numerator);
     ui->textResultDen->setPlainText(denominator);
     ui->textResultPer->setPlainText(result);
+}
+
+// results -> review
+void QuizWindow::on_pushButtonReview_clicked() {
+    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
+    questionStudyIndex = 0;
+    showStudyQuestionReview(0);
+}
+
+void QuizWindow::showStudyQuestionReview(int i) {
+    if (questionBank.isEmpty()) return;
+    if (i < 0) i = 0;
+    if (i >= questionBank.size()) i = questionBank.size() - 1;
+
+    const QuizQuestion& q = questionBank[i];
+
+    // Question
+    ui->textDisplayQuestion_2->setPlainText(q.prompt);
+
+    // Answers (exactly six slots; empties allowed)
+    QPlainTextEdit* answers[6] = {
+    ui->textDisplayAnswer1_2,
+    ui->textDisplayAnswer2_2,
+    ui->textDisplayAnswer3_2,
+    ui->textDisplayAnswer4_2,
+    ui->textDisplayAnswer5_2,
+    ui->textDisplayAnswer6_2,
+    };
+
+    QLabel* checkmarks[6] = {
+    ui->labelCheck1,
+    ui->labelCheck2,
+    ui->labelCheck3,
+    ui->labelCheck4,
+    ui->labelCheck5,
+    ui->labelCheck6
+    };
+
+    for (int j = 0; j < 6; ++j) {
+        answers[j]->setStyleSheet("border: none;");
+        checkmarks[j]->setText("");
+    }
+
+    for (int j = 0; j < 6; ++j) {
+        answers[j]->setPlainText(q.answers[j]);
+        if (j == questionBank[i].userIndex && j == questionBank[i].correctIndex) {
+            checkmarks[j]->setText(" ✅");
+        }
+        else if (j == questionBank[i].userIndex && j != questionBank[i].correctIndex) {
+            checkmarks[j]->setText(" ❌");
+            answers[questionBank[i].correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
+        }
+    }
+}
+
+void QuizWindow::on_pushButtonNextQuestion_3_clicked() {
+    if (questionBank.isEmpty()) return;
+
+    if (questionStudyIndex + 1 < questionBank.size()) {
+        ++questionStudyIndex;
+        showStudyQuestionReview(questionStudyIndex);
+    }
+}
+
+void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
+    if (questionBank.isEmpty()) return;
+
+    if (questionStudyIndex > 0) {
+        --questionStudyIndex;
+        showStudyQuestionReview(questionStudyIndex);
+    }
 }

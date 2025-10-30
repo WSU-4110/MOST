@@ -10,8 +10,6 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class homePage; }
 QT_END_NAMESPACE
 
-
-
 class homePage : public QMainWindow
 {
     Q_OBJECT
@@ -23,12 +21,11 @@ public:
 private slots:
     void on_createFlashCardButton_clicked();
     void on_studyMultipleChoiceButton_clicked();
-    void on_studyFlashCardsButton_clicked();
+    void on_btnStudyFlashCards_clicked();  // Matches UI button name
 
 private:
     Ui::homePage *ui;
     flashCardMaker *flashCardCreatorWindow;  // pointer to child window
-    FlashCardStudy *flashCardStudyWindow;
     QMainWindow *quizWindow;
 };
 

@@ -32,7 +32,12 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: white;
+   <string notr="true">background-color: qlineargradient(
+    x1: 0, y1: 1,   /* Start at bottom */
+    x2: 0, y2: 0,   /* End at top */
+    stop: 0 #454545,
+    stop: 1 #100328
+);k
 border: 1px black;</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -71,8 +76,13 @@ border: 1px black;</string>
      </property>
      <property name="styleSheet">
       <string notr="true">QWidget#line {
-    background-color: lightgray;
+    background-color: #E1D9D1;
     height: 0.5px;
+}
+
+QWidget {
+background-color: #373B80;
+border-radius: 20px;
 }
 </string>
      </property>
@@ -108,12 +118,12 @@ border: 1px black;</string>
            </property>
            <property name="maximumSize">
             <size>
-             <width>100</width>
+             <width>200</width>
              <height>16777215</height>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: black;</string>
+            <string notr="true">color: white;</string>
            </property>
            <property name="text">
             <string>TextLabel</string>
@@ -151,7 +161,7 @@ border: 1px black;</string>
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">color: black;</string>
+            <string notr="true">color: white;</string>
            </property>
            <property name="text">
             <string>TextLabel</string>
@@ -194,11 +204,14 @@ border: 1px black;</string>
           <height>3000</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">backround-color:  #E1D9D1;</string>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLabel" name="label_3">
            <property name="styleSheet">
-            <string notr="true">color: black;
+            <string notr="true">color: white;
 border: 2px solid #E1D9D1;
 border-radius: 50px;</string>
            </property>
@@ -221,7 +234,7 @@ border-radius: 50px;</string>
            <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
-             <height>20</height>
+             <height>30</height>
             </size>
            </property>
           </spacer>
@@ -231,8 +244,26 @@ border-radius: 50px;</string>
       </item>
       <item>
        <widget class="Line" name="line">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>1</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: gray;</string>
+        </property>
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="midLineWidth">
+         <number>0</number>
         </property>
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
@@ -261,6 +292,19 @@ border-radius: 50px;</string>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -276,12 +320,14 @@ border-radius: 50px;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
-color: black;
+color: white;
 border-radius: 12px;
 border: 1px solid gray;
 }
 QPushButton:hover {
-    border: 2px solid #888;
+    background-color: rgba(255, 255, 255, 30);  /* light white overlay */
+    border: 1px solid rgba(255, 255, 255, 120); /* stronger border on hover */
+    border-radius: 12px;
 }
 </string>
            </property>
@@ -309,14 +355,20 @@ QPushButton:hover {
 color: white;
 border-radius: 12px;
 border: 1px solid gray;
-background-color:  #517891;
+background-color:  #737DD9;
 }
 QPushButton:hover {
-    border: 2px solid #888;
+    background-color: rgba(255, 255, 255, 30);  /* light white overlay */
+    border: 1px solid rgba(255, 255, 255, 120); /* stronger border on hover */
+    border-radius: 12px;
 }</string>
            </property>
            <property name="text">
             <string>Flip Card</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../resources.qrc">
+             <normaloff>:/icons/images/output-onlinepngtools.png</normaloff>:/icons/images/output-onlinepngtools.png</iconset>
            </property>
           </widget>
          </item>
@@ -336,14 +388,14 @@ QPushButton:hover {
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
-color: black;
+color: white;
 border-radius: 12px;
 border: 1px solid gray;
 }
 QPushButton:hover {
     background-color: rgba(255, 255, 255, 30);  /* light white overlay */
     border: 1px solid rgba(255, 255, 255, 120); /* stronger border on hover */
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 QPushButton:pressed {
@@ -354,14 +406,23 @@ QPushButton:pressed {
            <property name="text">
             <string>Next Card</string>
            </property>
-           <property name="icon">
-            <iconset resource="../resources.qrc">
-             <normaloff>:/icons/images/right-arrow.png</normaloff>:/icons/images/right-arrow.png</iconset>
-           </property>
            <property name="checkable">
             <bool>false</bool>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -388,18 +449,20 @@ QPushButton:pressed {
 color: black;
 border-radius: 8px;
 border: 1px solid gray;
+background-color: #9699E0;
 }
 QPushButton:hover {
-    border: 2px solid #888;
-}
-</string>
+background-color: rgba(173, 216, 230, 80);
+    border: 1px solid rgba(255, 255, 255, 120); /* stronger border on hover */
+    border-radius: 8px;
+}</string>
      </property>
      <property name="text">
       <string>Home</string>
      </property>
      <property name="icon">
       <iconset resource="../resources.qrc">
-       <normaloff>:/icons/images/left-arrow.png</normaloff>:/icons/images/left-arrow.png</iconset>
+       <normaloff>:/icons/images/home.png</normaloff>:/icons/images/home.png</iconset>
      </property>
     </widget>
    </item>

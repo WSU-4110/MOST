@@ -75,9 +75,11 @@ border: 1px black;</string>
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
 </string>
          </property>
@@ -102,10 +104,13 @@ QPushButton:hover {
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
+
 </string>
          </property>
          <property name="text">
@@ -129,9 +134,11 @@ QPushButton:hover {
           <string notr="true">QPushButton {
 color: white;
 background-color: lightblue;
+
 }
 QPushButton:hover {
     border: 2px solid #888;
+border-radius: 6px;
 }
 </string>
          </property>
@@ -776,7 +783,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="studyFlashCardsButton">
+           <widget class="QPushButton" name="btnStudyFlashCards">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>

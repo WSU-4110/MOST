@@ -37,6 +37,7 @@ private slots:
     void on_pushButtonReturn_clicked();
     void on_pushButtonReturn_2_clicked();
     void on_pushButtonReturn_3_clicked();
+    void on_pushButtonReturn_4_clicked();
 
     // quiz create page buttons
     void on_pushButtonCreateQuestion_clicked();
@@ -49,6 +50,11 @@ private slots:
     void on_pushButtonNextQuestion_2_clicked();
     void on_pushButtonPreviousQuestion_2_clicked();
     void on_pushButtonSubmitQuiz_clicked();
+    void on_pushButtonReview_clicked();
+
+    //study review page buttons
+    void on_pushButtonNextQuestion_3_clicked();
+    void on_pushButtonPreviousQuestion_3_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -60,6 +66,7 @@ private:
     // current idea for displaying stored questions to study
     int questionStudyIndex = 0;
     void showStudyQuestion(int i);
+    void showStudyQuestionReview(int i);
 
     // basic helper functions
     bool readCreateForm(QuizQuestion &out, QString &err) const;

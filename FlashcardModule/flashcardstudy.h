@@ -14,11 +14,15 @@ class FlashCardStudy : public QWidget
 public:
     explicit FlashCardStudy(QWidget *parent = nullptr);
     ~FlashCardStudy();
+
+signals:
+    void homeButtonClicked();
+
 private slots:
+    void on_btnHome_clicked();
 
 private:
     Ui::FlashCardStudy *ui;
-
 };
 
 #endif // FLASHCARDSTUDY_H

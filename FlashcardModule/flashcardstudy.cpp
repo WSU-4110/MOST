@@ -1,5 +1,6 @@
 #include "flashcardstudy.h"
 #include "ui_flashcardstudy.h"
+#include "../Homepage/homepage.h"
 
 FlashCardStudy::FlashCardStudy(QWidget *parent)
     : QWidget(parent)
@@ -12,3 +13,11 @@ FlashCardStudy::~FlashCardStudy()
 {
     delete ui;
 }
+
+void FlashCardStudy::on_btnHome_clicked()
+{
+    homePage* home = new homePage();
+    home->show();
+    this->close();
+}
+
