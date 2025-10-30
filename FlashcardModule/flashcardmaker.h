@@ -15,7 +15,7 @@ class flashCardMaker : public QWidget
     Q_OBJECT
 
 public:
-    explicit flashCardMaker(const QString &setName, QWidget *parent = nullptr); //added explicit
+    explicit flashCardMaker(const QString &setName, QWidget *parent = nullptr); 
     ~flashCardMaker();
 private slots:
     void on_nextQuestionButton_clicked();
