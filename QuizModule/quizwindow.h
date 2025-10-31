@@ -78,4 +78,29 @@ private:
 
 
 };
+
+// Singleton Method Design Pattern used to store results of a quiz.
+struct QuizResults {
+    int totalQuestions;
+    int Correct;
+    double Percentage;
+    QVector<bool> answerIndex;
+};
+
+class Results {
+private:
+    static Results* instance;
+    QuizResults currentResults;
+    Results() {}
+
+public:
+    static Results* getInstance() {
+        if (!instance)
+            instance = new Results();
+        return instance;
+    }
+
+    void setResults(QuizResults r) { currentResults = r; }
+    QuizResults getResults() { return currentResults; }
+};
 #endif // QUIZWINDOW_H

@@ -234,20 +234,32 @@ int QuizWindow::currentStudySelection() const {
     return -1;
 }
 
-// study page -> results
+Results* Results::instance = nullptr;
+
+// study page -> results (Modified using Singleton method Design Pattern)
 void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
-    int correct = 0;
-    for (int i = 0; i < questionBank.size(); i++) {
+
+    QuizResults QR;
+    QR.Correct = 0;
+    QR.totalQuestions = questionBank.size();
+    for (int i = 0; i < QR.totalQuestions; i++) {
         if (questionBank[i].userIndex == questionBank[i].correctIndex) {
-            correct++;
+            QR.Correct++;
+            QR.answerIndex.append(true);
+        }
+        else {
+            QR.answerIndex.append(false);
         }
     }
-    double percentage = static_cast<double>(correct) / questionBank.size();
+    QR.Percentage = static_cast<double>(QR.Correct) / QR.totalQuestions;
 
-    QString numerator = QString::number(correct);
-    QString denominator = QString::number(questionBank.size());
-    QString result = QString::number(percentage*100, 'f', 2);
+    Results::getInstance()->setResults(QR);
+    QuizResults QR2 = Results::getInstance()->getResults();
+
+    QString numerator = QString::number(QR2.Correct);
+    QString denominator = QString::number(QR2.totalQuestions);
+    QString result = QString::number(QR2.Percentage*100, 'f', 2);
     ui->textResultNum->setPlainText(numerator);
     ui->textResultDen->setPlainText(denominator);
     ui->textResultPer->setPlainText(result);
