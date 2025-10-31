@@ -1,6 +1,7 @@
 #include "../QuizModule/quizwindow.h"
 #include "QuizModule/ui_quizwindow.h"
-//#include <QMessageBox> commented out, but may be used for pop up messages
+#include <QMessageBox> // back in for error messages 10/30/2025--KhaliphP
+#include "quizqbuilder.h"
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -21,6 +22,8 @@ void MainWindow::showInfo(const QString& msg) {
     QMessageBox::information(this, tr("Quiz"), msg);
 }
 */
+
+
 
 // this will clear the fields from the create page
 void QuizWindow::clearCreateForm() {
@@ -47,6 +50,7 @@ void QuizWindow::writeCreateForm(const QuizQuestion &q) {
     ui->comboBoxCorrect->setCurrentIndex(index);
 }
 
+/*
 bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
     out.prompt       = ui->lineEditQuestion->text();
     out.answers[0]   = ui->lineEditAnswer1->text();
@@ -62,6 +66,26 @@ bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
     out.correctIndex = index-1;
 
     return true;
+}
+*/
+
+bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
+    QuizQBuilder b;
+
+    const int correct = ui->comboBoxCorrect->currentIndex();
+
+    const bool cr = b
+        .prompt(ui->lineEditQuestion->text())
+        .answer(0, ui->lineEditAnswer1->text())
+        .answer(1, ui->lineEditAnswer2->text())
+        .answer(2, ui->lineEditAnswer3->text())
+        .answer(3, ui->lineEditAnswer4->text())
+        .answer(4, ui->lineEditAnswer5->text())
+        .answer(5, ui->lineEditAnswer6->text())
+        .correctIndex(correct)
+        .build(out, err);
+
+    return cr;
 }
 
 // menu -> create page
@@ -102,8 +126,10 @@ void QuizWindow::on_pushButtonReturn_4_clicked() {
 void QuizWindow::on_pushButtonCreateQuestion_clicked() {
     QuizQuestion q; QString err;
     if (!readCreateForm(q, err)) {
+        QMessageBox::warning(this, tr("Create Question"), err);
         return;
     }
+
     questionBank.push_back(q);
     questionCurrent = questionBank.size() - 1;
 }
@@ -113,8 +139,13 @@ void QuizWindow::on_pushButtonOverwriteQuestion_clicked() {
     if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
         return;
     }
+
     QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) return;
+    if (!readCreateForm(q, err)) {
+        QMessageBox::warning(this, tr("Overwrite Question"), err);
+        return;
+    }
+
     questionBank[questionCurrent] = q;
 
     writeCreateForm(questionBank[questionCurrent]);
@@ -272,21 +303,21 @@ void QuizWindow::showStudyQuestionReview(int i) {
 
     // Answers (exactly six slots; empties allowed)
     QPlainTextEdit* answers[6] = {
-    ui->textDisplayAnswer1_2,
-    ui->textDisplayAnswer2_2,
-    ui->textDisplayAnswer3_2,
-    ui->textDisplayAnswer4_2,
-    ui->textDisplayAnswer5_2,
-    ui->textDisplayAnswer6_2,
+        ui->textDisplayAnswer1_2,
+        ui->textDisplayAnswer2_2,
+        ui->textDisplayAnswer3_2,
+        ui->textDisplayAnswer4_2,
+        ui->textDisplayAnswer5_2,
+        ui->textDisplayAnswer6_2,
     };
 
     QLabel* checkmarks[6] = {
-    ui->labelCheck1,
-    ui->labelCheck2,
-    ui->labelCheck3,
-    ui->labelCheck4,
-    ui->labelCheck5,
-    ui->labelCheck6
+        ui->labelCheck1,
+        ui->labelCheck2,
+        ui->labelCheck3,
+        ui->labelCheck4,
+        ui->labelCheck5,
+        ui->labelCheck6
     };
 
     for (int j = 0; j < 6; ++j) {

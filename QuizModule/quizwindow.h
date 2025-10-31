@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QVector>
-#include <QStringList>
+#include "quizquestion.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -11,6 +11,7 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+/*
 // current idea for formatting questions/answers in a storeable format
 struct QuizQuestion {
     QString prompt;
@@ -18,6 +19,7 @@ struct QuizQuestion {
     int correctIndex = 0;
     int userIndex = -1;
 };
+*/
 
 class QuizWindow : public QMainWindow
 {
