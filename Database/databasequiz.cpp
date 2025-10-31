@@ -5,6 +5,10 @@
 #include <QApplication>
 #include <QFile>
 
+DatabaseQuiz::DatabaseQuiz() {
+    // empty
+}
+
 // Create a database file quiz_quizName.db
 DatabaseQuiz::DatabaseQuiz(QString quizNameInput) {
     quizName = quizNameInput;
@@ -192,3 +196,10 @@ QList<QString> DatabaseQuiz::getAllQuestions() {
 QString DatabaseQuiz::getName() {
     return quizName;
 }
+
+// load - sets the active database to quizFile
+void DatabaseQuiz::loadQuiz(const QString& quizFile) {
+    closeDatabase();
+    qDebug() << "Loading " << quizFile;
+    openDatabase(quizFile);
+};

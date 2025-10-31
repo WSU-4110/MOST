@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QStringList>
+#include "../Database/databasequiz.h"
+#include "../Database/databasequizloader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -56,6 +58,8 @@ private slots:
     void on_pushButtonNextQuestion_3_clicked();
     void on_pushButtonPreviousQuestion_3_clicked();
 
+    void on_pushButtonLoad_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -76,6 +80,7 @@ private:
     // radio button helper
     int currentStudySelection() const;
 
-
+    DatabaseQuizLoader* m_quizLoader;  // Command object
+    DatabaseQuiz* m_quizModel;  // Receiver class (DatabaseQuiz)
 };
 #endif // QUIZWINDOW_H

@@ -1,6 +1,7 @@
 #include "../QuizModule/quizwindow.h"
 #include "QuizModule/ui_quizwindow.h"
-//#include <QMessageBox> commented out, but may be used for pop up messages
+#include <QMessageBox> //commented out, but may be used for pop up messages
+#include <QFileDialog>
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +9,10 @@ QuizWindow::QuizWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
+
+    // db
+    DatabaseQuiz* quizModel = new DatabaseQuiz();  // Initialize DatabaseQuiz object
+    m_quizLoader = new DatabaseQuizLoader(quizModel);
 }
 
 QuizWindow::~QuizWindow()
@@ -323,3 +328,33 @@ void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
         showStudyQuestionReview(questionStudyIndex);
     }
 }
+
+// Loading quiz: Opens a file dialog to select existing .db file
+void QuizWindow::on_pushButtonLoad_clicked() {
+    QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Open Quiz File"),   // Dialog title
+        QCoreApplication::applicationDirPath() + "/Saves/Quiz", // Open the saved quiz directory
+        tr("Quiz Files (*.db)") // Only .db files
+        );
+    qDebug() << fileName;
+    qDebug() << "Trying to execute";
+    if (!fileName.isEmpty()) {
+        qDebug() << "selected a file";
+
+        QFileInfo fileInfo(fileName);
+        fileName = fileInfo.fileName();
+        qDebug() << "file shortend to " << fileName;
+
+        if (m_quizLoader) {
+            m_quizLoader->execute(fileName);
+        } else {
+            qDebug() << "m_quizLoader is not initialized";
+        }
+
+        QMessageBox::information(this, tr("Success"), tr("Quiz loaded successfully!"));
+    } else {
+        QMessageBox::warning(this, tr("No file selected"), tr("Please select a valid quiz file."));
+    }
+}
+

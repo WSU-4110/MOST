@@ -122,7 +122,7 @@ void Database::closeDatabase() {
         QSqlDatabase::removeDatabase("QSQLITE");
         qDebug() << "Closed database " + dbName;
     } else {
-        qDebug() << dbName + " already closed";
+        qDebug() << "No database open to close";
     }
 }
 

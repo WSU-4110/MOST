@@ -31,6 +31,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         images/flash-card-color.png images/flash-cards.png images/home.png images/quiz-color.png images/quiz.png
         resources.qrc
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
+
+        Database/database.cpp Database/database.h Database/databasequiz.cpp Database/databasequiz.h
+        Database/databasequizloader.h Database/databasequizloader.cpp
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
