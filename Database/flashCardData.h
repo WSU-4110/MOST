@@ -1,10 +1,10 @@
 #ifndef FLASHCARDDATA_H
 #define FLASHCARDDATA_H
-#include "../Database/database.h"
+#include "database2.h"
 #include <QString>
 #include <QList>
 
-class flashCardData: public Database {
+class flashCardData: public Database2 {
 public:
     flashCardData(QString dbName);
 

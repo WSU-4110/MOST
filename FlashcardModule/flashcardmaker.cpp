@@ -1,6 +1,6 @@
 #include "flashcardmaker.h"
 #include "FlashcardModule/ui_flashcardmaker.h"
-#include "flashCardData.h"
+#include "../Database/flashCardData.h"
 
 #include <QMessageBox>
 #include <QFile>
@@ -47,30 +47,26 @@ void flashCardMaker::on_nextQuestionButton_clicked()
 }
 
 void flashCardMaker::on_saveButton_clicked(){
-    bool saveSuccess=false;
-        for (const auto& card : flashcards) {
-            QString question = card.first;
-            QString answer = card.second;
-            if(cardData->addCard(question, answer)){
-                saveSuccess=true;
-            }
-            else{
-                saveSuccess=false;
-                break;
-            }
+    if (!cardData) {
+        qDebug() << "Error: cardData not initialized!";
+        return;
+    }
 
-        }
-        if(saveSuccess){
-        flashcards.clear();
-        cardCount = 0;
-        ui->cardCount->setText("Card Count: 0");
-        QMessageBox::critical(this,"Save Successful","cards successfully saved");
-        }
-        else {
-        QMessageBox::critical(this, "Save Error", "Failed to save any cards.");
-        }
+    for (const auto& card : flashcards) {
+        QString question = card.first;
+        QString answer = card.second;
 
+        if (!cardData->addCard(question, answer)) {
+            qDebug() << "Failed to add card:" << question << answer;
+        } else {
+            qDebug() << "Added card:" << question << answer;
+        }
+    }
 
+    flashcards.clear();
+    cardCount = 0;
+    ui->cardCount->setText("Card Count: 0");
+    QMessageBox::information(this, "Save Successful", "Cards successfully saved");
 }
 
 

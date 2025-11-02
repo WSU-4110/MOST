@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
-#include "flashCardData.h"
+#include "../Database/flashCardData.h"
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class flashCardMaker;

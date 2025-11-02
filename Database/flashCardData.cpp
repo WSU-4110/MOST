@@ -8,7 +8,7 @@
 // Create a database file flashCard_flashCardSetName.db
 flashCardData::flashCardData(QString flashCardSetNameInput) {
     CardSetName = flashCardSetNameInput;
-    dbName = "flashCard_" + CardSetName + ".db";
+    dbName = "flashcards_" + CardSetName + ".db";
 
     createDatabase(dbName);
     openDatabase(dbName);
@@ -16,8 +16,8 @@ flashCardData::flashCardData(QString flashCardSetNameInput) {
 
 // Add a flashCard question, its answer
 bool flashCardData:: addCard(QString question, QString answer) {
-    QSqlQuery query;
-    query.prepare("INSERT INTO flashCard (question, answer)"
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO flashcards (question, answer)"
                   "VALUES (:question, :answer)");
     query.bindValue(":question", question);
     query.bindValue(":answer", answer);
@@ -33,8 +33,8 @@ bool flashCardData:: addCard(QString question, QString answer) {
 // Gets all entries in database and returns a QList of entries with QList of questions and answers for that entry
 QList<QList<QVariant>> flashCardData::getAllCardEntries() {
     QList<QList<QVariant>> questions;
-    \
-        QSqlQuery query("SELECT * FROM flashCard");
+
+    QSqlQuery query("SELECT * FROM flashcards");
     while (query.next()) {
         QList<QVariant> question;
         question.append(query.value("id"));
@@ -50,7 +50,7 @@ QList<QVariant> flashCardData::getCardEntry(int id) {
     QList<QVariant> entry;
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM flashCard WHERE id = :id");
+    query.prepare("SELECT * FROM flashcards WHERE id = :id");
     query.bindValue(":id", id);
 
     if (query.exec() && query.next()) {
@@ -64,10 +64,10 @@ QList<QVariant> flashCardData::getCardEntry(int id) {
 // Edits a single quiz entry by its id
 bool flashCardData::editCardEntry(int id, QString question, QString answer) {
     QSqlQuery query;
-    query.prepare("UPDATE flashCard SET question = :question, answer = :answer  "
+    query.prepare("UPDATE flashcards SET question = :question, answer = :answer  "
                   "WHERE id = :id");
     query.bindValue(":question", question);
-    query.bindValue(":answer1", answer);
+    query.bindValue(":answer", answer);
     query.bindValue(":id", id);  // Update entry with this id
 
     if (!query.exec()) {

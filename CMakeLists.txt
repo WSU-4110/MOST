@@ -32,8 +32,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources.qrc
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
         FlashcardModule/flashCards.h
-        FlashcardModule/flashCardData.h
-        FlashcardModule/flashCardData.cpp
+
+
+
+
+        Database/database2.h Database/database2.cpp
+        Database/flashCardData.h
+        Database/flashCardData.cpp
+
 
 
 
