@@ -57,7 +57,10 @@ void homePage::on_studyMultipleChoiceButton_clicked(){
 
 void homePage::on_btnStudyFlashCards_clicked()
 {
-    FlashCardStudy* flashCardStudy = new FlashCardStudy();
+    QString setName = "default";
+    QString dbName = "flashcards_" + setName + ".db";
+
+    FlashCardStudy* flashCardStudy = new FlashCardStudy(dbName);
 
     flashCardStudy->show();
     this->close();
