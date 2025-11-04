@@ -5,14 +5,18 @@
 #include <QApplication>
 #include <QFile>
 
-// Create a database file quiz_quizName.db
-DatabaseQuiz::DatabaseQuiz(QString quizNameInput) {
+// Create a database file quiz_quizName.db ... dbPath is optional and for testing
+DatabaseQuiz::DatabaseQuiz(QString quizNameInput, QString dbPath = "") {
     quizName = quizNameInput;
-    dbName = "quiz_" + quizName + ".db";
-
-    createDatabase(dbName);
+    if (dbPath.isEmpty()) {
+        dbName = "quiz_" + quizName + ".db";
+        createDatabase(dbName);
+    } else {
+        dbName = dbPath; // test or in-memory DB
+    }
     openDatabase(dbName);
 }
+
 
 // Insert the text of a question to the question table
 bool DatabaseQuiz::insertQuestion(QString question) {

@@ -7,7 +7,7 @@
 
 class DatabaseQuiz : public Database {
 public:
-    DatabaseQuiz(QString dbName);
+    DatabaseQuiz(QString quizNameInput, QString dbPath);
 
     bool insertQuestion(QString question);
     bool insertAnswer(int questionID, QString answer);
@@ -25,6 +25,8 @@ public:
     QList<QString> getAllQuestions();
 
     QString getName();
+
+    QSqlDatabase& getDatabase() { return db; }; //get for testing
 
 private:
     QString quizName;

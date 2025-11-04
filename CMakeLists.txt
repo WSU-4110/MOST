@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add Qt SQL module
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Test)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -37,6 +37,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
         Database/databaseflashcard.h Database/databaseflashcard.cpp
     )
+
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
@@ -71,6 +72,19 @@ set_target_properties(MOST PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+# Unit test for DatabaseQuiz
+add_executable(DatabaseQuizTest
+    UnitTest/unittest_databasequiz.cpp
+    Database/database.cpp
+    Database/database.h
+    Database/databasequiz.cpp
+    Database/databasequiz.h
+    Database/databaseflashcard.h
+    Database/databaseflashcard.cpp
+)
+
+target_link_libraries(DatabaseQuizTest PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Test)
+
 include(GNUInstallDirs)
 install(TARGETS MOST
     BUNDLE DESTINATION .
@@ -81,3 +95,33 @@ install(TARGETS MOST
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
