@@ -6,8 +6,9 @@
         <file>images/quiz.png</file>
         <file>images/quiz-color.png</file>
         <file>images/flash-card.png</file>
-        <file>images/open-book-icon-19.png</file>
-        <file>images/pngfind.com-phone-symbol-png-2755033.png</file>
-        <file>images/save-file-icon-14.png</file>
+        <file>images/customediticon.png</file>
+        <file>images/customsaveicon.png</file>
+        <file>images/customstudyicon.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>
