@@ -66,3 +66,9 @@ void homePage::on_btnStudyFlashCards_clicked()
     this->close();
 }
 
+
+void homePage::on_listRecents_itemClicked(QListWidgetItem *item)
+{
+
+}
+

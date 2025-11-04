@@ -23,6 +23,8 @@ private slots:
     void on_studyMultipleChoiceButton_clicked();
     void on_btnStudyFlashCards_clicked();
 
+    void on_listRecents_itemClicked(QListWidgetItem *item);
+
 private:
     Ui::homePage *ui;
     flashCardMaker *flashCardCreatorWindow;
