@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QStringList>
+#include "QuizModule/ui_quizwindow.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,6 +24,8 @@ struct QuizQuestion {
 class QuizWindow : public QMainWindow
 {
     Q_OBJECT
+
+friend class UnitTest;
 
 public:
     QuizWindow(QWidget *parent = nullptr);

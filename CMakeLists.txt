@@ -31,6 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         images/flash-card-color.png images/flash-cards.png images/home.png images/quiz-color.png images/quiz.png
         resources.qrc
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -75,4 +76,30 @@ install(TARGETS MOST
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
+endif()
+
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
+
+set(TEST_SOURCES
+    UnitTest/unittest.cpp
+    UnitTest/unittest.h
+    QuizModule/quizwindow.cpp
+    QuizModule/quizwindow.h
+)
+
+set(UI
+    QuizModule/quizwindow.ui
+)
+
+qt_add_executable(UnitTests
+    MANUAL_FINALIZATION
+    ${TEST_SOURCES}
+    ${UI}
+)
+
+# Link Qt Widgets, SQL and Test modules
+target_link_libraries(UnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Test)
+
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(UnitTests)
 endif()
