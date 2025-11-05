@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # add Qt SQL module
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Test)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -36,6 +36,20 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/output-onlinepngtools.png images/quiz-color.png images/quiz.png images/right-arrow.png
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
         Database/databaseflashcard.h Database/databaseflashcard.cpp
+    )
+
+    # Unit Test executable
+    add_executable(flashcardstudy_test
+        UnitTest/tst_flashcardstudy.cpp
+        FlashcardModule/flashcardstudy.cpp
+        Database/databaseflashcard.cpp
+        Database/database.cpp
+    )
+
+    target_link_libraries(flashcardstudy_test PRIVATE
+        Qt${QT_VERSION_MAJOR}::Test
+        Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::Sql
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -81,3 +95,6 @@ install(TARGETS MOST
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
+
+enable_testing()
+add_test(NAME flashcardstudy_test COMMAND flashcardstudy_test)

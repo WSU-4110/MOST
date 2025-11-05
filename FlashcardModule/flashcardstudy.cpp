@@ -23,16 +23,41 @@ FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
     connect(ui->btnPrevious, &QPushButton::clicked, this, &FlashCardStudy::on_btnPrevious_clicked);
 }
 
+// For the purpose of the unit test, in order to create static cards in the unit test file, this new constructor was added (Khaliph Page - 11/5/2025)
+FlashCardStudy::FlashCardStudy(const QVector<Flashcard> &cards, QWidget *parent)
+    :QWidget(parent)
+    , ui(new Ui::FlashCardStudy)
+{
+    ui->setupUi(this);
+
+    // Setup for using hardcoded cards for unit test instead of loading from database
+    flashcards = cards;
+    currentDbName.clear();  // clearing since no database is used
+    currentIndex = 0;
+    showingFront = true;
+
+    updateDisplay();
+}
+
 FlashCardStudy::~FlashCardStudy()
 {
     delete ui;
 }
 
+/*
 // Home button
 void FlashCardStudy::on_btnHome_clicked()
 {
     homePage* home = new homePage();
     home->show();
+    this->close();
+}
+*/
+
+// Faux home button for the purpose of the unit test (Khaliph Page - 11/5/2025)
+void FlashCardStudy::on_btnHome_clicked()
+{
+    emit homeButtonClicked();
     this->close();
 }
 

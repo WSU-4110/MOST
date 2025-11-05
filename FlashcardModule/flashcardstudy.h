@@ -9,12 +9,22 @@ namespace Ui {
 class FlashCardStudy;
 }
 
+// For the purpose of the unit test, in order to access the methods from the private slots, the test will be set as a friendly class (Khaliph Page - 11/5/2025)
+class tst_flashcardstudy;
+
 class FlashCardStudy : public QWidget
 {
     Q_OBJECT
 
+    // For the purpose of the unit test, in order to access the methods from the private slots, the test will be set as a friendly class (Khaliph Page - 11/5/2025)
+    friend class tst_flashcardstudy;
+
 public:
     explicit FlashCardStudy(QString dbName, QWidget *parent = nullptr);
+
+    // For the purpose of the unit test, in order to create static cards in the unit test file, this new constructor was added (Khaliph Page - 11/5/2025)
+    explicit FlashCardStudy(const QVector<Flashcard> &cards, QWidget *parent = nullptr);
+
     ~FlashCardStudy();
 
 signals:
