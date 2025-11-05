@@ -1,25 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
-
 project(MOST VERSION 0.1 LANGUAGES CXX)
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 # add Qt SQL module
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
-
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Test)
 set(PROJECT_SOURCES
         main.cpp
-
-
-
 )
-
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MOST
         MANUAL_FINALIZATION
@@ -43,6 +34,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
 
+
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -61,9 +55,7 @@ else()
         )
     endif()
 endif()
-
 target_link_libraries(MOST PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) # link Qt to SQL
-
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -77,14 +69,44 @@ set_target_properties(MOST PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
-
 include(GNUInstallDirs)
 install(TARGETS MOST
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
+
+
+# Enable testing
+include(CTest)
+enable_testing()
+
+# Add the test executable
+add_executable(FlashCardMakerTest
+    FlashcardModule/FlashCardMakerTest.cpp
+    FlashcardModule/flashcardmaker.cpp
+    Database/flashCardData.cpp
+    Database/Database2.cpp
+)
+
+# Link against Qt modules your code needs
+target_link_libraries(FlashCardMakerTest
+    PRIVATE
+        Qt6::Test       # Provides QTest
+        Qt6::Widgets
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Sql
+)
+
+# Include your headers
+target_include_directories(FlashCardMakerTest PRIVATE
+    FlashcardModule
+    Database
+)
+
+# Add the test to CTest so you can run it with `ctest`
+add_test(NAME FlashCardMakerTest COMMAND FlashCardMakerTest)

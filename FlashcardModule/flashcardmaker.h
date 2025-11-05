@@ -17,12 +17,12 @@ class flashCardMaker : public QWidget
 public:
     explicit flashCardMaker(const QString &setName, QWidget *parent = nullptr); //added explicit
     ~flashCardMaker();
-private slots:
+public slots:
     //added
     void on_nextQuestionButton_clicked(); //added
     void on_saveButton_clicked();
     void on_homeButton_clicked();
-private:
+public:
     Ui::flashCardMaker *ui;
     int cardCount=0; //added
     QVector<QPair<QString, QString>> flashcards; //added
