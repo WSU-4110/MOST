@@ -17,10 +17,6 @@ FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
 
     loadFlashcards();
     updateDisplay();
-
-    // Connect navigation buttons
-    connect(ui->btnNext, &QPushButton::clicked, this, &FlashCardStudy::on_btnNext_clicked);
-    connect(ui->btnPrevious, &QPushButton::clicked, this, &FlashCardStudy::on_btnPrevious_clicked);
 }
 
 FlashCardStudy::~FlashCardStudy()
@@ -69,11 +65,20 @@ void FlashCardStudy::updateDisplay()
     // Update lblCard depending on showingFront
     ui->lblCard->setText(showingFront ? card.front : card.back);
 
-    // Update flashcard counter
+    // Update flashcard counter label
     ui->lblNumberOfFlashcards->setText(
         QString("%1 of %2").arg(currentIndex + 1).arg(flashcards.size())
         );
+
+    // Update progress bar
+    if (flashcards.size() > 0) {
+        int progressValue = static_cast<int>(
+            ((currentIndex + 1) / static_cast<double>(flashcards.size())) * 100
+            );
+        ui->progressBar->setValue(progressValue);
+    }
 }
+
 
 // Next button
 void FlashCardStudy::on_btnNext_clicked()
