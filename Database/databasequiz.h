@@ -7,6 +7,7 @@
 
 class DatabaseQuiz : public Database {
 public:
+    DatabaseQuiz();
     DatabaseQuiz(QString dbName);
 
     bool insertQuestion(QString question);
@@ -24,7 +25,10 @@ public:
     QList<QPair<QString, bool>> getQuestionAnswers(int questionID);
     QList<QString> getAllQuestions();
 
+    void setName(QString quizNameInput);
     QString getName();
+
+    void loadQuiz(const QString& quizFile);
 
 private:
     QString quizName;

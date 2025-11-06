@@ -5,16 +5,20 @@
 #include <QApplication>
 #include <QFile>
 
+DatabaseQuiz::DatabaseQuiz() {
+    qDebug() << "Created empty databasequiz object";
+}
+
 // Create a database file quiz_quizName.db
 DatabaseQuiz::DatabaseQuiz(QString quizNameInput) {
-    quizName = quizNameInput;
+    setName(quizNameInput);
     dbName = "quiz_" + quizName + ".db";
 
     createDatabase(dbName);
     openDatabase(dbName);
 }
 
-// Insert the text of a question to the question table
+// Insert the text of a question to table questions
 bool DatabaseQuiz::insertQuestion(QString question) {
     QSqlQuery query;
     query.prepare("INSERT INTO questions (question) VALUES (:question)");
@@ -26,7 +30,7 @@ bool DatabaseQuiz::insertQuestion(QString question) {
     return true;
 }
 
-// Insert the text of an answer to the answer table with for questionID
+// Insert the text of an answer to table answers, and questionID matches the answer to a question in table questions
 bool DatabaseQuiz::insertAnswer(int questionID, QString answer) {
     QSqlQuery query;
     query.prepare("INSERT INTO answers (question_id, answer) VALUES (:question_id, :answer)");
@@ -40,7 +44,7 @@ bool DatabaseQuiz::insertAnswer(int questionID, QString answer) {
     return true;
 }
 
-// Mark an answerID correct for a questionID
+// Mark an answerID correct for a questionID in table correct
 bool DatabaseQuiz::insertCorrect(int questionID, int answerID) {
     QSqlQuery query;
     query.prepare("INSERT INTO correct (question_id, answer_id) VALUES (:question_id, :answer_id)");
@@ -165,7 +169,6 @@ QList<QPair<QString, bool>> DatabaseQuiz::getQuestionAnswers(int questionID) {
     // Put the results of the query into a list of questionAnswers that hold pairs of <Question text, Correct?>
     QList<QPair<QString, bool>> questionAnswers;
     while (query.next()) {
-        QString questionText = query.value(0).toString();
         QString answerText = query.value(1).toString();
         bool isCorrect = query.value(2).toBool();
         questionAnswers.append(qMakePair(answerText, isCorrect));
@@ -188,7 +191,25 @@ QList<QString> DatabaseQuiz::getAllQuestions() {
     return questions;
 }
 
+void DatabaseQuiz::setName(QString quizNameInput) {
+    quizName = quizNameInput;
+    qDebug() << "set quizName to" << quizName;
+}
+
 // Get the name of the quiz (NOT the quiz filename)
 QString DatabaseQuiz::getName() {
     return quizName;
 }
+
+// Load - set the active database to quizFile
+void DatabaseQuiz::loadQuiz(const QString& quizFile) {
+    closeDatabase();
+    qDebug() << "Loading " << quizFile;
+
+    QString newQuizName = quizFile;
+    newQuizName.chop(3); // chop ".db"
+    newQuizName.remove(0,5); // remove "quiz_"
+    setName(newQuizName);
+
+    openDatabase(quizFile);
+};
