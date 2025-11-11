@@ -6,7 +6,6 @@ homePage::homePage(QWidget *parent)
     , ui(new Ui::homePage)
     , flashCardCreatorWindow(nullptr)
     , quizWindow(nullptr)
-    , flashCardStudyWindow(nullptr)
 {
     ui->setupUi(this);
 
@@ -17,8 +16,6 @@ homePage::homePage(QWidget *parent)
             this, &homePage::on_createFlashCardButton_clicked);
     connect(ui->studyMultipleChoiceButton, &QPushButton::clicked,
             this, &homePage::on_studyMultipleChoiceButton_clicked);
-    connect(ui->studyFlashCardsButton, &QPushButton::clicked,
-            this, &homePage::on_studyFlashCardsButton_clicked);
 }
 
 homePage::~homePage()
@@ -28,13 +25,11 @@ homePage::~homePage()
         delete flashCardCreatorWindow;
     if (quizWindow)
         delete quizWindow;
-    if (flashCardStudyWindow)
-        delete flashCardStudyWindow;
 }
 
 void homePage::on_createFlashCardButton_clicked() {
     if (!flashCardCreatorWindow) {
-        flashCardCreatorWindow = new flashCardMaker(this);  // Set this as the parent
+        flashCardCreatorWindow = new flashCardMaker();  // Set this as the parent
         qDebug() << "Created flashCardCreatorWindow!";
     }
     connect(flashCardCreatorWindow, &flashCardMaker::goHome, this, &homePage::show);
@@ -48,21 +43,23 @@ void homePage::on_createFlashCardButton_clicked() {
 void homePage::on_studyMultipleChoiceButton_clicked()
 {
     if (!quizWindow) {
-        quizWindow = new QuizWindow(this);
+        quizWindow = new QuizWindow();
     }
     quizWindow->show();
     quizWindow->raise();
     quizWindow->activateWindow();
 }
 
-void homePage::on_studyFlashCardsButton_clicked() {
-    if (!flashCardStudyWindow) {
-        flashCardStudyWindow = new FlashCardStudy(this);  // Set this as the parent
-    }
-    connect(flashCardStudyWindow, &FlashCardStudy::goHome, this, &homePage::show);
-    this->hide();
-    flashCardStudyWindow->show();
-    flashCardStudyWindow->raise();
-    flashCardStudyWindow->activateWindow();
+
+
+void homePage::on_btnStudyFlashCards_clicked()
+{
+    QString setName = "default";
+    QString dbName = "flashcards_" + setName + ".db";
+
+    FlashCardStudy* flashCardStudy = new FlashCardStudy(dbName);
+
+    flashCardStudy->show();
+    this->close();
 }
 

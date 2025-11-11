@@ -1,20 +1,22 @@
 #include "flashcardstudy.h"
 #include "ui_flashcardstudy.h"
+#include "../Homepage/homepage.h"
+#include <QDebug>
+#include <algorithm>
+#include <random>
 
-FlashCardStudy::FlashCardStudy(QWidget *parent)
+
+FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FlashCardStudy)
+    , currentDbName(dbName)
 {
     ui->setupUi(this);
-    displayQuestion = "What's a process?";
-    displayAnswer = "Executing a program in a computer";
 
-    // Show the question initially
-    ui->questionLabel->setText(displayQuestion);
+    ui->lblSetName->setText(dbName);
 
-    // Ensure the next button is connected to the correct slot
-    connect(ui->nextButton, &QPushButton::clicked, this, &FlashCardStudy::on_nextButton_clicked);
-
+    loadFlashcards();
+    updateDisplay();
 }
 
 FlashCardStudy::~FlashCardStudy()
@@ -22,36 +24,102 @@ FlashCardStudy::~FlashCardStudy()
     delete ui;
 }
 
-void FlashCardStudy::setFlashCard(const QString &question, const QString &answer)
+// Home button
+void FlashCardStudy::on_btnHome_clicked()
 {
-    displayQuestion = question;
-    displayAnswer = answer;
-    showingQuestion = true;
-
-    ui->questionLabel->setText(displayQuestion);
-}
-
-void FlashCardStudy::on_flipButton_clicked()
-{
-    if (showingQuestion)
-    {
-        ui->questionLabel->setText(displayAnswer);
-        showingQuestion = false;
-    }
-    else
-    {
-        ui->questionLabel->setText(displayQuestion);
-        showingQuestion = true;
-    }
-}
-
-void FlashCardStudy::on_nextButton_clicked()
-{
-    setFlashCard("What's a variable?", "A container for storing data");
-}
-
-void FlashCardStudy::on_homeButton_clicked()
-{
-    emit goHome();
+    homePage* home = new homePage();
+    home->show();
     this->close();
 }
+
+// Load all flashcards from database
+void FlashCardStudy::loadFlashcards()
+{
+    flashcards.clear();
+
+    // Get all flashcards from the database
+    flashcards = dbFlashcard.getAllFlashcards(currentDbName);
+
+    if (flashcards.isEmpty()) {
+        ui->lblCard->setText("No flashcards found.");
+        return;
+    }
+
+    // Start at the first card and show the front
+    currentIndex = 0;
+    showingFront = true;
+
+    // Display the first card
+    updateDisplay();
+}
+
+
+
+// Show current card
+void FlashCardStudy::updateDisplay()
+{
+    if (flashcards.isEmpty()) return;
+
+    const Flashcard &card = flashcards[currentIndex];
+
+    // Update lblCard depending on showingFront
+    ui->lblCard->setText(showingFront ? card.front : card.back);
+
+    // Update flashcard counter label
+    ui->lblNumberOfFlashcards->setText(
+        QString("%1 of %2").arg(currentIndex + 1).arg(flashcards.size())
+        );
+
+    // Update progress bar
+    if (flashcards.size() > 0) {
+        int progressValue = static_cast<int>(
+            ((currentIndex + 1) / static_cast<double>(flashcards.size())) * 100
+            );
+        ui->progressBar->setValue(progressValue);
+    }
+}
+
+
+// Next button
+void FlashCardStudy::on_btnNext_clicked()
+{
+    if (currentIndex < flashcards.size() - 1) {
+        currentIndex++;
+        showingFront = true;  // reset to front when moving to next card
+        updateDisplay();
+    }
+}
+
+// Previous button
+void FlashCardStudy::on_btnPrevious_clicked()
+{
+    if (currentIndex > 0) {
+        currentIndex--;
+        showingFront = true;  // reset to front when moving to previous card
+        updateDisplay();
+    }
+}
+
+// Flip button
+void FlashCardStudy::on_btnFlip_clicked()
+{
+    showingFront = !showingFront;  // toggle front/back
+    updateDisplay();
+}
+
+void FlashCardStudy::on_btnShuffle_clicked()
+{
+    // Create a random seed with current time
+    std::random_device rd;
+    std::mt19937 g(rd());
+
+    // Shuffle the flashcards vector
+    std::shuffle(flashcards.begin(), flashcards.end(), g);
+
+    // Reset to the first card and show front
+    currentIndex = 0;
+    showingFront = true;
+
+    updateDisplay();
+}
+

@@ -87,7 +87,7 @@ border-radius: 6px;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../resources.qrc">
            <normaloff>:/icons/images/home.png</normaloff>:/icons/images/home.png</iconset>
          </property>
          <property name="iconSize">
@@ -117,7 +117,7 @@ border-radius: 6px;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../resources.qrc">
            <normaloff>:/icons/images/flash-cards.png</normaloff>:/icons/images/flash-cards.png</iconset>
          </property>
          <property name="iconSize">
@@ -146,7 +146,7 @@ border-radius: 6px;
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../resources.qrc">
            <normaloff>:/icons/images/quiz.png</normaloff>:/icons/images/quiz.png</iconset>
          </property>
          <property name="iconSize">
@@ -400,7 +400,7 @@ background: transparent;</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../resources.qrc">
            <normaloff>:/icons/images/quiz-color.png</normaloff>:/icons/images/quiz-color.png</iconset>
          </property>
          <property name="iconSize">
@@ -668,7 +668,7 @@ border-radius: 12px;</string>
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="../resources.qrc">
            <normaloff>:/icons/images/flash-card.png</normaloff>:/icons/images/flash-card.png</iconset>
          </property>
          <property name="iconSize">
@@ -783,7 +783,7 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="studyFlashCardsButton">
+           <widget class="QPushButton" name="btnStudyFlashCards">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
               <horstretch>0</horstretch>
@@ -851,6 +851,8 @@ QPushButton:pressed {
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

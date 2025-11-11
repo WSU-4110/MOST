@@ -1,6 +1,6 @@
 #include "../QuizModule/quizwindow.h"
 #include "QuizModule/ui_quizwindow.h"
-//#include <QMessageBox> commented out, but may be used for pop up messages
+#include <QMessageBox>
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -8,6 +8,7 @@ QuizWindow::QuizWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
+
 }
 
 QuizWindow::~QuizWindow()
@@ -323,3 +324,5 @@ void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
         showStudyQuestionReview(questionStudyIndex);
     }
 }
+
+

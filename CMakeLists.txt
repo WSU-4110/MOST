@@ -27,7 +27,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         FlashcardModule/flashcardmaker.cpp FlashcardModule/flashcardmaker.h FlashcardModule/flashcardmaker.ui FlashcardModule/flashcardstudy.cpp FlashcardModule/flashcardstudy.h FlashcardModule/flashcardstudy.ui
         images/flash-card-color.png images/flash-cards.png images/home.png images/quiz-color.png images/quiz.png
         resources.qrc
-        Database/database.cpp Database/database.h Database/databasequiz.cpp Database/databasequiz.h
+
+        images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/quiz-color.png images/quiz.png
+        images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/quiz-color.png images/quiz.png images/right-arrow.png
+        images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/quiz-color.png images/quiz.png images/right-arrow.png
+        images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/output-onlinepngtools.png images/quiz-color.png images/quiz.png images/right-arrow.png
+        Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
+        Database/databaseflashcard.h Database/databaseflashcard.cpp
+        QuizModule/quizmenu.cpp
     )
 else()
     if(ANDROID)
@@ -72,15 +79,17 @@ endif()
 # Find Qt Test module
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
 
-# Add a new executable for unit tests
+# Add for unit tests
 set(TEST_SOURCES
-    UnitTest/UnitTest.cpp          # <-- Path to your UnitTest folder
+    UnitTest/UnitTest.cpp
     FlashcardModule/flashcardmaker.cpp
     QuizModule/quizwindow.cpp
+    QuizModule/quizmenu.cpp
     Homepage/homepage.cpp
     FlashcardModule/flashcardstudy.cpp
     Database/database.cpp
     Database/databasequiz.cpp
+    Database/databaseflashcard.cpp
 )
 
 add_executable(UnitTests ${TEST_SOURCES})
@@ -91,7 +100,7 @@ set_target_properties(UnitTests PROPERTIES WIN32_EXECUTABLE OFF)
 # Link Qt Widgets, SQL and Test modules
 target_link_libraries(UnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Test)
 
-# Optional: Make the test executable run automatically after build
+#Make the test executable run automatically after build
 add_custom_target(run_tests
     COMMAND UnitTests
     DEPENDS UnitTests

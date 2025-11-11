@@ -7,28 +7,29 @@
 
 class DatabaseQuiz : public Database {
 public:
+    DatabaseQuiz();
     DatabaseQuiz(QString dbName);
 
-    void testing();
-    bool addQuizQuestion(QString question,
-                        QString answer1,
-                        QString answer2,
-                        QString answer3,
-                        QString answer4,
-                        int correct);
+    bool insertQuestion(QString question);
+    bool insertAnswer(int questionID, QString answer);
+    bool insertCorrect(int questionID, int answerID);
 
-    QList<QList<QVariant>> getAllQuizEntries();
-    QList<QVariant> getQuizEntry(int id);
+    bool updateQuestion(int questionID, QString newQuestion);
+    bool updateAnswer(int answerID, QString newAnswer);
+    bool updateCorrect(int questionId, QList<int> correctAnswerIDs);
 
-    bool editQuizEntry(int id,
-                       QString question,
-                       QString answer1,
-                       QString answer2,
-                       QString answer3,
-                       QString answer4,
-                       int correct);
+    bool deleteQuestion(int questionID);
+    bool deleteAnswer(int answerID);
+    bool deleteCorrect(int questionID, int answerID);
 
+    QList<QPair<QString, bool>> getQuestionAnswers(int questionID);
+    QList<QString> getAllQuestions();
+
+    void setName(QString quizNameInput);
     QString getName();
+
+    void loadQuiz(const QString& quizFile);
+
 private:
     QString quizName;
 };

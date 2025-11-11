@@ -2,6 +2,8 @@
 #define FLASHCARDSTUDY_H
 
 #include <QWidget>
+#include <QVector>
+#include "../Database/databaseflashcard.h"
 
 namespace Ui {
 class FlashCardStudy;
@@ -12,22 +14,31 @@ class FlashCardStudy : public QWidget
     Q_OBJECT
 
 public:
-    explicit FlashCardStudy(QWidget *parent = nullptr);
+    explicit FlashCardStudy(QString dbName, QWidget *parent = nullptr);
     ~FlashCardStudy();
-    void setFlashCard(const QString &question, const QString &answer);
+
+signals:
+    void homeButtonClicked();
+
 private slots:
-    void on_flipButton_clicked();
-    void on_homeButton_clicked();
-    void on_nextButton_clicked();
+    void on_btnHome_clicked();
+    void on_btnNext_clicked();
+    void on_btnPrevious_clicked();
+    void on_btnFlip_clicked();
+
+    void on_btnShuffle_clicked();
 
 private:
     Ui::FlashCardStudy *ui;
+    DatabaseFlashcard dbFlashcard;
+    QVector<Flashcard> flashcards;
+    QString currentDbName;
+    int currentIndex = 0;
+    bool showingFront = true;
 
-    QString displayQuestion;
-    QString displayAnswer;
-    bool showingQuestion = true;
-signals:
-    void goHome();
+    void loadFlashcards();
+    void updateDisplay();
 };
+
 
 #endif // FLASHCARDSTUDY_H

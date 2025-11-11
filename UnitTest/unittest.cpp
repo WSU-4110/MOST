@@ -65,7 +65,7 @@ void UnitTest::testStudyMultipleChoiceButtonClicked() {
 // Test studyFlashCardsButton behavior
 void UnitTest::testStudyFlashCardsButtonClicked() {
     homePage page;
-    page.on_studyFlashCardsButton_clicked();
+    page.on_btnStudyFlashCards_clicked();
 
     QObjectList children = page.children();
     bool found = false;
