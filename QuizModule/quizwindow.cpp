@@ -1,19 +1,29 @@
-#include "../QuizModule/quizwindow.h"
+#include "quizwindow.h"
 #include "QuizModule/ui_quizwindow.h"
 #include <QMessageBox>
+#include "quizmenu.h"
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::QuizWindow)
 {
     ui->setupUi(this);
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 
+    // Initialize quiz database
+    quizDB = nullptr;
+
+    // Subpages
+    quizMenu = new QuizMenu(this, nullptr);
+    //quizCreate
+    //quizStudy
 }
 
 QuizWindow::~QuizWindow()
 {
     delete ui;
+    delete quizDB;
+    delete quizMenu;
 }
 
 /*
@@ -97,67 +107,6 @@ void QuizWindow::on_pushButtonReturn_4_clicked() {
 }
 
 // button functionality
-// create page (add better error handling later)
-
-// create question
-void QuizWindow::on_pushButtonCreateQuestion_clicked() {
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) {
-        return;
-    }
-    questionBank.push_back(q);
-    questionCurrent = questionBank.size() - 1;
-}
-
-// overwrite question
-void QuizWindow::on_pushButtonOverwriteQuestion_clicked() {
-    if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
-        return;
-    }
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) return;
-    questionBank[questionCurrent] = q;
-
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonDeleteQuestion_clicked() {
-    if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
-        return;
-    }
-    questionBank.removeAt(questionCurrent);
-
-    if (questionBank.isEmpty()) {
-        questionCurrent = -1;
-        clearCreateForm();
-        return;
-    }
-    if (questionCurrent >= questionBank.size())
-        questionCurrent = questionBank.size() - 1;
-
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_clicked() {
-    if (questionBank.isEmpty()) return;
-    if (questionCurrent <= 0) {             // temp fix for out of bounds errors? something would cause app to crash
-        questionCurrent = 0;
-    } else {
-        --questionCurrent;
-    }
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonNextQuestion_clicked() {
-    if (questionBank.isEmpty()) return;
-    if (questionCurrent + 1 >= questionBank.size()) {       // temp fix for out of bounds errors? something would cause app to crash
-        questionCurrent = questionBank.size() - 1;
-    } else {
-        ++questionCurrent;
-    }
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
 
 // study page
 
@@ -203,28 +152,6 @@ void QuizWindow::showStudyQuestion(int i) {
     ui->radioButtonAnswer6->setAutoExclusive(true);
 }
 
-void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    questionBank[questionStudyIndex].userIndex = currentStudySelection();
-
-    if (questionStudyIndex + 1 < questionBank.size()) {
-        ++questionStudyIndex;
-        showStudyQuestion(questionStudyIndex);
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    questionBank[questionStudyIndex].userIndex = currentStudySelection();
-
-    if (questionStudyIndex > 0) {
-        --questionStudyIndex;
-        showStudyQuestion(questionStudyIndex);
-    }
-}
-
 int QuizWindow::currentStudySelection() const {
     if (ui->radioButtonAnswer1->isChecked()) return 0;
     if (ui->radioButtonAnswer2->isChecked()) return 1;
@@ -233,25 +160,6 @@ int QuizWindow::currentStudySelection() const {
     if (ui->radioButtonAnswer5->isChecked()) return 4;
     if (ui->radioButtonAnswer6->isChecked()) return 5;
     return -1;
-}
-
-// study page -> results
-void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
-    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
-    int correct = 0;
-    for (int i = 0; i < questionBank.size(); i++) {
-        if (questionBank[i].userIndex == questionBank[i].correctIndex) {
-            correct++;
-        }
-    }
-    double percentage = static_cast<double>(correct) / questionBank.size();
-
-    QString numerator = QString::number(correct);
-    QString denominator = QString::number(questionBank.size());
-    QString result = QString::number(percentage*100, 'f', 2);
-    ui->textResultNum->setPlainText(numerator);
-    ui->textResultDen->setPlainText(denominator);
-    ui->textResultPer->setPlainText(result);
 }
 
 // results -> review
@@ -324,5 +232,6 @@ void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
         showStudyQuestionReview(questionStudyIndex);
     }
 }
+
 
 

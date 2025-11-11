@@ -1,12 +1,20 @@
+#include "quizmenu.h"
 #include "quizwindow.h"
-#include <QFileDialog>
-#include <QMessageBox>
+#include <QPushButton>
 
 // For pageQuizMenu in quizwindow.ui
-// Can be moved/merged later if needed
 
-// Load Button - Loading quiz: Opens a file dialog to select existing .db file
-void QuizWindow::on_pushButtonLoad_clicked() {
+QuizMenu::QuizMenu(QuizWindow* quizWin, QWidget *parent)
+    : QWidget(parent), quizWindow(quizWin)
+{
+    // Connect the Load button from the quizwindow ui
+    connect(quizWindow->getLoadButton(), &QPushButton::clicked,
+            this, &QuizMenu::onLoadButtonClicked);
+}
+
+// Load Button clicked: Loading quiz, Opens a file dialog to select existing .db file
+void QuizMenu::onLoadButtonClicked() {
+    qDebug() << "load button clicked";
     QString fileName = QFileDialog::getOpenFileName(
         this,
         tr("Open Quiz File"),   // Dialog title
@@ -18,12 +26,21 @@ void QuizWindow::on_pushButtonLoad_clicked() {
         // Get fileName only (not the entire path)
         QFileInfo fileInfo(fileName);
         fileName = fileInfo.fileName();
-        quizDB = new DatabaseQuiz();
-        if (quizDB) {
-            quizDB->loadQuiz(fileName);
-            QMessageBox::information(this, tr("Success"), tr("Quiz loaded successfully!"));
+
+        // Create new DatabaseQuiz temporary
+        DatabaseQuiz* db = new DatabaseQuiz();
+        if (db) {
+            if (db->loadQuiz(fileName)) {
+                // Store it in quiz window
+                quizWindow->setQuizDB(db);
+
+                QMessageBox::information(this, tr("Success"), tr("Quiz loaded successfully!"));
+            } else {
+                QMessageBox::critical(this, tr("Error"), tr("Failed to load quiz."));
+                delete db; // cleanup the temporary
+            }
         } else {
-            qDebug() << "quizDB is not initialized";
+            qDebug() << "DatabaseQuiz allocation failed";
         }
     } else {
         QMessageBox::warning(this, tr("No file selected"), tr("Please select a valid quiz file."));

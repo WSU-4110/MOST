@@ -28,7 +28,7 @@ public:
     void setName(QString quizNameInput);
     QString getName();
 
-    void loadQuiz(const QString& quizFile);
+    bool loadQuiz(const QString& quizFile);
 
 private:
     QString quizName;

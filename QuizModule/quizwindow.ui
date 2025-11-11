@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>QuizWindow</class>
+ <widget class="QMainWindow" name="QuizWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -39,7 +39,7 @@
      <string notr="true">border-radius: 10px</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="pageQuizMenu">
      <widget class="QWidget" name="widget_2" native="true">

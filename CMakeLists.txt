@@ -37,6 +37,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
         Database/databaseflashcard.h Database/databaseflashcard.cpp
         QuizModule/quizmenu.cpp
+        QuizModule/quizmenu.h
+        QuizModule/quizcreate.h QuizModule/quizcreate.cpp
+        QuizModule/quizstudy.h QuizModule/quizstudy.cpp
+        QuizModule/quizquestion.h
+
 
     )
 # Define target properties for Android with Qt 6 as:

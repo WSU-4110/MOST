@@ -4,21 +4,19 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QStringList>
+#include "quizquestion.h"
 #include "../Database/databasequiz.h"
+#include <QPushButton>
+#include "QuizModule/ui_quizwindow.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
 }
 QT_END_NAMESPACE
 
-// current idea for formatting questions/answers in a storeable format
-struct QuizQuestion {
-    QString prompt;
-    QString answers[6];
-    int correctIndex = 0;
-    int userIndex = -1;
-};
+class QuizMenu;
+//class QuizCreate;
 
 class QuizWindow : public QMainWindow
 {
@@ -28,7 +26,12 @@ public:
     QuizWindow(QWidget *parent = nullptr);
     ~QuizWindow();
 
-    // add buttons
+    // db Access functions for the subpages to use
+    DatabaseQuiz* getQuizDB() { return quizDB; }
+    void setQuizDB(DatabaseQuiz* db) { quizDB = db; }
+
+    QPushButton* getLoadButton() const { return ui->pushButtonLoad; }
+
 private slots:
     // menu to subpage buttons
     void on_pushButtonCreatePage_clicked();
@@ -40,27 +43,21 @@ private slots:
     void on_pushButtonReturn_3_clicked();
     void on_pushButtonReturn_4_clicked();
 
-    // quiz create page buttons
-    void on_pushButtonCreateQuestion_clicked();
-    void on_pushButtonOverwriteQuestion_clicked();
-    void on_pushButtonDeleteQuestion_clicked();
-    void on_pushButtonNextQuestion_clicked();
-    void on_pushButtonPreviousQuestion_clicked();
-
     // study quiz page buttons
-    void on_pushButtonNextQuestion_2_clicked();
-    void on_pushButtonPreviousQuestion_2_clicked();
-    void on_pushButtonSubmitQuiz_clicked();
+    //void on_pushButtonNextQuestion_2_clicked();
+    //void on_pushButtonPreviousQuestion_2_clicked();
+    // study page -> results
+    // study page -> results
+    //void on_pushButtonSubmitQuiz_clicked();
     void on_pushButtonReview_clicked();
 
     //study review page buttons
     void on_pushButtonNextQuestion_3_clicked();
     void on_pushButtonPreviousQuestion_3_clicked();
 
-    void on_pushButtonLoad_clicked();
-
 private:
-    Ui::MainWindow *ui;
+    QuizMenu* quizMenu = nullptr;
+    //QuizCreate* quizCreate = nullptr;
 
     // current idea for question storage management
     QVector<QuizQuestion> questionBank;
@@ -71,15 +68,16 @@ private:
     void showStudyQuestion(int i);
     void showStudyQuestionReview(int i);
 
+    // radio button helper
+    int currentStudySelection() const;
+
+protected:
+    Ui::QuizWindow *ui = nullptr;
+    DatabaseQuiz* quizDB = nullptr;
+
     // basic helper functions
     bool readCreateForm(QuizQuestion &out, QString &err) const;
     void writeCreateForm(const QuizQuestion &q);
     void clearCreateForm();
-
-    // radio button helper
-    int currentStudySelection() const;
-
-    // Quiz atabase pointer
-    DatabaseQuiz* quizDB = NULL;
 };
 #endif // QUIZWINDOW_H

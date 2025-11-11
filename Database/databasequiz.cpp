@@ -202,7 +202,7 @@ QString DatabaseQuiz::getName() {
 }
 
 // Load - set the active database to quizFile
-void DatabaseQuiz::loadQuiz(const QString& quizFile) {
+bool DatabaseQuiz::loadQuiz(const QString& quizFile) {
     closeDatabase();
     qDebug() << "Loading " << quizFile;
 
@@ -211,5 +211,9 @@ void DatabaseQuiz::loadQuiz(const QString& quizFile) {
     newQuizName.remove(0,5); // remove "quiz_"
     setName(newQuizName);
 
-    openDatabase(quizFile);
+    bool success = openDatabase(quizFile);
+    if (!success) {
+        qDebug() << "Failed to open database:" << quizFile;
+    }
+    return success;
 };
