@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QVector>
 #include "quizquestion.h"
+#include "quizbank.h"
+#include "quizsession.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -61,14 +63,16 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    // current idea for question storage management
-    QVector<QuizQuestion> questionBank;
-    int questionCurrent = -1;
+
+    QuizBank quizBank;
+    QuizSession quizSession;
+
+    int reviewIndex = 0;
 
     // current idea for displaying stored questions to study
     int questionStudyIndex = 0;
-    void showStudyQuestion(int i);
-    void showStudyQuestionReview(int i);
+    void showStudyQuestion();
+    void showStudyQuestionReview();
 
     // basic helper functions
     bool readCreateForm(QuizQuestion &out, QString &err) const;

@@ -16,7 +16,7 @@ QuizQBuilder& QuizQBuilder::answer(int index, const QString& a) {
     return *this;
 }
 
-// Current method to keep index stays within bounds
+// Current method to keep sure index stays within bounds
 QuizQBuilder& QuizQBuilder::correctIndex(int index) {
     if (index < 0) {
         index = 0;
