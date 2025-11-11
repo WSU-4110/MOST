@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QVector>
 #include <QStringList>
+#include <cstdlib>
+#include <ctime>
 #include "../Database/databasequiz.h"
 
 QT_BEGIN_NAMESPACE
@@ -16,8 +18,8 @@ QT_END_NAMESPACE
 struct QuizQuestion {
     QString prompt;
     QString answers[6];
-    int correctIndex = 0;
-    int userIndex = -1;
+    QVector<bool> correctIndex{false, false, false, false, false, false};
+    QVector<bool> userIndex{false, false, false, false, false, false};
 };
 
 class QuizWindow : public QMainWindow
@@ -51,6 +53,7 @@ private slots:
     void on_pushButtonNextQuestion_2_clicked();
     void on_pushButtonPreviousQuestion_2_clicked();
     void on_pushButtonSubmitQuiz_clicked();
+    void on_pushButtonShuffle_clicked();
     void on_pushButtonReview_clicked();
 
     //study review page buttons
@@ -77,7 +80,7 @@ private:
     void clearCreateForm();
 
     // radio button helper
-    int currentStudySelection() const;
+    QVector<bool> currentStudySelection() const;
 
     // Quiz atabase pointer
     DatabaseQuiz* quizDB = NULL;
