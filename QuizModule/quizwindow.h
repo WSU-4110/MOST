@@ -15,8 +15,8 @@ QT_END_NAMESPACE
 struct QuizQuestion {
     QString prompt;
     QString answers[6];
-    QVector<bool> correctIndex{false, false, false, false, false, false};
-    QVector<bool> userIndex{false, false, false, false, false, false};
+    int correctIndex = 0;
+    int userIndex = -1;
 };
 
 class QuizWindow : public QMainWindow
@@ -49,17 +49,6 @@ private slots:
     void on_pushButtonNextQuestion_2_clicked();
     void on_pushButtonPreviousQuestion_2_clicked();
     void on_pushButtonSubmitQuiz_clicked();
-<<<<<<< Updated upstream
-=======
-    void on_pushButtonShuffle_clicked();
-    void on_pushButtonReview_clicked();
-
-    //study review page buttons
-    void on_pushButtonNextQuestion_3_clicked();
-    void on_pushButtonPreviousQuestion_3_clicked();
-
-    void on_pushButtonLoad_clicked();
->>>>>>> Stashed changes
 
 private:
     Ui::MainWindow *ui;
@@ -78,7 +67,7 @@ private:
     void clearCreateForm();
 
     // radio button helper
-    QVector<bool> currentStudySelection() const;
+    int currentStudySelection() const;
 
 
 };
