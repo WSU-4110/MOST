@@ -11,7 +11,9 @@
 #include <QDebug>
 #include <QStandardPaths>
 #include <QDir>
-
+#include "../Database/databaseflashcard.h"
+#include <QMessageBox>
+#include <QString>
 flashCardMaker::flashCardMaker(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::flashCardMaker)
@@ -71,6 +73,30 @@ void flashCardMaker::on_nextQuestionButton_clicked()
 }
 
 void flashCardMaker::on_saveButton_clicked(){
+    QString frontText = ui->questionEdit->toPlainText().trimmed();
+    QString backText = ui->answerEdit->toPlainText().trimmed();
+    QString currentSetName = ui->setNameEdit->toPlainText().trimmed();
+
+    if (currentSetName.isEmpty()) {
+        QMessageBox::warning(this, "Missing Set Name", "Please enter a flashcard set name before saving.");
+        return;
+    }
+
+
+
+    QString dbName = "flashcards_" + currentSetName + ".db";
+
+
+    DatabaseFlashcard dbFlashcard;
+    bool success = dbFlashcard.addFlashcard(dbName, frontText, backText);
+
+    if (success) {
+        QMessageBox::information(this, "Saved", "Flashcard saved successfully!");
+        ui->questionEdit->clear();
+        ui->answerEdit->clear();
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to save flashcard. Check database connection.");
+    }
 
 }
 void flashCardMaker::on_homeButton_clicked(){

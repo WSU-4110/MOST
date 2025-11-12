@@ -23,6 +23,7 @@ private slots:
     void on_saveButton_clicked();
     void on_homeButton_clicked();
 private:
+    QString currentSetName;
     Ui::flashCardMaker *ui;
     int cardCount=0; //added
     QVector<QPair<QString, QString>> flashcards; //added
