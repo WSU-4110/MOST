@@ -14,8 +14,13 @@
    <string>flashCardMaker</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(170, 255, 255);
-color: rgb(0, 0, 0);</string>
+   <string notr="true">background-color: qlineargradient(
+    x1: 0, y1: 1,   /* Start at bottom */
+    x2: 0, y2: 0,   /* End at top */
+    stop: 0 #454545,
+    stop: 1 #100328
+);k
+border: 1px black;;</string>
   </property>
   <widget class="QLabel" name="pageLabel">
    <property name="geometry">
@@ -87,6 +92,18 @@ color: rgb(0, 0, 0);</string>
      <height>201</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#line {
+    background-color: #E1D9D1;
+    height: 0.5px;
+}
+
+QWidget {
+background-color: #373B80;
+border-radius: 20px;
+}
+</string>
+   </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -106,6 +123,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <width>251</width>
      <height>201</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#line {
+    background-color: #E1D9D1;
+    height: 0.5px;
+}
+
+QWidget {
+background-color: #373B80;
+border-radius: 20px;
+}
+</string>
    </property>
    <property name="html">
     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
