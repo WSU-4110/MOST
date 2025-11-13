@@ -3,20 +3,24 @@
 
 #include <QMainWindow>
 #include <QVector>
-#include <QStringList>
 #include "quizquestion.h"
-#include "../Database/databasequiz.h"
-#include <QPushButton>
-#include "QuizModule/ui_quizwindow.h"
-
+#include "quizbank.h"
+#include "quizsession.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
 }
 QT_END_NAMESPACE
 
-class QuizMenu;
-//class QuizCreate;
+/*
+// current idea for formatting questions/answers in a storeable format
+struct QuizQuestion {
+    QString prompt;
+    QString answers[6];
+    int correctIndex = 0;
+    int userIndex = -1;
+};
+*/
 
 class QuizWindow : public QMainWindow
 {
@@ -59,14 +63,16 @@ private:
     QuizMenu* quizMenu = nullptr;
     //QuizCreate* quizCreate = nullptr;
 
-    // current idea for question storage management
-    QVector<QuizQuestion> questionBank;
-    int questionCurrent = -1;
+
+    QuizBank quizBank;
+    QuizSession quizSession;
+
+    int reviewIndex = 0;
 
     // current idea for displaying stored questions to study
     int questionStudyIndex = 0;
-    void showStudyQuestion(int i);
-    void showStudyQuestionReview(int i);
+    void showStudyQuestion();
+    void showStudyQuestionReview();
 
     // radio button helper
     int currentStudySelection() const;

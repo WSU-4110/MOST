@@ -3,7 +3,11 @@
 
 #include <QString>
 
+<<<<<<< HEAD
 // current idea for formatting questions/answers in a storeable format
+=======
+// porting over to this header file to separate structure creation from the rest of the ui logic
+>>>>>>> origin/Quiz-Section-SRP-Fixes
 struct QuizQuestion {
     QString prompt;
     QString answers[6];

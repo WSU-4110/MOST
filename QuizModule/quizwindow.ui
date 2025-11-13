@@ -39,7 +39,7 @@
      <string notr="true">border-radius: 10px</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="pageQuizMenu">
      <widget class="QWidget" name="widget_2" native="true">
@@ -91,7 +91,7 @@ border-radius: 10px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">image: url(:/icons/images/save-file-icon-14.png);</string>
+        <string notr="true">image: url(:/icons/images/customsaveicon.png);</string>
        </property>
        <property name="text">
         <string/>
@@ -137,7 +137,7 @@ border-radius: 10px;</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">image: url(:/icons/images/pngfind.com-phone-symbol-png-2755033.png);</string>
+        <string notr="true">image: url(:/icons/images/customediticon.png);</string>
        </property>
        <property name="text">
         <string/>
@@ -184,7 +184,7 @@ border-radius: 10px;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">image: url(:/icons/images/open-book-icon-19.png);</string>
+        <string notr="true">image: url(:/icons/images/customstudyicon.png);</string>
        </property>
        <property name="text">
         <string/>

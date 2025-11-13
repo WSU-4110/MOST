@@ -383,7 +383,7 @@ margin-top: 25px;
 margin-bottom: 25px;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item alignment="Qt::AlignmentFlag::AlignVCenter">
+       <item>
         <widget class="QPushButton" name="quizIcon">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -401,7 +401,7 @@ background: transparent;</string>
          </property>
          <property name="icon">
           <iconset resource="../resources.qrc">
-           <normaloff>:/icons/images/quiz-color.png</normaloff>:/icons/images/quiz-color.png</iconset>
+           <normaloff>:/icons/images/customquizicon.png</normaloff>:/icons/images/customquizicon.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -669,7 +669,7 @@ border-radius: 12px;</string>
          </property>
          <property name="icon">
           <iconset resource="../resources.qrc">
-           <normaloff>:/icons/images/flash-card.png</normaloff>:/icons/images/flash-card.png</iconset>
+           <normaloff>:/icons/images/customcardicon.png</normaloff>:/icons/images/customcardicon.png</iconset>
          </property>
          <property name="iconSize">
           <size>
