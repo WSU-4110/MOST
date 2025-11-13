@@ -1,22 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
-
 project(MOST VERSION 0.1 LANGUAGES CXX)
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 # add Qt SQL module
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
-
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Test)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Test)
 set(PROJECT_SOURCES
         main.cpp
 )
-
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(MOST
         MANUAL_FINALIZATION
@@ -33,8 +27,26 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/quiz-color.png images/quiz.png images/right-arrow.png
         images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/output-onlinepngtools.png images/quiz-color.png images/quiz.png images/right-arrow.png
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
+<<<<<<< HEAD
         Database/databaseflashcard.h Database/databaseflashcard.cpp
         QuizModule/quizmenu.cpp
+=======
+        FlashcardModule/flashCards.h
+
+
+
+
+        Database/database2.h Database/database2.cpp
+        Database/flashCardData.h
+        Database/flashCardData.cpp
+
+
+
+
+
+
+
+>>>>>>> JohnUeberrothTesting
     )
 else()
     if(ANDROID)
@@ -47,9 +59,7 @@ else()
         )
     endif()
 endif()
-
 target_link_libraries(MOST PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) # link Qt to SQL
-
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
@@ -63,18 +73,17 @@ set_target_properties(MOST PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
-
 include(GNUInstallDirs)
 install(TARGETS MOST
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
 
+<<<<<<< HEAD
 # *** ADDED FOR UNIT TEST ***
 # Find Qt Test module
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
@@ -106,3 +115,36 @@ add_custom_target(run_tests
     DEPENDS UnitTests
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
+=======
+
+# Enable testing
+include(CTest)
+enable_testing()
+
+# Add the test executable
+add_executable(FlashCardMakerTest
+    FlashcardModule/FlashCardMakerTest.cpp
+    FlashcardModule/flashcardmaker.cpp
+    Database/flashCardData.cpp
+    Database/Database2.cpp
+)
+
+# Link against Qt modules your code needs
+target_link_libraries(FlashCardMakerTest
+    PRIVATE
+        Qt6::Test       # Provides QTest
+        Qt6::Widgets
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Sql
+)
+
+# Include your headers
+target_include_directories(FlashCardMakerTest PRIVATE
+    FlashcardModule
+    Database
+)
+
+# Add the test to CTest so you can run it with `ctest`
+add_test(NAME FlashCardMakerTest COMMAND FlashCardMakerTest)
+>>>>>>> JohnUeberrothTesting
