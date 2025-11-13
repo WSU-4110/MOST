@@ -33,20 +33,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         FlashcardModule/flashCards.h
 
-
-
-
         Database/database2.h Database/database2.cpp
         Database/flashCardData.h
         Database/flashCardData.cpp
-
-
-
-
-
-
-
-
     )
 else()
     if(ANDROID)
@@ -74,19 +63,6 @@ set_target_properties(MOST PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
-# Unit test for DatabaseQuiz
-add_executable(DatabaseQuizTest
-    UnitTest/unittest_databasequiz.cpp
-    Database/database.cpp
-    Database/database.h
-    Database/databasequiz.cpp
-    Database/databasequiz.h
-    Database/databaseflashcard.h
-    Database/databaseflashcard.cpp
-)
-
-target_link_libraries(DatabaseQuizTest PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Test)
-
 include(GNUInstallDirs)
 install(TARGETS MOST
     BUNDLE DESTINATION .
@@ -110,9 +86,13 @@ set(TEST_SOURCES
     QuizModule/quizmenu.cpp
     Homepage/homepage.cpp
     FlashcardModule/flashcardstudy.cpp
+    Database/database.h
     Database/database.cpp
+    Database/databasequiz.h
     Database/databasequiz.cpp
+    Database/databaseflashcard.h
     Database/databaseflashcard.cpp
+    UnitTest/unittest_databasequiz.cpp
 )
 
 add_executable(UnitTests ${TEST_SOURCES})
