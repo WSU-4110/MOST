@@ -71,15 +71,12 @@ void flashCardMaker::on_saveButton_clicked(){
         dbFlashcard.addFlashcard(dbName,question ,answer);
 
     }
-    bool success = dbFlashcard.addFlashcard(dbName, frontText, backText);
-    if (success) {
-        QMessageBox::information(this, "Saved", "Flashcard saved successfully!");
-        ui->questionEdit->clear();
-        ui->answerEdit->clear();
-    } else {
-        QMessageBox::critical(this, "Error", "Failed to save flashcard. Check database connection.");
-    }
-
+    ui->questionEdit->clear();
+    ui->answerEdit->clear();
+    flashcards.clear();
+    cardCount = 0;
+    ui->cardCount->setText("Card Count: 0");
+    ui->setNameEdit->clear();
 }
 void flashCardMaker::on_homeButton_clicked(){
     emit goHome();
