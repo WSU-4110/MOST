@@ -6,6 +6,12 @@
 #include "quizquestion.h"
 #include "quizbank.h"
 #include "quizsession.h"
+#include "../Database/databasequiz.h"
+#include <QPushButton>
+#include "QuizModule/ui_quizwindow.h"
+#include "quizmenu.h"
+#include "quizcreate.h"
+#include "quizstudy.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,11 +36,23 @@ public:
     QuizWindow(QWidget *parent = nullptr);
     ~QuizWindow();
 
-    // db Access functions for the subpages to use
+    // Access functions for the subpages to use
+    Ui::QuizWindow* getUI() { return ui; }
     DatabaseQuiz* getQuizDB() { return quizDB; }
+    QuizBank* getQuizBank() { return quizBank; }
+    QuizSession* getQuizSession() { return quizSession; }
+
     void setQuizDB(DatabaseQuiz* db) { quizDB = db; }
 
+    // Get pageQuizMenu buttons for quizmenu
     QPushButton* getLoadButton() const { return ui->pushButtonLoad; }
+
+    // Get pageQuizCreate for quizcreate
+    QPushButton* getCreateQuestionButton() const { return ui->pushButtonCreateQuestion; }
+    QPushButton* getOverwriteQuestionButton() const { return ui->pushButtonOverwriteQuestion; }
+    QPushButton* getDeleteQuestionButton() const { return ui->pushButtonDeleteQuestion; }
+    QPushButton* getPreviousQuestionButton() const { return ui->pushButtonPreviousQuestion; }
+    QPushButton* getNextQuestionButton() const { return ui->pushButtonNextQuestion; }
 
 private slots:
     // menu to subpage buttons
@@ -48,11 +66,11 @@ private slots:
     void on_pushButtonReturn_4_clicked();
 
     // study quiz page buttons
-    //void on_pushButtonNextQuestion_2_clicked();
-    //void on_pushButtonPreviousQuestion_2_clicked();
+    void on_pushButtonNextQuestion_2_clicked();
+    void on_pushButtonPreviousQuestion_2_clicked();
     // study page -> results
     // study page -> results
-    //void on_pushButtonSubmitQuiz_clicked();
+    void on_pushButtonSubmitQuiz_clicked();
     void on_pushButtonReview_clicked();
 
     //study review page buttons
@@ -61,11 +79,9 @@ private slots:
 
 private:
     QuizMenu* quizMenu = nullptr;
-    //QuizCreate* quizCreate = nullptr;
-
-
-    QuizBank quizBank;
-    QuizSession quizSession;
+    QuizCreate* quizCreate = nullptr;
+    QuizBank* quizBank = nullptr;
+    QuizSession* quizSession = nullptr;
 
     int reviewIndex = 0;
 
@@ -80,10 +96,5 @@ private:
 protected:
     Ui::QuizWindow *ui = nullptr;
     DatabaseQuiz* quizDB = nullptr;
-
-    // basic helper functions
-    bool readCreateForm(QuizQuestion &out, QString &err) const;
-    void writeCreateForm(const QuizQuestion &q);
-    void clearCreateForm();
 };
 #endif // QUIZWINDOW_H

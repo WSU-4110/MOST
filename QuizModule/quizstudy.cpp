@@ -2,7 +2,7 @@
 
 // For pageQuizStudy in quizwindow.ui
 
-/* Commented out until functional
+/* Commented out for now (not done yet)
 
 QuizStudy::QuizStudy(QWidget *parent, QuizWindow* mainWin)
     : QWidget(parent), mainWindow(mainWin)

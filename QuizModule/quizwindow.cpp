@@ -10,13 +10,15 @@ QuizWindow::QuizWindow(QWidget *parent)
     ui->setupUi(this);
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 
-    // Initialize quiz database
+    // Initialize
     quizDB = nullptr;
+    quizBank = new QuizBank();
+    quizSession = new QuizSession();
 
-    // Subpages
+    // Subpages of quizwindow.ui
     quizMenu = new QuizMenu(this, nullptr);
-    //quizCreate
-    //quizStudy
+    quizCreate = new QuizCreate(this, nullptr);
+    //quizStudy = new QuizStudy(this, nullptr);
 }
 
 QuizWindow::~QuizWindow()
@@ -32,31 +34,6 @@ void MainWindow::showInfo(const QString& msg) {
     QMessageBox::information(this, tr("Quiz"), msg);
 }
 */
-
-// this will clear the fields from the create page
-void QuizWindow::clearCreateForm() {
-    ui->lineEditQuestion->clear();
-    ui->lineEditAnswer1->clear();
-    ui->lineEditAnswer2->clear();
-    ui->lineEditAnswer3->clear();
-    ui->lineEditAnswer4->clear();
-    ui->lineEditAnswer5->clear();
-    ui->lineEditAnswer6->clear();
-    ui->comboBoxCorrect->setCurrentIndex(0);
-}
-
-void QuizWindow::writeCreateForm(const QuizQuestion &q) {
-    ui->lineEditQuestion->setText(q.prompt);
-    ui->lineEditAnswer1->setText(q.answers[0]);
-    ui->lineEditAnswer2->setText(q.answers[1]);
-    ui->lineEditAnswer3->setText(q.answers[2]);
-    ui->lineEditAnswer4->setText(q.answers[3]);
-    ui->lineEditAnswer5->setText(q.answers[4]);
-    ui->lineEditAnswer6->setText(q.answers[5]);
-
-    int index = (q.correctIndex >= 0 && q.correctIndex < 6) ? q.correctIndex : 0;
-    ui->comboBoxCorrect->setCurrentIndex(index);
-}
 
 /*
 bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
@@ -77,26 +54,6 @@ bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
 }
 */
 
-bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
-
-    QuizQBuilder b;
-
-    const int correct = ui->comboBoxCorrect->currentIndex();
-
-    const bool cr = b
-        .prompt(ui->lineEditQuestion->text())
-        .answer(0, ui->lineEditAnswer1->text())
-        .answer(1, ui->lineEditAnswer2->text())
-        .answer(2, ui->lineEditAnswer3->text())
-        .answer(3, ui->lineEditAnswer4->text())
-        .answer(4, ui->lineEditAnswer5->text())
-        .answer(5, ui->lineEditAnswer6->text())
-        .correctIndex(correct)
-        .build(out, err);
-
-    return cr;
-}
-
 // menu -> create page
 void QuizWindow::on_pushButtonCreatePage_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizCreate);
@@ -104,13 +61,13 @@ void QuizWindow::on_pushButtonCreatePage_clicked() {
 
 // menu -> study page
 void QuizWindow::on_pushButtonStudyPage_clicked() {
-    if (!quizBank.hasQuestions()) {
+    if (!quizBank->hasQuestions()) {
         QMessageBox::information(this, tr("Study Quiz"),tr("There are no questions to study yet."));
         return;
     }
 
     // Start a new study session using the current contents of the bank
-    quizSession.start(quizBank.all());
+    quizSession->start(quizBank->all());
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
     showStudyQuestion();
@@ -134,87 +91,16 @@ void QuizWindow::on_pushButtonReturn_4_clicked() {
 }
 
 // button functionality
-// create page (add better error handling later)
-
-// create question
-void QuizWindow::on_pushButtonCreateQuestion_clicked() {
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) {
-        QMessageBox::warning(this, tr("Create Question"), err);
-        return;
-    }
-
-    quizBank.addQuestion(q);
-
-    if (const QuizQuestion* current = quizBank.current()) {
-        writeCreateForm(*current);
-    }
-}
-
-// overwrite question
-void QuizWindow::on_pushButtonOverwriteQuestion_clicked() {
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) {
-        QMessageBox::warning(this, tr("Overwrite Question"), err);
-        return;
-    }
-
-    if (!quizBank.overwriteCurrent(q)) {
-        QMessageBox::warning(this, tr("Overwrite Question"),tr("There is no current question to overwrite."));
-        return;
-    }
-
-    if (const QuizQuestion* cur = quizBank.current()) {
-        writeCreateForm(*cur);
-    }
-}
-
-// delete question
-void QuizWindow::on_pushButtonDeleteQuestion_clicked() {
-    if (!quizBank.deleteCurrent()) {
-        clearCreateForm();
-        return;
-    }
-
-    // either show new current or clear form if none
-    if (const QuizQuestion* current = quizBank.current()) {
-        writeCreateForm(*current);
-    } else {
-        clearCreateForm();
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_clicked() {
-    if (!quizBank.hasQuestions()) return;
-
-    quizBank.previous();  // if already at first, this returns false and index stays
-    if (const QuizQuestion* current = quizBank.current()) {
-        writeCreateForm(*current);
-    }
-}
-
-void QuizWindow::on_pushButtonNextQuestion_clicked() {
-    if (!quizBank.hasQuestions()) {
-        return;
-    }
-
-    quizBank.next();  // if already at last, this returns false and index stays
-
-    if (const QuizQuestion* current = quizBank.current()) {
-        writeCreateForm(*current);
-    }
-}
-
 
 // study page
 
 void QuizWindow::showStudyQuestion() {
-    if (!quizSession.hasQuestions()) {
+    if (!quizSession->hasQuestions()) {
         return;
     }
 
-    const QuizQuestion &q = quizSession.currentQuestion();
-    const int userIndex = quizSession.userAnswerFor(quizSession.currentIndex());
+    const QuizQuestion &q = quizSession->currentQuestion();
+    const int userIndex = quizSession->userAnswerFor(quizSession->currentIndex());
 
     // Question
     ui->textDisplayQuestion->setPlainText(q.prompt);
@@ -252,23 +138,23 @@ void QuizWindow::showStudyQuestion() {
 }
 
 void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
-    if (!quizSession.hasQuestions()) return;
+    if (!quizSession->hasQuestions()) return;
 
     // Save current selection
-    quizSession.answerCurrent(currentStudySelection());
+    quizSession->answerCurrent(currentStudySelection());
 
-    if (quizSession.next()) {
+    if (quizSession->next()) {
         showStudyQuestion();
     }
 }
 
 void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
-    if (!quizSession.hasQuestions()) return;
+    if (!quizSession->hasQuestions()) return;
 
     // Save current selection
-    quizSession.answerCurrent(currentStudySelection());
+    quizSession->answerCurrent(currentStudySelection());
 
-    if (quizSession.previous()) {
+    if (quizSession->previous()) {
         showStudyQuestion();
     }
 }
@@ -285,19 +171,19 @@ int QuizWindow::currentStudySelection() const {
 
 // study page -> results
 void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
-    if (!quizSession.hasQuestions()) {
+    if (!quizSession->hasQuestions()) {
         QMessageBox::information(this, tr("Submit Quiz"),tr("There are no questions in this quiz."));
         return;
     }
 
     // Save the current question's selection before scoring
-    quizSession.answerCurrent(currentStudySelection());
+    quizSession->answerCurrent(currentStudySelection());
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
 
-    const int correct = quizSession.correctCount();
-    const int total   = quizSession.questionCount();
-    const double percentage = quizSession.percentage();
+    const int correct = quizSession->correctCount();
+    const int total   = quizSession->questionCount();
+    const double percentage = quizSession->percentage();
 
     ui->textResultNum->setPlainText(QString::number(correct));
     ui->textResultDen->setPlainText(QString::number(total));
@@ -327,7 +213,7 @@ void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
 
 // results -> review
 void QuizWindow::on_pushButtonReview_clicked() {
-    if (!quizSession.hasQuestions()) return;
+    if (!quizSession->hasQuestions()) return;
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
 
@@ -336,15 +222,15 @@ void QuizWindow::on_pushButtonReview_clicked() {
 }
 
 void QuizWindow::showStudyQuestionReview() {
-    if (!quizSession.hasQuestions())
+    if (!quizSession->hasQuestions())
         return;
 
-    const int count = quizSession.questionCount();
+    const int count = quizSession->questionCount();
     if (reviewIndex < 0) reviewIndex = 0;
     if (reviewIndex >= count) reviewIndex = count - 1;
 
-    const QuizQuestion &q = quizSession.questionAt(reviewIndex);
-    const int userIndex = quizSession.userAnswerFor(reviewIndex);
+    const QuizQuestion &q = quizSession->questionAt(reviewIndex);
+    const int userIndex = quizSession->userAnswerFor(reviewIndex);
     const int correctIndex = q.correctIndex;
 
     // Question
@@ -394,16 +280,16 @@ void QuizWindow::showStudyQuestionReview() {
 }
 
 void QuizWindow::on_pushButtonNextQuestion_3_clicked() {
-    if (!quizSession.hasQuestions()) return;
+    if (!quizSession->hasQuestions()) return;
 
-    if (reviewIndex + 1 < quizSession.questionCount()) {
+    if (reviewIndex + 1 < quizSession->questionCount()) {
         ++reviewIndex;
         showStudyQuestionReview();
     }
 }
 
 void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
-    if (!quizSession.hasQuestions()) return;
+    if (!quizSession->hasQuestions()) return;
 
     if (reviewIndex > 0) {
         --reviewIndex;

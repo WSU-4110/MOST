@@ -1,9 +1,7 @@
-/* Commented out until functional
 #ifndef QUIZCREATE_H
 #define QUIZCREATE_H
 
 #include <QWidget>
-#include "quizwindow.h"
 #include "quizquestion.h"
 
 class QuizWindow;
@@ -11,7 +9,7 @@ class QuizWindow;
 class QuizCreate : public QWidget
 {
 public:
-    explicit QuizCreate(QWidget *parent, QuizWindow* mainWin);
+    explicit QuizCreate(QuizWindow* quizWin, QWidget *parent);
 
 private slots:
     // quiz create page buttons
@@ -23,7 +21,12 @@ private slots:
 
 private:
     QuizWindow* quizWindow;
+
+protected:
+    // basic helper functions
+    bool readCreateForm(QuizQuestion &out, QString &err) const;
+    void writeCreateForm(const QuizQuestion &q);
+    void clearCreateForm();
 };
 
 #endif // QUIZCREATE_H
-*/

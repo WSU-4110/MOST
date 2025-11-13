@@ -7,7 +7,7 @@
 QuizMenu::QuizMenu(QuizWindow* quizWin, QWidget *parent)
     : QWidget(parent), quizWindow(quizWin)
 {
-    // Connect the Load button from the quizwindow ui
+    // Connect the load button from pageQuizMenu in quizwindow.ui
     connect(quizWindow->getLoadButton(), &QPushButton::clicked,
             this, &QuizMenu::onLoadButtonClicked);
 }

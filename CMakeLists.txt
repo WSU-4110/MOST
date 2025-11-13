@@ -45,6 +45,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         QuizModule/quizqbuilder.cpp
         QuizModule/quizbank.h QuizModule/quizbank.cpp
         QuizModule/quizsession.h QuizModule/quizsession.cpp
+        QuizModule/quizbank.cpp QuizModule/quizbank.h QuizModule/quizcreate.cpp QuizModule/quizcreate.h QuizModule/quizmenu.cpp QuizModule/quizmenu.h QuizModule/quizqbuilder.cpp QuizModule/quizqbuilder.h QuizModule/quizquestion.h QuizModule/quizsession.cpp QuizModule/quizsession.h QuizModule/quizstudy.cpp QuizModule/quizstudy.h QuizModule/quizwindow.cpp QuizModule/quizwindow.h QuizModule/quizwindow.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET merged APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

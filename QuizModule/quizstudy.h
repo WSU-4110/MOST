@@ -1,4 +1,4 @@
-/* Commented out until functional
+/* Commented out for now
 #ifndef QUIZSTUDY_H
 #define QUIZSTUDY_H
 
