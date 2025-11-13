@@ -37,6 +37,7 @@ bool Database::createSaveDirectories() {
 
 // Create database for either flashcards or quiz type
 bool Database::createDatabase(QString dbName) {
+    if (dbName == ":memory:") return true; // skip file creation if :memory:
     if (!createSaveDirectories()) {
         return false;
     }
@@ -96,25 +97,30 @@ bool Database::createDatabase(QString dbName) {
 }
 
 bool Database::openDatabase(QString dbName) {
-    QDir dir;
-    if (dbName.startsWith("flashcards_")) {
-        dir.setPath(cardsPath);
-    } else if (dbName.startsWith("quiz_")) {
-        dir.setPath(quizPath);
+    if (dbName == ":memory:") {
+        // Use in-memory database for testing and no actual file made
+        db.setDatabaseName(":memory:");
     } else {
-        qDebug() << "Error: dbName does not start with 'flashcards_' or 'quiz_'";
-        return false;
+        QDir dir;
+        if (dbName.startsWith("flashcards_")) {
+            dir.setPath(cardsPath);
+        } else if (dbName.startsWith("quiz_")) {
+            dir.setPath(quizPath);
+        } else {
+            qDebug() << "Error: dbName does not start with 'flashcards_' or 'quiz_'";
+            return false;
+        }
+        QString dbPath = dir.filePath(dbName);
+        db.setDatabaseName(dbPath);
     }
-    QString dbPath = dir.filePath(dbName);
-
-    db.setDatabaseName(dbPath);
     if (!db.open()) {
         qDebug() << "Failed to open database";
         return false;
     }
-    qDebug() << "Opened database " + dbName;
+    qDebug() << "Opened database " << dbName;
     return true;
 }
+
 
 void Database::closeDatabase() {
     if (db.isOpen()) {

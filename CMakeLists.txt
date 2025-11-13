@@ -73,6 +73,20 @@ set_target_properties(MOST PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
+
+# Unit test for DatabaseQuiz
+add_executable(DatabaseQuizTest
+    UnitTest/unittest_databasequiz.cpp
+    Database/database.cpp
+    Database/database.h
+    Database/databasequiz.cpp
+    Database/databasequiz.h
+    Database/databaseflashcard.h
+    Database/databaseflashcard.cpp
+)
+
+target_link_libraries(DatabaseQuizTest PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql Qt${QT_VERSION_MAJOR}::Test)
+
 include(GNUInstallDirs)
 install(TARGETS MOST
     BUNDLE DESTINATION .

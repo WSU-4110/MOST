@@ -5,20 +5,20 @@
 #include <QApplication>
 #include <QFile>
 
-DatabaseQuiz::DatabaseQuiz() {
-    qDebug() << "Created empty databasequiz object";
-}
-
-// Create a database file quiz_quizName.db
-DatabaseQuiz::DatabaseQuiz(QString quizNameInput) {
-    setName(quizNameInput);
-    dbName = "quiz_" + quizName + ".db";
-
-    createDatabase(dbName);
+// Create a database file quiz_quizName.db ... dbPath is optional and for testing
+DatabaseQuiz::DatabaseQuiz(QString quizNameInput, QString dbPath = "") {
+    quizName = quizNameInput;
+    if (dbPath.isEmpty()) {
+        dbName = "quiz_" + quizName + ".db";
+        createDatabase(dbName);
+    } else {
+        dbName = dbPath; // test or in-memory DB
+    }
     openDatabase(dbName);
 }
 
-// Insert the text of a question to table questions
+
+// Insert the text of a question to the question table
 bool DatabaseQuiz::insertQuestion(QString question) {
     QSqlQuery query;
     query.prepare("INSERT INTO questions (question) VALUES (:question)");
