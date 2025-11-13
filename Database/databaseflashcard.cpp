@@ -18,12 +18,13 @@ QVector<Flashcard> DatabaseFlashcard::getAllFlashcards(QString dbName)
     if (!openDatabase(dbName))
         return flashcards;
 
-    QSqlQuery query("SELECT id, front, back FROM flashcards");
+    QSqlQuery query("SELECT id, front, back FROM flashcards",db);
     while (query.next()) {
         Flashcard card;
         card.id = query.value(0).toInt();
         card.front = query.value(1).toString();
         card.back = query.value(2).toString();
+
         flashcards.append(card);
     }
 
@@ -31,17 +32,15 @@ QVector<Flashcard> DatabaseFlashcard::getAllFlashcards(QString dbName)
     return flashcards;
 }
 
-bool DatabaseFlashcard::addFlashcard(QString dbName, QString front, QString back)
-{
-    if (!openDatabase(dbName))
-        return false;
+bool DatabaseFlashcard::addFlashcard(const QString &dbName, const QString &front, const QString &back){
+    if (!openDatabase(dbName)) return false;
 
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("INSERT INTO flashcards (front, back) VALUES (:front, :back)");
     query.bindValue(":front", front);
     query.bindValue(":back", back);
 
-    if (!query.exec()) {
+    if(!query.exec()){
         qDebug() << "Failed to insert flashcard:" << query.lastError();
         closeDatabase();
         return false;
