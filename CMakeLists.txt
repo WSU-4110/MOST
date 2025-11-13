@@ -81,8 +81,8 @@ endif()
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
 
 set(TEST_SOURCES
-    UnitTest/unittest.cpp
-    UnitTest/unittest.h
+    UnitTest/quizwindowunittest.cpp
+    UnitTest/quizwindowunittest.h
     QuizModule/quizwindow.cpp
     QuizModule/quizwindow.h
 )
@@ -91,15 +91,15 @@ set(UI
     QuizModule/quizwindow.ui
 )
 
-qt_add_executable(UnitTests
+qt_add_executable(quizwindowUnitTests
     MANUAL_FINALIZATION
     ${TEST_SOURCES}
     ${UI}
 )
 
 # Link Qt Widgets, SQL and Test modules
-target_link_libraries(UnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Test)
+target_link_libraries(quizwindowUnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Test)
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(UnitTests)
+    qt_finalize_executable(quizwindowUnitTests)
 endif()

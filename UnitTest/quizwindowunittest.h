@@ -1,5 +1,5 @@
-#ifndef UNITTEST_H
-#define UNITTEST_H
+#ifndef QUIZWINDOWUNITTEST_H
+#define QUIZWINDOWUNITTEST_H
 #include <QObject>
 
 class UnitTest : public QObject {
@@ -16,4 +16,4 @@ private slots:
     void testOnPushButtonNextQuestion_clicked();
 };
 
-#endif // UNITTEST_H
+#endif // QUIZWINDOWUNITTEST_H
