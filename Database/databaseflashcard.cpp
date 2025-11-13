@@ -32,7 +32,7 @@ QVector<Flashcard> DatabaseFlashcard::getAllFlashcards(QString dbName)
     return flashcards;
 }
 
-bool DatabaseFlashcard::addFlashcard(const QString &dbName, const QString &front, const QString &back){
+bool DatabaseFlashcard::addFlashcard(QString dbName, QString front,QString back){
     if (!openDatabase(dbName)) return false;
 
     QSqlQuery query(db);

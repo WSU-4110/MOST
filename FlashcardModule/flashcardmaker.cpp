@@ -57,11 +57,19 @@ void flashCardMaker::on_saveButton_clicked(){
     }
     QString dbName = "flashcards_" + currentSetName + ".db";
     DatabaseFlashcard dbFlashcard;
-
-
     if (!dbFlashcard.createFlashcardSet(currentSetName)) {
         QMessageBox::critical(this, "Error", "Failed to create or open database for this set.");
         return;
+    }
+
+    for (const auto& card : flashcards) {
+        QString question = card.first.trimmed();
+        QString answer   = card.second.trimmed();
+        if (question.isEmpty() || answer.isEmpty()) {
+            continue;
+        }
+        dbFlashcard.addFlashcard(dbName,question ,answer);
+
     }
     bool success = dbFlashcard.addFlashcard(dbName, frontText, backText);
     if (success) {

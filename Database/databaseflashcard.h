@@ -18,7 +18,7 @@ public:
 
     bool createFlashcardSet(QString setName);
     QVector<Flashcard> getAllFlashcards(QString dbName);
-    bool addFlashcard(const QString &dbName, const QString &front, const QString &back);
+    bool addFlashcard(QString dbName, QString front,QString back);
     bool deleteFlashcard(QString dbName, int id);
     int getFlashcardCount(QString dbName);
 };
