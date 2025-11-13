@@ -27,10 +27,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/quiz-color.png images/quiz.png images/right-arrow.png
         images/flash-card-color.png images/flash-card.png images/flash-cards.png images/home.png images/left-arrow.png images/output-onlinepngtools.png images/quiz-color.png images/quiz.png images/right-arrow.png
         Database/database.cpp Database/database.h   Database/databasequiz.cpp Database/databasequiz.h
-<<<<<<< HEAD
+
         Database/databaseflashcard.h Database/databaseflashcard.cpp
         QuizModule/quizmenu.cpp
-=======
+
         FlashcardModule/flashCards.h
 
 
@@ -46,7 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
 
 
->>>>>>> JohnUeberrothTesting
+
     )
 else()
     if(ANDROID)
@@ -83,7 +83,7 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(MOST)
 endif()
 
-<<<<<<< HEAD
+
 # *** ADDED FOR UNIT TEST ***
 # Find Qt Test module
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
@@ -115,7 +115,6 @@ add_custom_target(run_tests
     DEPENDS UnitTests
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
-=======
 
 # Enable testing
 include(CTest)
@@ -147,4 +146,30 @@ target_include_directories(FlashCardMakerTest PRIVATE
 
 # Add the test to CTest so you can run it with `ctest`
 add_test(NAME FlashCardMakerTest COMMAND FlashCardMakerTest)
->>>>>>> JohnUeberrothTesting
+
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Test)
+
+set(TEST_SOURCES
+    UnitTest/quizwindowunittest.cpp
+    UnitTest/quizwindowunittest.h
+    QuizModule/quizwindow.cpp
+    QuizModule/quizwindow.h
+)
+
+set(UI
+    QuizModule/quizwindow.ui
+)
+
+qt_add_executable(quizwindowUnitTests
+    MANUAL_FINALIZATION
+    ${TEST_SOURCES}
+    ${UI}
+)
+
+# Link Qt Widgets, SQL and Test modules
+target_link_libraries(quizwindowUnitTests PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Test)
+
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(quizwindowUnitTests)
+endif()
+

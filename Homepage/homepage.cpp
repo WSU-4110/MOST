@@ -1,11 +1,10 @@
 #include "homepage.h"
-<<<<<<< HEAD
 #include "ui_homepage.h"
 
-=======
+
 #include "./ui_homepage.h"
 #include <QInputDialog>
->>>>>>> JohnUeberrothTesting
+
 homePage::homePage(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::homePage)
@@ -34,15 +33,15 @@ homePage::~homePage()
 
 void homePage::on_createFlashCardButton_clicked() {
     if (!flashCardCreatorWindow) {
-<<<<<<< HEAD
+
         flashCardCreatorWindow = new flashCardMaker();  // Set this as the parent
         qDebug() << "Created flashCardCreatorWindow!";
-=======
+
         bool ok;
         QString setName = QInputDialog::getText(this, "New Flashcard Set", "Enter flashcard set name:", QLineEdit::Normal, "", &ok);
 
         flashCardCreatorWindow = new flashCardMaker(setName);
->>>>>>> JohnUeberrothTesting
+
     }
     connect(flashCardCreatorWindow, &flashCardMaker::goHome, this, &homePage::show);
     this->hide();
