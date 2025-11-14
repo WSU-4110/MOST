@@ -57,7 +57,7 @@ void homePage::on_btnStudyFlashCards_clicked()
     QString setName = "default";
     QString dbName = "flashcards_" + setName + ".db";
 
-    FlashCardStudy* flashCardStudy = new FlashCardStudy(dbName);
+    FlashCardStudy* flashCardStudy = new FlashCardStudy();
 
     flashCardStudy->show();
     this->close();

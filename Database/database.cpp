@@ -7,7 +7,7 @@
 #include <QApplication>
 
 Database::Database() {
-    db = QSqlDatabase::addDatabase("QSQLITE");
+
 }
 
 Database::~Database() {
@@ -59,14 +59,19 @@ bool Database::createDatabase(QString dbName) {
     }
     else {
         qDebug() << dbName << "doesn't exist. Creating...";
-        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(dbPath);
-        if (!db.open()) {
-            qDebug() << "Error: Could not open" << dbName;
-            return false;
+        QString connectionName = dbPath;
+        if(QSqlDatabase::contains(connectionName)) {
+            db = QSqlDatabase::database(connectionName);
+        } else {
+            db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
+            db.setDatabaseName(dbPath);
+            if (!db.open()) {
+                qDebug() << "Error: Could not open" << dbName << ":" << db.lastError().text();
+                return false;
+            }
         }
 
-        QSqlQuery query;
+        QSqlQuery query(db);
         query.exec("PRAGMA foreign_keys = ON;");
 
         if (dbName.startsWith("flashcards_")) {
@@ -106,9 +111,16 @@ bool Database::openDatabase(QString dbName) {
         return false;
     }
     QString dbPath = dir.filePath(dbName);
-
-    db.setDatabaseName(dbPath);
-    if (!db.open()) {
+    QString connectionName = dbPath;
+    if(QSqlDatabase::contains(connectionName)){
+        db = QSqlDatabase::database(connectionName);
+    }
+    else{
+        db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
+        db.setDatabaseName(dbPath);
+    }
+    if (!db.isOpen()) {
+        if(!db.open())
         qDebug() << "Failed to open database";
         return false;
     }
@@ -118,8 +130,9 @@ bool Database::openDatabase(QString dbName) {
 
 void Database::closeDatabase() {
     if (db.isOpen()) {
+        QString connectionName = db.connectionName();
         db.close();
-        QSqlDatabase::removeDatabase("QSQLITE");
+
         qDebug() << "Closed database " + dbName;
     } else {
         qDebug() << "No database open to close";
