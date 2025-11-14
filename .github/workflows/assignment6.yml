@@ -34,15 +34,20 @@ jobs:
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}}
 
-    # Run Qt tests manually in offscreen mode
+    # Run Qt tests manually in offscreen mode (PowerShell)
     - name: Run Qt Tests
       working-directory: build
+      shell: pwsh
       run: |
-        set QT_QPA_PLATFORM_PLUGIN_PATH=%QT_ROOT_DIR%/plugins/platforms
+        # Set Qt platform plugin path for PowerShell
+        $Env:QT_QPA_PLATFORM_PLUGIN_PATH="$Env:QT_ROOT_DIR\plugins\platforms"
+
+        # List binaries to verify paths
+        Get-ChildItem -Recurse -Filter *.exe
 
         # Run each Qt test executable
-        .\bin\tst_homepage.exe -platform offscreen -v2
-        .\bin\tst_databasequiz.exe -platform offscreen -v2
-        .\bin\tst_flashcardstudy.exe -platform offscreen -v2
-        .\bin\tst_flashcardmaker.exe -platform offscreen -v2
-        .\bin\quizwindowUnitTests.exe -platform offscreen -v2
+        .\Release\tst_homepage.exe -platform offscreen -v2
+        .\Release\tst_databasequiz.exe -platform offscreen -v2
+        .\Release\tst_flashcardstudy.exe -platform offscreen -v2
+        .\Release\tst_flashcardmaker.exe -platform offscreen -v2
+        .\Release\quizwindowUnitTests.exe -platform offscreen -v2
