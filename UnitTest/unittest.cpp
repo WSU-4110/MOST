@@ -98,3 +98,5 @@ void UnitTest::testDestructorCleansUp() {
 
 QTEST_MAIN(UnitTest)
 #include "unittest.moc"
+
+// test CI
