@@ -14,8 +14,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    # Checkout the repository
     - uses: actions/checkout@v4
 
+    # Install Qt 6.9.2
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -24,14 +26,23 @@ jobs:
         target: desktop
         arch: win64_msvc2022_64
 
+    # Configure CMake
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
+    # Build the project
     - name: Build
       run: cmake --build build --config ${{env.BUILD_TYPE}}
 
-    - name: Test
+    # Run Qt tests manually in offscreen mode
+    - name: Run Qt Tests
       working-directory: build
       run: |
         set QT_QPA_PLATFORM_PLUGIN_PATH=%QT_ROOT_DIR%/plugins/platforms
-        ctest -C ${{env.BUILD_TYPE}} --output-on-failure
+
+        # Run each Qt test executable
+        .\bin\tst_homepage.exe -platform offscreen -v2
+        .\bin\tst_databasequiz.exe -platform offscreen -v2
+        .\bin\tst_flashcardstudy.exe -platform offscreen -v2
+        .\bin\tst_flashcardmaker.exe -platform offscreen -v2
+        .\bin\quizwindowUnitTests.exe -platform offscreen -v2
