@@ -1,23 +1,23 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef DATABASE2_H
+#define DATABASE2_H
 
 #include <QString>
-#include <QtSql/QSqlDatabase>
+#include <QSqlDatabase>
 #include <QApplication>
 
-class Database {
+class Database2 {
 public:
     QString dirPath = QCoreApplication::applicationDirPath();
     QString savesPath = dirPath + "/Saves";
     QString cardsPath = savesPath + "/Cards";
     QString quizPath = savesPath + "/Quiz";
 
-    Database();
-    ~Database();
+    Database2();
+    ~Database2();
 
     bool createSaveDirectories();
-    bool createDatabase(QString dbName);
-    bool openDatabase(QString dbName);
+    bool createDatabase(QString dbNameInput);
+    bool openDatabase(QString dbNameInput);
     void closeDatabase();
 
 protected:
@@ -25,5 +25,6 @@ protected:
     QString dbName;
 };
 
-#endif // DATABASE_H
+#endif // DATABASE2_H
+
 

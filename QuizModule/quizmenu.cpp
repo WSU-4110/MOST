@@ -1,3 +1,4 @@
+/*
 #include "quizwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
@@ -29,3 +30,4 @@ void QuizWindow::on_pushButtonLoad_clicked() {
         QMessageBox::warning(this, tr("No file selected"), tr("Please select a valid quiz file."));
     }
 }
+*/

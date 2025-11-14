@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QStringList>
 #include "../Database/databasequiz.h"
+//#include "QuizModule/ui_quizwindow.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -23,6 +25,8 @@ struct QuizQuestion {
 class QuizWindow : public QMainWindow
 {
     Q_OBJECT
+
+friend class UnitTest;
 
 public:
     QuizWindow(QWidget *parent = nullptr);
@@ -57,7 +61,7 @@ private slots:
     void on_pushButtonNextQuestion_3_clicked();
     void on_pushButtonPreviousQuestion_3_clicked();
 
-    void on_pushButtonLoad_clicked();
+    //void on_pushButtonLoad_clicked();
 
 private:
     Ui::MainWindow *ui;
