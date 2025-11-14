@@ -11,32 +11,25 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    
+    runs-on: windows-latest
+
     steps:
-    # Checkout the code
     - uses: actions/checkout@v4
 
-    # Download and install Qt 6.9.2
-    - name: Install Qt 6.9.2 (Online Installer)
-      run: |
-        # Download the Qt Online Installer for Qt 6.9.2
-        curl -L -o qt-installer.run https://download.qt.io/official_releases/qt/6.9/6.9.2/qt-opensource-linux-x86_64-6.9.2.run
-        # Make the installer executable
-        chmod +x qt-installer.run
-        # Run the installer silently to install Qt 6.9.2 to /opt/Qt
-        ./qt-installer.run --silent --dir /opt/Qt/6.9.2
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.9.2'
+        host: windows
+        target: desktop
+        arch: win64_msvc2022_64
 
-
-    # Configure CMake
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_PREFIX_PATH="C:/Qt/5.15.2/msvc2019_64"  # Update with the correct path
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
-    # Build the project
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      run: cmake --build build --config ${{env.BUILD_TYPE}}
 
-    # Run tests
     - name: Test
-      working-directory: ${{github.workspace}}/build
+      working-directory: build
       run: ctest -C ${{env.BUILD_TYPE}}
