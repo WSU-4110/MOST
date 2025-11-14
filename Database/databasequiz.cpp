@@ -17,6 +17,11 @@ DatabaseQuiz::DatabaseQuiz(QString quizNameInput, QString dbPath = "") {
     openDatabase(dbName);
 }
 
+DatabaseQuiz::DatabaseQuiz()
+    : DatabaseQuiz(QStringLiteral("default"), QString()) {}
+
+DatabaseQuiz::DatabaseQuiz(QString dbName)
+    : DatabaseQuiz(dbName, QString()) {}
 
 // Insert the text of a question to the question table
 bool DatabaseQuiz::insertQuestion(QString question) {

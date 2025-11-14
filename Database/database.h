@@ -2,7 +2,7 @@
 #define DATABASE_H
 
 #include <QString>
-#include <QSqlDatabase>
+#include <QtSql/QSqlDatabase>
 #include <QApplication>
 
 class Database {

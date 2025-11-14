@@ -1,6 +1,10 @@
 #include "flashcardstudy.h"
 #include "ui_flashcardstudy.h"
+
+#ifndef UNIT_TEST
 #include "../Homepage/homepage.h"
+#endif
+
 #include <QDebug>
 #include <algorithm>
 #include <random>
@@ -19,6 +23,22 @@ FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
     updateDisplay();
 }
 
+// For the purpose of the unit test, in order to create static cards in the unit test file, this new constructor was added (Khaliph Page - 11/5/2025)
+FlashCardStudy::FlashCardStudy(const QVector<Flashcard> &cards, QWidget *parent)
+    :QWidget(parent)
+    , ui(new Ui::FlashCardStudy)
+{
+    ui->setupUi(this);
+
+    // Setup for using hardcoded cards for unit test instead of loading from database
+    flashcards = cards;
+    currentDbName.clear();  // clearing since no database is used
+    currentIndex = 0;
+    showingFront = true;
+
+    updateDisplay();
+}
+
 FlashCardStudy::~FlashCardStudy()
 {
     delete ui;
@@ -27,9 +47,15 @@ FlashCardStudy::~FlashCardStudy()
 // Home button
 void FlashCardStudy::on_btnHome_clicked()
 {
+#ifdef UNIT_TEST
+    emit homeButtonClicked();
+    this->close();
+#else
+    // Normal app behavior
     homePage* home = new homePage();
     home->show();
     this->close();
+#endif
 }
 
 // Load all flashcards from database

@@ -2,7 +2,7 @@
 #include "ui_homepage.h"
 
 
-#include "./ui_homepage.h"
+//#include "./ui_homepage.h"
 #include <QInputDialog>
 
 homePage::homePage(QWidget *parent)
@@ -22,6 +22,8 @@ homePage::homePage(QWidget *parent)
             this, &homePage::on_studyMultipleChoiceButton_clicked);
 }
 
+
+
 homePage::~homePage()
 {
     delete ui;
@@ -34,7 +36,7 @@ homePage::~homePage()
 void homePage::on_createFlashCardButton_clicked() {
     if (!flashCardCreatorWindow) {
 
-        flashCardCreatorWindow = new flashCardMaker();  // Set this as the parent
+        flashCardCreatorWindow = new flashCardMaker("");  // Set this as the parent
         qDebug() << "Created flashCardCreatorWindow!";
 
         bool ok;

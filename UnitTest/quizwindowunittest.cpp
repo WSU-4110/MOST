@@ -1,5 +1,6 @@
 #include "../QuizModule/quizwindow.h"
 #include "quizwindowunittest.h"
+#include "QuizModule/ui_quizwindow.h"
 #include <QtTest>
 
 

@@ -1,5 +1,5 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef DATABASE2_H
+#define DATABASE2_H
 
 #include <QString>
 #include <QSqlDatabase>
@@ -25,6 +25,6 @@ protected:
     QString dbName;
 };
 
-#endif // DATABASE_H
+#endif // DATABASE2_H
 
 
