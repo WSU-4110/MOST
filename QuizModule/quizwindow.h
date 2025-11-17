@@ -6,6 +6,9 @@
 #include "quizquestion.h"
 #include "quizbank.h"
 #include "quizsession.h"
+#include <QStringList>
+#include <cstdlib>
+#include <ctime>
 #include "../Database/databasequiz.h"
 #include <QPushButton>
 #include "QuizModule/ui_quizwindow.h"
@@ -23,8 +26,8 @@ QT_END_NAMESPACE
 struct QuizQuestion {
     QString prompt;
     QString answers[6];
-    int correctIndex = 0;
-    int userIndex = -1;
+    QVector<bool> correctIndex{false, false, false, false, false, false};
+    QVector<bool> userIndex{false, false, false, false, false, false};
 };
 */
 
@@ -71,6 +74,7 @@ private slots:
     // study page -> results
     // study page -> results
     void on_pushButtonSubmitQuiz_clicked();
+    void on_pushButtonShuffle_clicked();
     void on_pushButtonReview_clicked();
 
     //study review page buttons
@@ -91,7 +95,7 @@ private:
     void showStudyQuestionReview();
 
     // radio button helper
-    int currentStudySelection() const;
+    QVector<bool> currentStudySelection() const;
 
 protected:
     Ui::QuizWindow *ui = nullptr;
