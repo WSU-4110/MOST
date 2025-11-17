@@ -16,6 +16,7 @@
 #include "quizmenu.h"
 #include "quizcreate.h"
 #include "quizstudy.h"
+#include "quizreview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -60,9 +61,13 @@ public:
 
     // Get pageQuizStudy buttons for quizstudy
     QPushButton* getNextQuestion2Button() const { return ui->pushButtonNextQuestion_2; }
-    QPushButton* getPreviousQuestion2Button() const { return ui->pushButtonPreviousQuestion_3; }
+    QPushButton* getPreviousQuestion2Button() const { return ui->pushButtonPreviousQuestion_2; }
     QPushButton* getShuffleButton() const { return ui->pushButtonShuffle; }
     QPushButton* getSubmitQuizButton() const { return ui->pushButtonSubmitQuiz; }
+
+    // Get pageQuizReview buttons for quizReview
+    QPushButton* getNextQuestion3Button() const { return ui->pushButtonNextQuestion_3; }
+    QPushButton* getPreviousQuestion3Button() const { return ui->pushButtonPreviousQuestion_3; }
 
 private slots:
     // menu to subpage buttons
@@ -78,25 +83,15 @@ private slots:
     // study page -> results
     void on_pushButtonReview_clicked();
 
-    //study review page buttons
-    void on_pushButtonNextQuestion_3_clicked();
-    void on_pushButtonPreviousQuestion_3_clicked();
-
 private:
     // Subpages
     QuizMenu* quizMenu = nullptr;
     QuizCreate* quizCreate = nullptr;
     QuizStudy* quizStudy = nullptr;
+    QuizReview* quizReview = nullptr;
 
     QuizBank* quizBank = nullptr;
     QuizSession* quizSession = nullptr;
-
-    int reviewIndex = 0;
-
-    // current idea for displaying stored questions to study
-    int questionStudyIndex = 0;
-
-    void showStudyQuestionReview();
 
     // radio button helper
     QVector<bool> currentStudySelection() const;

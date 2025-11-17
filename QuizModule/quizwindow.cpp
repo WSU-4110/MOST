@@ -21,6 +21,7 @@ QuizWindow::QuizWindow(QWidget *parent)
     quizMenu = new QuizMenu(this, nullptr);
     quizCreate = new QuizCreate(this, nullptr);
     quizStudy = new QuizStudy(this, nullptr);
+    quizReview = new QuizReview(this, nullptr);
 
     //from merge (fix later?)
     ui->radioButtonCorrect1->setAutoExclusive(false);
@@ -52,12 +53,12 @@ QuizWindow::QuizWindow(QWidget *parent)
     q2.correctIndex = 3;
     QuizQuestion q3;
     q3.prompt = "KFmkdsfmksfmmfks";
-    q3.answers[0] = "1";
-    q3.answers[1] = "2";
-    q3.answers[2] = "3";
-    q3.answers[3] = "4";
-    q3.answers[4] = "5";
-    q3.answers[5] = "6";
+    q3.answers[0] = "15435";
+    q3.answers[1] = "q2";
+    q3.answers[2] = "q3";
+    q3.answers[3] = "question3";
+    q3.answers[4] = "5fdsfsg";
+    q3.answers[5] = "6fbvcbcbc";
     q3.correctIndex = 1;
     quizBank->addQuestion(q1);
     quizBank->addQuestion(q2);
@@ -208,91 +209,8 @@ void QuizWindow::on_pushButtonReview_clicked() {
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
 
-    reviewIndex = 0;
-    //showStudyQuestionReview();
-}
-
-/* Comment out for now
-void QuizWindow::showStudyQuestionReview() {
-    if (!quizSession->hasQuestions())
-        return;
-
-    const int count = quizSession->questionCount();
-    if (reviewIndex < 0) reviewIndex = 0;
-    if (reviewIndex >= count) reviewIndex = count - 1;
-
-    const QuizQuestion &q = quizSession->questionAt(reviewIndex);
-    const int userIndex = quizSession->userAnswerFor(reviewIndex);
-    const int correctIndex = q.correctIndex;
-    QString QNumber = QString::number(i+1) + "/" + QString::number(questionBank.size());
-    ui->textDisplayQuestionNumber_2->setPlainText(QNumber);
-
-    const QuizQuestion& q = questionBank[i];
-
-    // Question
-    ui->textDisplayQuestion_2->setPlainText(q.prompt);
-
-    // Answers (exactly six slots; empties allowed)
-    QPlainTextEdit* answers[6] = {
-        ui->textDisplayAnswer1_2,
-        ui->textDisplayAnswer2_2,
-        ui->textDisplayAnswer3_2,
-        ui->textDisplayAnswer4_2,
-        ui->textDisplayAnswer5_2,
-        ui->textDisplayAnswer6_2,
-    };
-
-    QLabel* checkmarks[6] = {
-        ui->labelCheck1,
-        ui->labelCheck2,
-        ui->labelCheck3,
-        ui->labelCheck4,
-        ui->labelCheck5,
-        ui->labelCheck6
-    };
-
-    for (int j = 0; j < 6; ++j) {
-        answers[j]->setStyleSheet("border: none;");
-        checkmarks[j]->setText("");
-    }
-
-    for (int j = 0; j < 6; ++j) {
-        answers[j]->setPlainText(q.answers[j]);
-        if (questionBank[i].userIndex[j] && questionBank[i].correctIndex[j]) {
-            checkmarks[j]->setText(" ✅");
-        }
-        if (questionBank[i].userIndex[j] && !questionBank[i].correctIndex[j]) {
-            checkmarks[j]->setText(" ❌");
-        }
-        if (!questionBank[i].userIndex[j] && questionBank[i].correctIndex[j]) {
-            answers[j]->setStyleSheet("border: 3px solid lightgreen;");
-        }
-
-    }
-
-    if (correctIndex >= 0 && correctIndex < 6) {
-        answers[correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
-    }
-
-}
-*/
-
-void QuizWindow::on_pushButtonNextQuestion_3_clicked() {
-    if (!quizSession->hasQuestions()) return;
-
-    if (reviewIndex + 1 < quizSession->questionCount()) {
-        ++reviewIndex;
-        //showStudyQuestionReview();
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
-    if (!quizSession->hasQuestions()) return;
-
-    if (reviewIndex > 0) {
-        --reviewIndex;
-        //showStudyQuestionReview();
-    }
+    quizReview->setReviewIndex(0);
+    quizReview->showStudyQuestionReview(0);
 }
 
 

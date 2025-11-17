@@ -58,6 +58,7 @@ void QuizStudy::showStudyQuestion() {
     quizWindow->getUI()->radioButtonAnswer4->setAutoExclusive(false);
     quizWindow->getUI()->radioButtonAnswer5->setAutoExclusive(false);
     quizWindow->getUI()->radioButtonAnswer6->setAutoExclusive(false);
+
     /* Merge to fix
     ui->radioButtonAnswer1->setChecked(q.userIndex[0]);
     ui->radioButtonAnswer2->setChecked(q.userIndex[1]);
@@ -68,23 +69,23 @@ void QuizStudy::showStudyQuestion() {
     */
 }
 
-QVector<bool> QuizWindow::currentStudySelection() const {
+QVector<bool> QuizStudy::currentStudySelection() const {
     QVector<bool> indexes{
-        ui->radioButtonAnswer1->isChecked(),
-        ui->radioButtonAnswer2->isChecked(),
-        ui->radioButtonAnswer3->isChecked(),
-        ui->radioButtonAnswer4->isChecked(),
-        ui->radioButtonAnswer5->isChecked(),
-        ui->radioButtonAnswer6->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer1->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer2->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer3->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer4->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer5->isChecked(),
+        quizWindow->getUI()->radioButtonAnswer6->isChecked(),
     };
     return indexes;
 }
 
 void QuizStudy::on_pushButtonNextQuestion_2_clicked() {
     if (!quizWindow->getQuizSession()->hasQuestions()) return;
-
+    qDebug() << "quizstudy.cpp / Clicked next question";
     // Save current selection
-    //quizSession->answerCurrent(currentStudySelection());
+    //quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
 
     if (quizWindow->getQuizSession()->next()) {
         showStudyQuestion();
@@ -93,9 +94,9 @@ void QuizStudy::on_pushButtonNextQuestion_2_clicked() {
 
 void QuizStudy::on_pushButtonPreviousQuestion_2_clicked() {
     if (!quizWindow->getQuizSession()->hasQuestions()) return;
-
+    qDebug() << "quizstudy.cpp / Clicked previous question";
     // Save current selection
-    //quizSession->answerCurrent(currentStudySelection());
+    //quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
 
     if (quizWindow->getQuizSession()->previous()) {
         showStudyQuestion();

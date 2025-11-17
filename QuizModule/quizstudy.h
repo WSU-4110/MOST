@@ -19,6 +19,8 @@ private slots:
     void on_pushButtonSubmitQuiz_clicked();
 
 private:
+    QVector<bool> currentStudySelection() const;
+
     QuizWindow* quizWindow;
 };
 
