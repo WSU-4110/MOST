@@ -9,7 +9,7 @@ class QuizQBuilder {
 public:
     QuizQBuilder& prompt (const QString& p);
     QuizQBuilder& answer(int index, const QString& a);
-    QuizQBuilder& correctIndex(int index);
+    QuizQBuilder& correctIndices(QVector<bool> index);
 
     // this will be used to perform a validation
     bool build(QuizQuestion& out, QString& err) const;

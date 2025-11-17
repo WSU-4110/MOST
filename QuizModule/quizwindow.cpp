@@ -57,7 +57,15 @@ bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
 // menu -> create page
 void QuizWindow::on_pushButtonCreatePage_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizCreate);
+
+    ui->radioButtonCorrect1->setAutoExclusive(false);
+    ui->radioButtonCorrect2->setAutoExclusive(false);
+    ui->radioButtonCorrect3->setAutoExclusive(false);
+    ui->radioButtonCorrect4->setAutoExclusive(false);
+    ui->radioButtonCorrect5->setAutoExclusive(false);
+    ui->radioButtonCorrect6->setAutoExclusive(false);
 }
+
 
 // menu -> study page
 void QuizWindow::on_pushButtonStudyPage_clicked() {
@@ -100,7 +108,7 @@ void QuizWindow::showStudyQuestion() {
     }
 
     const QuizQuestion &q = quizSession->currentQuestion();
-    const int userIndex = quizSession->userAnswerFor(quizSession->currentIndex());
+    const QVector<bool> userIndex = quizSession->userAnswerFor(quizSession->currentIndex());
 
     // Question
     ui->textDisplayQuestion->setPlainText(q.prompt);
@@ -122,19 +130,12 @@ void QuizWindow::showStudyQuestion() {
     ui->radioButtonAnswer5->setAutoExclusive(false);
     ui->radioButtonAnswer6->setAutoExclusive(false);
 
-    ui->radioButtonAnswer1->setChecked(q.userIndex == 0);
-    ui->radioButtonAnswer2->setChecked(q.userIndex == 1);
-    ui->radioButtonAnswer3->setChecked(q.userIndex == 2);
-    ui->radioButtonAnswer4->setChecked(q.userIndex == 3);
-    ui->radioButtonAnswer5->setChecked(q.userIndex == 4);
-    ui->radioButtonAnswer6->setChecked(q.userIndex == 5);
-
-    ui->radioButtonAnswer1->setAutoExclusive(true);
-    ui->radioButtonAnswer2->setAutoExclusive(true);
-    ui->radioButtonAnswer3->setAutoExclusive(true);
-    ui->radioButtonAnswer4->setAutoExclusive(true);
-    ui->radioButtonAnswer5->setAutoExclusive(true);
-    ui->radioButtonAnswer6->setAutoExclusive(true);
+    ui->radioButtonAnswer1->setChecked(q.userIndex[0]);
+    ui->radioButtonAnswer2->setChecked(q.userIndex[1]);
+    ui->radioButtonAnswer3->setChecked(q.userIndex[2]);
+    ui->radioButtonAnswer4->setChecked(q.userIndex[3]);
+    ui->radioButtonAnswer5->setChecked(q.userIndex[4]);
+    ui->radioButtonAnswer6->setChecked(q.userIndex[5]);
 }
 
 void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
@@ -159,14 +160,16 @@ void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
     }
 }
 
-int QuizWindow::currentStudySelection() const {
-    if (ui->radioButtonAnswer1->isChecked()) return 0;
-    if (ui->radioButtonAnswer2->isChecked()) return 1;
-    if (ui->radioButtonAnswer3->isChecked()) return 2;
-    if (ui->radioButtonAnswer4->isChecked()) return 3;
-    if (ui->radioButtonAnswer5->isChecked()) return 4;
-    if (ui->radioButtonAnswer6->isChecked()) return 5;
-    return -1;
+QVector<bool> QuizWindow::currentStudySelection() const {
+    QVector<bool> i{
+        ui->radioButtonAnswer1->isChecked(),
+        ui->radioButtonAnswer2->isChecked(),
+        ui->radioButtonAnswer3->isChecked(),
+        ui->radioButtonAnswer4->isChecked(),
+        ui->radioButtonAnswer5->isChecked(),
+        ui->radioButtonAnswer6->isChecked(),
+    };
+    return i;
 }
 
 // study page -> results
@@ -190,27 +193,6 @@ void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
     ui->textResultPer->setPlainText(QString::number(percentage * 100.0, 'f', 2));
 }
 
-
-/*
-void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
-    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
-    int correct = 0;
-    for (int i = 0; i < questionBank.size(); i++) {
-        if (questionBank[i].userIndex == questionBank[i].correctIndex) {
-            correct++;
-        }
-    }
-    double percentage = static_cast<double>(correct) / questionBank.size();
-
-    QString numerator = QString::number(correct);
-    QString denominator = QString::number(questionBank.size());
-    QString result = QString::number(percentage*100, 'f', 2);
-    ui->textResultNum->setPlainText(numerator);
-    ui->textResultDen->setPlainText(denominator);
-    ui->textResultPer->setPlainText(result);
-}
-*/
-
 // results -> review
 void QuizWindow::on_pushButtonReview_clicked() {
     if (!quizSession->hasQuestions()) return;
@@ -230,8 +212,8 @@ void QuizWindow::showStudyQuestionReview() {
     if (reviewIndex >= count) reviewIndex = count - 1;
 
     const QuizQuestion &q = quizSession->questionAt(reviewIndex);
-    const int userIndex = quizSession->userAnswerFor(reviewIndex);
-    const int correctIndex = q.correctIndex;
+    const QVector<bool> userIndex = quizSession->userAnswerFor(reviewIndex);
+    const QVector<bool> correctIndex = q.correctIndex;
 
     // Question
     ui->textDisplayQuestion_2->setPlainText(q.prompt);
@@ -263,19 +245,20 @@ void QuizWindow::showStudyQuestionReview() {
     for (int j = 0; j < 6; ++j) {
         answers[j]->setPlainText(q.answers[j]);
 
-        if (j == userIndex && j == correctIndex) {
+        if (userIndex[j] && correctIndex[j]) {
             // User chose this and it was correct
             checkmarks[j]->setText(" ✅");
         }
-        else if (j == userIndex && j != correctIndex) {
+        if (userIndex[j] && !correctIndex[j]) {
             checkmarks[j]->setText(" ❌");
             //answers[questionBank[i].correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
         }
+        if (!userIndex[j] && correctIndex[j]) {
+            answers[j]->setStyleSheet("border: 3px solid lightgreen;");
+        }
+
     }
 
-    if (correctIndex >= 0 && correctIndex < 6) {
-        answers[correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
-    }
 
 }
 

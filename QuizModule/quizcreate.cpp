@@ -30,7 +30,13 @@ bool QuizCreate::readCreateForm(QuizQuestion &out, QString &err) const {
     qDebug() << "triggered readCreateForm";
     QuizQBuilder b;
 
-    const int correct = quizWindow->getUI()->comboBoxCorrect->currentIndex();
+    QVector<bool> correct = {false, false, false, false, false, false};
+    correct[0] = quizWindow->getUI()->radioButtonCorrect1->isChecked();
+    correct[1] = quizWindow->getUI()->radioButtonCorrect2->isChecked();
+    correct[2] = quizWindow->getUI()->radioButtonCorrect3->isChecked();
+    correct[3] = quizWindow->getUI()->radioButtonCorrect4->isChecked();
+    correct[4] = quizWindow->getUI()->radioButtonCorrect5->isChecked();
+    correct[5] = quizWindow->getUI()->radioButtonCorrect6->isChecked();
 
     const bool cr = b
                         .prompt(quizWindow->getUI()->lineEditQuestion->text())
@@ -40,7 +46,7 @@ bool QuizCreate::readCreateForm(QuizQuestion &out, QString &err) const {
                         .answer(3, quizWindow->getUI()->lineEditAnswer4->text())
                         .answer(4, quizWindow->getUI()->lineEditAnswer5->text())
                         .answer(5, quizWindow->getUI()->lineEditAnswer6->text())
-                        .correctIndex(correct)
+                        .correctIndices(correct)
                         .build(out, err);
 
     return cr;
@@ -56,7 +62,12 @@ void QuizCreate::clearCreateForm() {
     quizWindow->getUI()->lineEditAnswer4->clear();
     quizWindow->getUI()->lineEditAnswer5->clear();
     quizWindow->getUI()->lineEditAnswer6->clear();
-    quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(0);
+    quizWindow->getUI()->radioButtonCorrect1->setChecked(false);
+    quizWindow->getUI()->radioButtonCorrect2->setChecked(false);
+    quizWindow->getUI()->radioButtonCorrect3->setChecked(false);
+    quizWindow->getUI()->radioButtonCorrect4->setChecked(false);
+    quizWindow->getUI()->radioButtonCorrect5->setChecked(false);
+    quizWindow->getUI()->radioButtonCorrect6->setChecked(false);
 }
 
 void QuizCreate::writeCreateForm(const QuizQuestion &q) {
@@ -69,8 +80,12 @@ void QuizCreate::writeCreateForm(const QuizQuestion &q) {
     quizWindow->getUI()->lineEditAnswer5->setText(q.answers[4]);
     quizWindow->getUI()->lineEditAnswer6->setText(q.answers[5]);
 
-    int index = (q.correctIndex >= 0 && q.correctIndex < 6) ? q.correctIndex : 0;
-    quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(index);
+    quizWindow->getUI()->radioButtonCorrect1->setChecked(q.correctIndex[0]);
+    quizWindow->getUI()->radioButtonCorrect2->setChecked(q.correctIndex[1]);
+    quizWindow->getUI()->radioButtonCorrect3->setChecked(q.correctIndex[2]);
+    quizWindow->getUI()->radioButtonCorrect4->setChecked(q.correctIndex[3]);
+    quizWindow->getUI()->radioButtonCorrect5->setChecked(q.correctIndex[4]);
+    quizWindow->getUI()->radioButtonCorrect6->setChecked(q.correctIndex[5]);
 }
 
 // create page (add better error handling later)

@@ -91,7 +91,7 @@ private:
     void showStudyQuestionReview();
 
     // radio button helper
-    int currentStudySelection() const;
+    QVector<bool> currentStudySelection() const;
 
 protected:
     Ui::QuizWindow *ui = nullptr;

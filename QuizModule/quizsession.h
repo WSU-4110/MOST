@@ -19,10 +19,10 @@ public:
     const QuizQuestion& questionAt(int index) const;
 
     // Record the user's answer for the current question
-    void answerCurrent(int answerIndex);
+    void answerCurrent(QVector<bool> answerIndex);
 
     // This should read back which answer was picked for a given question
-    int userAnswerFor(int questionIndex) const;
+    QVector<bool> userAnswerFor(int questionIndex) const;
 
     bool next();
     bool previous();
@@ -32,7 +32,7 @@ public:
 
 private:
     QVector<QuizQuestion> questionsCopy; // this is a copy of the questions passed into the start function
-    QVector<int> userAnswers; // this vector is parallel to the question copy bank and is used to keep track of answers
+    QVector<QVector<int>> userAnswers; // this vector is parallel to the question copy bank and is used to keep track of answers
     int currentIn = 0;
 };
 

@@ -17,15 +17,7 @@ QuizQBuilder& QuizQBuilder::answer(int index, const QString& a) {
 }
 
 // Current method to keep sure index stays within bounds
-QuizQBuilder& QuizQBuilder::correctIndex(int index) {
-    if (index < 0) {
-        index = 0;
-    }
-
-    if (index > 5) {
-        index = 5;
-    }
-
+QuizQBuilder& QuizQBuilder::correctIndices(QVector<bool> index) {
     q.correctIndex = index;
 
     return *this;
@@ -53,9 +45,13 @@ bool QuizQBuilder::build(QuizQuestion& out, QString& err) const {
     }
 
     // Correct answer must be non-empty
-    if (q.answers[q.correctIndex].isEmpty()) {
-        err = "The correct answer is empty.";
-        return false;
+    for (int i = 0; i < 6; ++i) {
+        if (q.correctIndex[i]) {
+            if (q.answers[i].isEmpty()) {
+                err = "The correct answer is empty.";
+                return false;
+            }
+        }
     }
 
     // Success: copy built object out
