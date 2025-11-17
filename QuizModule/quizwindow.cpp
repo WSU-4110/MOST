@@ -2,6 +2,8 @@
 #include "QuizModule/ui_quizwindow.h"
 #include <QMessageBox> // back in for error messages 10/30/2025--KhaliphP
 #include "quizqbuilder.h"
+#include "quizbank.h"
+#include "quizsession.h"
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,13 +20,48 @@ QuizWindow::QuizWindow(QWidget *parent)
     // Subpages of quizwindow.ui
     quizMenu = new QuizMenu(this, nullptr);
     quizCreate = new QuizCreate(this, nullptr);
-    //quizStudy = new QuizStudy(this, nullptr);
+    quizStudy = new QuizStudy(this, nullptr);
+
+    //from merge (fix later?)
     ui->radioButtonCorrect1->setAutoExclusive(false);
     ui->radioButtonCorrect2->setAutoExclusive(false);
     ui->radioButtonCorrect3->setAutoExclusive(false);
     ui->radioButtonCorrect4->setAutoExclusive(false);
     ui->radioButtonCorrect5->setAutoExclusive(false);
     ui->radioButtonCorrect6->setAutoExclusive(false);
+
+    //FOR TESTING:
+    QVector<QuizQuestion> testQuestions;
+    QuizQuestion q1;
+    q1.prompt = "Test question 1";
+    q1.answers[0] = "Answer 1";
+    q1.answers[1] = "Answer 2";
+    q1.answers[2] = "Answer 3";
+    q1.answers[3] = "Answer 4";
+    q1.answers[4] = "Answer 5";
+    q1.answers[5] = "Answer 6";
+    q1.correctIndex = 0;
+    QuizQuestion q2;
+    q2.prompt = "2 + 2 = ?";
+    q2.answers[0] = "1";
+    q2.answers[1] = "2";
+    q2.answers[2] = "3";
+    q2.answers[3] = "4";
+    q2.answers[4] = "5";
+    q2.answers[5] = "6";
+    q2.correctIndex = 3;
+    QuizQuestion q3;
+    q3.prompt = "KFmkdsfmksfmmfks";
+    q3.answers[0] = "1";
+    q3.answers[1] = "2";
+    q3.answers[2] = "3";
+    q3.answers[3] = "4";
+    q3.answers[4] = "5";
+    q3.answers[5] = "6";
+    q3.correctIndex = 1;
+    quizBank->addQuestion(q1);
+    quizBank->addQuestion(q2);
+    quizBank->addQuestion(q3);
 }
 
 QuizWindow::~QuizWindow()
@@ -117,7 +154,7 @@ void QuizWindow::on_pushButtonStudyPage_clicked() {
     quizSession->start(quizBank->all());
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
-    showStudyQuestion();
+    quizStudy->showStudyQuestion();
 }
 
 // "non-menu page" -> menu
@@ -138,121 +175,6 @@ void QuizWindow::on_pushButtonReturn_4_clicked() {
 }
 
 // button functionality
-
-// study page
-
-void QuizWindow::showStudyQuestion() {
-    if (!quizSession->hasQuestions()) {
-        return;
-    }
-
-    const QuizQuestion &q = quizSession->currentQuestion();
-    const int userIndex = quizSession->userAnswerFor(quizSession->currentIndex());
-    QString QNumber = QString::number(i+1) + "/" + QString::number(questionBank.size());
-    ui->textDisplayQuestionNumber->setPlainText(QNumber);
-
-    const QuizQuestion& q = questionBank[i];
-
-    // Question
-    ui->textDisplayQuestion->setPlainText(q.prompt);
-
-    // Answers (exactly six slots; empties allowed)
-    ui->textDisplayAnswer1->setPlainText(q.answers[0]);
-    ui->textDisplayAnswer2->setPlainText(q.answers[1]);
-    ui->textDisplayAnswer3->setPlainText(q.answers[2]);
-    ui->textDisplayAnswer4->setPlainText(q.answers[3]);
-    ui->textDisplayAnswer5->setPlainText(q.answers[4]);
-    ui->textDisplayAnswer6->setPlainText(q.answers[5]);
-
-    // Restore radio selection
-
-    ui->radioButtonAnswer1->setAutoExclusive(false);
-    ui->radioButtonAnswer2->setAutoExclusive(false);
-    ui->radioButtonAnswer3->setAutoExclusive(false);
-    ui->radioButtonAnswer4->setAutoExclusive(false);
-    ui->radioButtonAnswer5->setAutoExclusive(false);
-    ui->radioButtonAnswer6->setAutoExclusive(false);
-
-    ui->radioButtonAnswer1->setChecked(q.userIndex[0]);
-    ui->radioButtonAnswer2->setChecked(q.userIndex[1]);
-    ui->radioButtonAnswer3->setChecked(q.userIndex[2]);
-    ui->radioButtonAnswer4->setChecked(q.userIndex[3]);
-    ui->radioButtonAnswer5->setChecked(q.userIndex[4]);
-    ui->radioButtonAnswer6->setChecked(q.userIndex[5]);
-}
-
-void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
-    if (!quizSession->hasQuestions()) return;
-
-    // Save current selection
-    quizSession->answerCurrent(currentStudySelection());
-
-    if (quizSession->next()) {
-        showStudyQuestion();
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
-    if (!quizSession->hasQuestions()) return;
-
-    // Save current selection
-    quizSession->answerCurrent(currentStudySelection());
-
-    if (quizSession->previous()) {
-        showStudyQuestion();
-    }
-}
-
-void QuizWindow::on_pushButtonShuffle_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    QVector<QuizQuestion> tempBank;
-    std::srand(std::time(NULL));
-    int size = questionBank.size();
-    while (size > 0) {
-        int rng = std::rand() % size;
-        tempBank.append(questionBank[rng]);
-        questionBank.removeAt(rng);
-        size--;
-    }
-    questionBank = tempBank;
-    showStudyQuestion(questionStudyIndex);
-}
-
-
-QVector<bool> QuizWindow::currentStudySelection() const {
-    QVector<bool> indexes{
-        ui->radioButtonAnswer1->isChecked(),
-        ui->radioButtonAnswer2->isChecked(),
-        ui->radioButtonAnswer3->isChecked(),
-        ui->radioButtonAnswer4->isChecked(),
-        ui->radioButtonAnswer5->isChecked(),
-        ui->radioButtonAnswer6->isChecked(),
-    };
-    return indexes;
-}
-
-// study page -> results
-void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
-    if (!quizSession->hasQuestions()) {
-        QMessageBox::information(this, tr("Submit Quiz"),tr("There are no questions in this quiz."));
-        return;
-    }
-
-    // Save the current question's selection before scoring
-    quizSession->answerCurrent(currentStudySelection());
-
-    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
-
-    const int correct = quizSession->correctCount();
-    const int total   = quizSession->questionCount();
-    const double percentage = quizSession->percentage();
-
-    ui->textResultNum->setPlainText(QString::number(correct));
-    ui->textResultDen->setPlainText(QString::number(total));
-    ui->textResultPer->setPlainText(QString::number(percentage * 100.0, 'f', 2));
-}
-
 
 /*
 void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
@@ -287,9 +209,10 @@ void QuizWindow::on_pushButtonReview_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
 
     reviewIndex = 0;
-    showStudyQuestionReview();
+    //showStudyQuestionReview();
 }
 
+/* Comment out for now
 void QuizWindow::showStudyQuestionReview() {
     if (!quizSession->hasQuestions())
         return;
@@ -352,13 +275,14 @@ void QuizWindow::showStudyQuestionReview() {
     }
 
 }
+*/
 
 void QuizWindow::on_pushButtonNextQuestion_3_clicked() {
     if (!quizSession->hasQuestions()) return;
 
     if (reviewIndex + 1 < quizSession->questionCount()) {
         ++reviewIndex;
-        showStudyQuestionReview();
+        //showStudyQuestionReview();
     }
 }
 
@@ -367,7 +291,7 @@ void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
 
     if (reviewIndex > 0) {
         --reviewIndex;
-        showStudyQuestionReview();
+        //showStudyQuestionReview();
     }
 }
 

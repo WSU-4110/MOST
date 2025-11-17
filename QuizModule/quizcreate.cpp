@@ -30,7 +30,7 @@ bool QuizCreate::readCreateForm(QuizQuestion &out, QString &err) const {
     qDebug() << "triggered readCreateForm";
     QuizQBuilder b;
 
-    const int correct = quizWindow->getUI()->comboBoxCorrect->currentIndex();
+    //const int correct = quizWindow->getUI()->comboBoxCorrect->currentIndex();
 
     const bool cr = b
                         .prompt(quizWindow->getUI()->lineEditQuestion->text())
@@ -40,7 +40,7 @@ bool QuizCreate::readCreateForm(QuizQuestion &out, QString &err) const {
                         .answer(3, quizWindow->getUI()->lineEditAnswer4->text())
                         .answer(4, quizWindow->getUI()->lineEditAnswer5->text())
                         .answer(5, quizWindow->getUI()->lineEditAnswer6->text())
-                        .correctIndex(correct)
+                        //.correctIndex(correct)
                         .build(out, err);
 
     return cr;
@@ -56,7 +56,7 @@ void QuizCreate::clearCreateForm() {
     quizWindow->getUI()->lineEditAnswer4->clear();
     quizWindow->getUI()->lineEditAnswer5->clear();
     quizWindow->getUI()->lineEditAnswer6->clear();
-    quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(0);
+    //quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(0);
 }
 
 void QuizCreate::writeCreateForm(const QuizQuestion &q) {
@@ -70,7 +70,7 @@ void QuizCreate::writeCreateForm(const QuizQuestion &q) {
     quizWindow->getUI()->lineEditAnswer6->setText(q.answers[5]);
 
     int index = (q.correctIndex >= 0 && q.correctIndex < 6) ? q.correctIndex : 0;
-    quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(index);
+    //quizWindow->getUI()->comboBoxCorrect->setCurrentIndex(index);
 }
 
 // create page (add better error handling later)

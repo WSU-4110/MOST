@@ -25,6 +25,7 @@ public:
         return questions;
     }
 
+    QVector<QuizQuestion> getQuestions() const { return questions; }
 private:
     QVector<QuizQuestion> questions;
     int currentIn = -1;

@@ -1,24 +1,25 @@
-/* Commented out for now
 #ifndef QUIZSTUDY_H
 #define QUIZSTUDY_H
 
 #include <QWidget>
-#include "quizwindow.h"
+
+class QuizWindow;
 
 class QuizStudy : public QWidget
 {
 public:
-    explicit QuizStudy(QWidget *parent, QuizWindow* mainWin);
+    explicit QuizStudy(QuizWindow* quizWin, QWidget *parent);
+    void showStudyQuestion();
 
 private slots:
     // study quiz page buttons
     void on_pushButtonNextQuestion_2_clicked();
     void on_pushButtonPreviousQuestion_2_clicked();
+    void on_pushButtonShuffle_clicked();
     void on_pushButtonSubmitQuiz_clicked();
 
 private:
-    QuizWindow* mainWindow;
+    QuizWindow* quizWindow;
 };
 
 #endif // QUIZSTUDY_H
-*/

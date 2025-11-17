@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QVector>
-#include "quizquestion.h"
 #include "quizbank.h"
 #include "quizsession.h"
 #include <QStringList>
@@ -12,6 +11,8 @@
 #include "../Database/databasequiz.h"
 #include <QPushButton>
 #include "QuizModule/ui_quizwindow.h"
+
+//Subpages
 #include "quizmenu.h"
 #include "quizcreate.h"
 #include "quizstudy.h"
@@ -50,12 +51,18 @@ public:
     // Get pageQuizMenu buttons for quizmenu
     QPushButton* getLoadButton() const { return ui->pushButtonLoad; }
 
-    // Get pageQuizCreate for quizcreate
+    // Get pageQuizCreate buttons for quizcreate
     QPushButton* getCreateQuestionButton() const { return ui->pushButtonCreateQuestion; }
     QPushButton* getOverwriteQuestionButton() const { return ui->pushButtonOverwriteQuestion; }
     QPushButton* getDeleteQuestionButton() const { return ui->pushButtonDeleteQuestion; }
     QPushButton* getPreviousQuestionButton() const { return ui->pushButtonPreviousQuestion; }
     QPushButton* getNextQuestionButton() const { return ui->pushButtonNextQuestion; }
+
+    // Get pageQuizStudy buttons for quizstudy
+    QPushButton* getNextQuestion2Button() const { return ui->pushButtonNextQuestion_2; }
+    QPushButton* getPreviousQuestion2Button() const { return ui->pushButtonPreviousQuestion_3; }
+    QPushButton* getShuffleButton() const { return ui->pushButtonShuffle; }
+    QPushButton* getSubmitQuizButton() const { return ui->pushButtonSubmitQuiz; }
 
 private slots:
     // menu to subpage buttons
@@ -68,13 +75,7 @@ private slots:
     void on_pushButtonReturn_3_clicked();
     void on_pushButtonReturn_4_clicked();
 
-    // study quiz page buttons
-    void on_pushButtonNextQuestion_2_clicked();
-    void on_pushButtonPreviousQuestion_2_clicked();
     // study page -> results
-    // study page -> results
-    void on_pushButtonSubmitQuiz_clicked();
-    void on_pushButtonShuffle_clicked();
     void on_pushButtonReview_clicked();
 
     //study review page buttons
@@ -82,8 +83,11 @@ private slots:
     void on_pushButtonPreviousQuestion_3_clicked();
 
 private:
+    // Subpages
     QuizMenu* quizMenu = nullptr;
     QuizCreate* quizCreate = nullptr;
+    QuizStudy* quizStudy = nullptr;
+
     QuizBank* quizBank = nullptr;
     QuizSession* quizSession = nullptr;
 
@@ -91,7 +95,7 @@ private:
 
     // current idea for displaying stored questions to study
     int questionStudyIndex = 0;
-    void showStudyQuestion();
+
     void showStudyQuestionReview();
 
     // radio button helper
