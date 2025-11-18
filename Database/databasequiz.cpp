@@ -177,7 +177,24 @@ QList<QPair<QString, bool>> DatabaseQuiz::getQuestionAnswers(int questionID) {
     return questionAnswers;
 }
 
+// Return a QVector containing QPairs of <id, question text> for all questions in question table
+QVector<QPair<int, QString>> DatabaseQuiz::getAllQuestions() {
+    QVector<QPair<int, QString>> questions;
+    QSqlQuery query("SELECT id, question FROM questions");
+    if (query.exec()) {
+        while (query.next()) {
+            int id = query.value(0).toInt();
+            QString text = query.value(1).toString();
+            questions.append(qMakePair(id, text));
+        }
+    } else {
+        qDebug() << "Failed to get questions:" << query.lastError().text();
+    }
+    return questions;
+}
+
 // Returns a QList of all the questions
+/*
 QList<QString> DatabaseQuiz::getAllQuestions() {
     QList<QString> questions;
     QSqlQuery query("SELECT question FROM questions");
@@ -190,6 +207,7 @@ QList<QString> DatabaseQuiz::getAllQuestions() {
     }
     return questions;
 }
+*/
 
 void DatabaseQuiz::setName(QString quizNameInput) {
     quizName = quizNameInput;

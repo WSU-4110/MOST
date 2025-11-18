@@ -31,7 +31,8 @@ QuizWindow::QuizWindow(QWidget *parent)
     ui->radioButtonCorrect5->setAutoExclusive(false);
     ui->radioButtonCorrect6->setAutoExclusive(false);
 
-    //FOR TESTING:
+    //FOR TESTING
+    /*
     QVector<QuizQuestion> testQuestions;
     QuizQuestion q1;
     q1.prompt = "Test question 1";
@@ -63,6 +64,7 @@ QuizWindow::QuizWindow(QWidget *parent)
     quizBank->addQuestion(q1);
     quizBank->addQuestion(q2);
     quizBank->addQuestion(q3);
+    */
 }
 
 QuizWindow::~QuizWindow()

@@ -27,6 +27,7 @@ protected:
     bool readCreateForm(QuizQuestion &out, QString &err) const;
     void writeCreateForm(const QuizQuestion &q);
     void clearCreateForm();
+    void updateQuestionCountLabel();
 };
 
 #endif // QUIZCREATE_H

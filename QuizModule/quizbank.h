@@ -8,16 +8,12 @@ class QuizBank
 {
 public:
     void addQuestion(const QuizQuestion &q);
-
     bool overwriteCurrent(const QuizQuestion &q);
-
     bool deleteCurrent();
-
     bool hasQuestions() const;
     int  size() const;
     int  currentIndex() const;
     const QuizQuestion* current() const;
-
     bool next();
     bool previous();
 
@@ -27,6 +23,9 @@ public:
 
     QVector<QuizQuestion> getQuestions() const { return questions; }
     QuizQuestion getQuestions(int i) const { return questions.at(i); }
+
+    void clear();
+    void debugAll() const;
 
 private:
     QVector<QuizQuestion> questions;

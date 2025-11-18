@@ -130,11 +130,11 @@ void QuizStudy::on_pushButtonSubmitQuiz_clicked() {
 
     quizWindow->getUI()->stackedQuizWidget->setCurrentWidget(quizWindow->getUI()->pageQuizResults);
 
-    const int correct = quizWindow->getQuizSession()->correctCount();
+    //const int correct = quizWindow->getQuizSession()->correctCount();
     const int total   = quizWindow->getQuizSession()->questionCount();
     const double percentage = quizWindow->getQuizSession()->percentage();
 
-    quizWindow->getUI()->textResultNum->setPlainText(QString::number(correct));
+    //quizWindow->getUI()->textResultNum->setPlainText(QString::number(correct));
     quizWindow->getUI()->textResultDen->setPlainText(QString::number(total));
     quizWindow->getUI()->textResultPer->setPlainText(QString::number(percentage * 100.0, 'f', 2));
 }

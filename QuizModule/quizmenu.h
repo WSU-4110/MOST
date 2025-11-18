@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QFileDialog>
 #include <QMessageBox>
+#include "quizbank.h"
 
 class QuizWindow;
 
@@ -16,8 +17,9 @@ public:
 
 private slots:
     void onLoadButtonClicked();
-
+    void onSaveButtonClicked();
 private:
+    void loadDbToQuizBank(QuizBank* bank);
     QuizWindow* quizWindow;
 };
 

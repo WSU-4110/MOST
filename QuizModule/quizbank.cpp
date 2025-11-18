@@ -50,7 +50,6 @@ const QuizQuestion* QuizBank::current() const {
     if (currentIn < 0 || currentIn >= questions.size()) {
         return nullptr;
     }
-
     return &questions[currentIn];
 }
 
@@ -63,9 +62,25 @@ bool QuizBank::next() {
 }
 
 bool QuizBank::previous() {
-    if (currentIn - 1 >= 0) {
-        --currentIn;
-        return true;
+    if (questions.isEmpty()) return false;
+    currentIn = (currentIn - 1 + questions.size()) % questions.size();
+    return true;
+}
+
+void QuizBank::clear() {
+    questions.clear();   // remove all questions
+    currentIn = -1;      // reset current index
+    qDebug() << "QuizBank cleared";
+}
+
+
+void QuizBank::debugAll() const {
+    if (questions.isEmpty()) {
+        qDebug() << "QuizBank is empty.";
+        return;
     }
-    return false;
+    for (int i = 0; i < questions.size(); ++i) {
+        qDebug() << "Question" << i << "(current:" << (i == currentIn ? "yes" : "no") << "):";
+        questions[i].debug();
+    }
 }

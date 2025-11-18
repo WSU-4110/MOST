@@ -12,7 +12,6 @@ QuizQBuilder& QuizQBuilder::answer(int index, const QString& a) {
     if (index >= 0 && index < 6) {
         q.answers[index] = a;
     }
-
     return *this;
 }
 
@@ -21,13 +20,23 @@ QuizQBuilder& QuizQBuilder::correctIndex(int index) {
     if (index < 0) {
         index = 0;
     }
-
     if (index > 5) {
         index = 5;
     }
+    q.correctIndexes.append(index);
+    return *this;
+}
 
-    q.correctIndex = index;
-
+// Set the QuizQuestion's correctIndexes to indexes in one go
+QuizQBuilder& QuizQBuilder::correctIndex(const QVector<int>& indexes) {
+    q.correctIndexes.clear();
+    for (int idx : indexes) {
+        if (idx < 0) idx = 0;
+        if (idx > 5) idx = 5;
+        if (!q.correctIndexes.contains(idx)) {
+            q.correctIndexes.append(idx);
+        }
+    }
     return *this;
 }
 
@@ -39,7 +48,6 @@ bool QuizQBuilder::build(QuizQuestion& out, QString& err) const {
         err = "Question prompt cannot be empty.";
         return false;
     }
-
     // At least two non-empty answers
     int filledOut = 0;
     for (int i = 0; i < 6; ++i) {
@@ -52,10 +60,18 @@ bool QuizQBuilder::build(QuizQuestion& out, QString& err) const {
         return false;
     }
 
-    // Correct answer must be non-empty
-    if (q.answers[q.correctIndex].isEmpty()) {
-        err = "The correct answer is empty.";
+    // At least ONE correct index must exist
+    if (q.correctIndexes.isEmpty()) {
+        err = "Select at least one correct answer.";
         return false;
+    }
+
+    // All correct answers must be not empty
+    for (int idx : q.correctIndexes) {
+        if (q.answers[idx].isEmpty()) {
+            err = QString("Correct answer at index %1 is empty.").arg(idx + 1);
+            return false;
+        }
     }
 
     // Success: copy built object out
@@ -63,3 +79,4 @@ bool QuizQBuilder::build(QuizQuestion& out, QString& err) const {
     out = q;
     return true;
 }
+

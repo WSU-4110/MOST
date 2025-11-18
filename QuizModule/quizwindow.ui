@@ -39,7 +39,7 @@
      <string notr="true">border-radius: 10px</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="pageQuizMenu">
      <widget class="QWidget" name="widget_2" native="true">
@@ -730,6 +730,27 @@ border-radius: 10px;
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLabel" name="labelCreateQuestionIndex">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>40</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+      </property>
+      <property name="text">
+       <string>Questions 0 / 0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
      <zorder>quizCreateFrame</zorder>
      <zorder>pushButtonCreateQuestion</zorder>
      <zorder>pushButtonOverwriteQuestion</zorder>
@@ -739,6 +760,7 @@ border-radius: 10px;
      <zorder>pushButtonReturn</zorder>
      <zorder>plainTextEdit_2</zorder>
      <zorder>label_5</zorder>
+     <zorder>labelCreateQuestionIndex</zorder>
     </widget>
     <widget class="QWidget" name="pageQuizStudy">
      <widget class="QPushButton" name="pushButtonReturn_2">

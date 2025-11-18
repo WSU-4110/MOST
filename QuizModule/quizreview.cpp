@@ -27,7 +27,7 @@ void QuizReview::showStudyQuestionReview(int i) {
 
     const QuizQuestion &q = quizWindow->getQuizSession()->questionAt(reviewIndex);
     const int userIndex = quizWindow->getQuizSession()->userAnswerFor(reviewIndex);
-    const int correctIndex = q.correctIndex;
+    //const int correctIndex = q.correctIndex;
 
     QString QNumber = QString::number(i+1) + "/" + QString::number(quizWindow->getQuizBank()->getQuestions().size());
 
@@ -69,7 +69,7 @@ void QuizReview::showStudyQuestionReview(int i) {
         answers[j]->setStyleSheet("border: none;");
         checkmarks[j]->setText("");
     }
-
+    /*
     for (int j = 0; j < 6; ++j) {
         answers[j]->setPlainText(q.answers[j]);
         if (quizWindow->getQuizBank()->getQuestions()[i].userIndex && quizWindow->getQuizBank()->getQuestions()[i].correctIndex) {
@@ -87,7 +87,7 @@ void QuizReview::showStudyQuestionReview(int i) {
     if (correctIndex >= 0 && correctIndex < 6) {
         answers[correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
     }
-
+    */
 }
 
 void QuizReview::on_pushButtonNextQuestion_3_clicked() {

@@ -51,6 +51,7 @@ public:
 
     // Get pageQuizMenu buttons for quizmenu
     QPushButton* getLoadButton() const { return ui->pushButtonLoad; }
+    QPushButton* getSaveButton() const { return ui->pushButtonSave; }
 
     // Get pageQuizCreate buttons for quizcreate
     QPushButton* getCreateQuestionButton() const { return ui->pushButtonCreateQuestion; }
