@@ -67,8 +67,4 @@ void homePage::on_btnStudyFlashCards_clicked()
 }
 
 
-void homePage::on_listRecents_itemClicked(QListWidgetItem *item)
-{
-
-}
 
