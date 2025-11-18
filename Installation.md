@@ -1,7 +1,3 @@
-# MOST (Modular Offline Study Tool)
-## Description
-MOST is a windows desktop application developed to help individuals study more effectively through interactive tools like flashcards and multiple choices quizzes. It will offer a clean, Wi-Fi-independent interface designed for speed, privacy, and modularity. Users can create, save, and review study materials locally without relying on internet access.
-
 ## Getting Started
 There are two methods to installing this application:
 
@@ -15,9 +11,4 @@ There are two methods to installing this application:
 2. Unzip the contents to a desired location
 3. Run the MOST.exe found inside the unzipped file
 
-## Authors
-* John Ueberroth
-* Justin Armour
-* Wei Li
-* Khaliph Page
-* Ben Brobst
+
