@@ -1,0 +1,446 @@
+[33mcommit e8c6d14b239314efa16d2feb4f46dbe26cc896ef[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mhomepage-ui[m[33m)[m
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Mon Nov 17 21:04:07 2025 -0500
+
+    current state
+
+[33mcommit 985ca1d320af8b9f7ceeab81e1bde5d0d49c6204[m
+Merge: 0445b73 3597986
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Mon Nov 17 20:32:27 2025 -0500
+
+    Merge branch 'main' into homepage-ui
+
+[33mcommit 35979869167a2f5e76eafadf6e0749f318299daf[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Thu Nov 13 22:35:49 2025 -0500
+
+    Delete .github/workflows directory
+
+[33mcommit f12481cf0892116dee7bf263069eba6b130b81fc[m
+Merge: 4141915 a159eab
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Thu Nov 13 21:28:57 2025 -0500
+
+    Merge pull request #32 from WSU-4110/assignment6-2
+    
+    Create cmake-single-platform2.yml
+
+[33mcommit a159eabd306bda4dfec0e6a90c584bf4ee74c956[m
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Thu Nov 13 21:28:28 2025 -0500
+
+    Create cmake-single-platform.yml
+
+[33mcommit 41419153014418e3410ff6c7d064971b1547cda5[m
+Merge: 6e6f71a 8234ac1
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Wed Nov 12 23:47:32 2025 -0500
+
+    Merge pull request #30 from WSU-4110/FlashCardSectionFR
+    
+    Flash card section fr
+
+[33mcommit 8234ac18bd26ce8591929136f178fa2c0e610dfb[m[33m ([m[1;31morigin/FlashCardSectionFR[m[33m)[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 22:40:48 2025 -0500
+
+    got flashcard sections finalized
+
+[33mcommit a65ccc84ec0a7ca17f838fb0a61f934e510bc9a8[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 20:32:58 2025 -0500
+
+    got cards to save correctly
+
+[33mcommit c90cebd7fde6a26148750872e842a7142219576f[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 20:28:13 2025 -0500
+
+    getting add cards to work
+
+[33mcommit 8546dc7f82093fd47112baf65cea16be4740d997[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 19:51:39 2025 -0500
+
+    trying to get data handling for flashcards functional
+
+[33mcommit 710e0757e0aa8122f4107b369515641da4daf2af[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 16:26:21 2025 -0500
+
+    finished flashcard makerui + working on the data handling for flash
+    cards
+
+[33mcommit 2962de7ef93d86b811cb58394621ad14618a9ae8[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Nov 12 14:46:19 2025 -0500
+
+    change flashcardmakerUi
+
+[33mcommit 6e6f71a85be888ac8b13ae513727c32c41bf2b41[m[33m ([m[1;31morigin/ui-design[m[33m, [m[1;32mui-design[m[33m)[m
+Merge: 62dd756 af16419
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Thu Nov 6 17:19:56 2025 -0500
+
+    Merge branch 'main' of https://github.com/WSU-4110/MOST
+
+[33mcommit 62dd756ef89d564c6899b5bbaa174d990f3c3483[m[33m ([m[1;32mDatabaseSection[m[33m)[m
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Thu Nov 6 14:39:52 2025 -0500
+
+    added progress bar to the FlashcardStudy class
+
+[33mcommit 8a441d5531d69946ecfa06d211d7bd7640415637[m[33m ([m[1;31morigin/DatabaseSection[m[33m)[m
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Thu Nov 6 11:22:48 2025 -0500
+
+    Quiz load functionality
+
+[33mcommit 0445b7369edff03e2cee65abe98290ed676a865e[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Tue Nov 4 16:26:25 2025 -0500
+
+    Homepage: update UI logic
+
+[33mcommit ec36c9c91c33f170d8b352510b5fa00d1babc848[m
+Merge: b4c1f56 de8ee31
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Mon Nov 3 12:49:32 2025 -0500
+
+    Merge branch 'DatabaseSection' of https://github.com/WSU-4110/MOST into DatabaseSection
+
+[33mcommit b4c1f5649739086203cb87030f9035663449b731[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Mon Nov 3 12:48:30 2025 -0500
+
+    added shuffle, previous, flip, next button, card counter label, and flashcard set name functionality for studying flashcards
+
+[33mcommit f50388b61db6f1a5880afdc0b6b67f56b8f765fd[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Mon Nov 3 12:15:52 2025 -0500
+
+    added shuffle button to ui
+
+[33mcommit de8ee310e8c2133737479f5c0881d7ba968acda5[m
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Thu Oct 30 11:25:35 2025 -0400
+
+    Revise quiz database structure and add more functions
+
+[33mcommit af1641959406c11b016f49a929fe547f47fbfc10[m
+Merge: aa66457 96b505e
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Thu Oct 30 11:13:44 2025 -0400
+
+    Merge pull request #27 from WSU-4110/FlashCardSectionFR
+    
+    updated structure UI for flashcardmaker.ui
+
+[33mcommit 96b505eb69a5496371902d7d01dac46a25d86813[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Thu Oct 30 11:10:24 2025 -0400
+
+    updated structure UI for flashcardmaker.ui
+
+[33mcommit 6e6e4c09931f55c4f0085e8cd3485ae05924f8fd[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 30 10:54:53 2025 -0400
+
+    renamed ui objects; adjusted some styling properties
+
+[33mcommit 8172c626e190716073d44350a6722d15fbb1f59c[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 29 23:56:47 2025 -0400
+
+    fixed up some ui connection issues
+
+[33mcommit af051557bbdbe648e72b2c5821b3b5e7ed103ae8[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 29 23:49:01 2025 -0400
+
+    temp: force merge trigger
+
+[33mcommit 8f7eea792eca6a37054744531ed473327b30d0b7[m
+Merge: e986aed aa66457
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 29 23:19:03 2025 -0400
+
+    finished designing flashcardstudy.ui
+
+[33mcommit e986aedf1c04510a48bb33498de47a09fa53a597[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 29 21:47:43 2025 -0400
+
+    revamped flashcardstudy.ui
+
+[33mcommit aa664571b9f557d113fde4dac8b9a98a10694d3e[m
+Merge: d15a94d 4093b7a
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Sun Oct 26 13:59:43 2025 -0400
+
+    Merge pull request #26 from WSU-4110/FlashCardSectionFR
+    
+    implemented homebuttons for flashcard sections
+
+[33mcommit 4093b7a1d88b9c292d4c73cd408e52609a5bceb9[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Sun Oct 26 13:57:15 2025 -0400
+
+    implemented homebuttons for flashcard sections
+
+[33mcommit d15a94dfedf2da24f47a22915917f1a18efe4602[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Sat Oct 25 12:31:10 2025 -0400
+
+    Removed the on_saveButton_clicked() method definition
+
+[33mcommit ac059e2b0740a5f06e376f85e7c832e30bd8afcb[m
+Merge: 24066db e06c22c
+Author: Wei <hl8609@wayne.edu>
+Date:   Thu Oct 23 11:23:14 2025 -0400
+
+    Merge pull request #24 from WSU-4110/DatabaseSection
+    
+    Add  database and quiz specific database functions
+
+[33mcommit 24066db1e21e1ebc85ed2b262d75d4ab3ff162a2[m
+Author: JustinArmour13 <hk6959@wayne.edu>
+Date:   Thu Oct 23 08:52:24 2025 -0400
+
+    Added quiz review functionality and fixed answer index issues
+
+[33mcommit e06c22c8c2f72781df39246cccaf443032d37a62[m
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Thu Oct 23 03:22:02 2025 -0400
+
+    Add database functions and quiz specific database functions
+
+[33mcommit 7939f9564e1a5b5d2c91e598985c1c29325eadf8[m
+Merge: e256edf 8f379be
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 23 01:26:41 2025 -0400
+
+    Merge branch 'homepage-ui-design'
+
+[33mcommit 8f379bea51fdd8f9c1848c6b7bc20260e0991ffb[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 23 01:26:00 2025 -0400
+
+    modified style properties for sidebar ui in homepage
+
+[33mcommit e256edfc8218fc2719e47c9d3898f73b3b11ce19[m[33m ([m[1;32mQuizSectionRevampedUI-WIP[m[33m)[m
+Merge: 53cb4c7 ecd9f0f
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 23 01:11:50 2025 -0400
+
+    Merge remote-tracking branch 'origin/main' into QuizSectionRevampedUI-WIP
+
+[33mcommit ecd9f0f05606a51047353b3fd12ffbcdbcf48b98[m
+Merge: 9cedbe4 41a8ced
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 23 01:01:26 2025 -0400
+
+    Merge branch 'homepage-ui-design'
+
+[33mcommit 41a8ced7d36ac8163b17cbeaae8eb6474980f00f[m[33m ([m[1;31morigin/homepage-ui-design[m[33m)[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Thu Oct 23 01:00:19 2025 -0400
+
+    reworked homepage sizing parameters for scaling
+
+[33mcommit 581a866d92344ad4c9db20908bc889173c2bf7f6[m
+Merge: 5e3731a 9cedbe4
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Wed Oct 22 22:06:16 2025 -0400
+
+    Merge branch 'main' into DatabaseSection
+
+[33mcommit 98d6814c9f8f6ac5874b1bede7b1982c745b02b4[m
+Author: Benjamin Brobst <brobst464@gmail.com>
+Date:   Wed Oct 22 21:48:30 2025 -0400
+
+    renamed widgets in for homepage ui
+
+[33mcommit 53cb4c7ca92ae9d9d6cc6e157ebf0510c6ed5d01[m
+Author: Khaliph Page <khaliph.page@live.com>
+Date:   Wed Oct 22 20:44:22 2025 -0400
+
+    modified quizwindow.ui
+    
+    added title fields to all the quiz pages to track which quiz is loaded
+
+[33mcommit 01d12d755bf3f7b134d5ff5fa5fed3b541989c3f[m
+Author: Khaliph Page <khaliph.page@live.com>
+Date:   Wed Oct 22 19:55:29 2025 -0400
+
+    initial commit (new branch)
+    
+    Modified quizwindow.ui to reflect new design direction.
+
+[33mcommit 9cedbe4352c0eb67caa7a89f88874eb4f1790543[m[33m ([m[1;31morigin/flashcard-database[m[33m)[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 22 19:44:56 2025 -0400
+
+    Added database functionality for flashcard creation
+
+[33mcommit 7a13b95266e14d44dc11490716652e357f6b8187[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 22 17:26:47 2025 -0400
+
+    Added some minor layout adjustments to account for resizement of window
+
+[33mcommit 44c968a1970e49235498caea626762d4e6f46c90[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 22 16:33:39 2025 -0400
+
+    Refactor UI: Apply new styling, resize windows, and improve layout
+
+[33mcommit 7a2a881d326aed846e8f5532fa83fbf133740948[m
+Author: Ben Brobst <brobst464@gmail.com>
+Date:   Wed Oct 22 12:26:19 2025 -0400
+
+    Added all the widgets, spacers, and some styling properties
+
+[33mcommit 86efae26fc102fe59c00d9854922c50bd66c0ab1[m
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Mon Oct 20 18:43:42 2025 -0400
+
+    fixed some issues with directory errors in homepage.h/.cpp
+
+[33mcommit d5820ff8a3b10133e1e6f2afcfff3d43521296d9[m
+Author: Ben Brobst <ht4883@wayne.edu>
+Date:   Mon Oct 20 17:41:43 2025 -0400
+
+    modified homepage.h headers to fix directory issues. Also cleaned up some syntax errors in homepage.cpp
+
+[33mcommit e8e8dcdbb03f8ee18c7df540c9a58030a1314c3f[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Mon Oct 20 12:33:21 2025 -0400
+
+    Add files via upload
+
+[33mcommit 9c02157e4c1915eea36fa9b2ca63a8850f68ab6d[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Mon Oct 20 12:32:20 2025 -0400
+
+    Add files via upload
+
+[33mcommit 26c8b6e01fb66e9726931d2976fde3649e4c827d[m
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Fri Oct 10 17:46:27 2025 -0400
+
+    fix directory
+
+[33mcommit 5e3731ac9da2c07b3768f20fe50b1cb24999e5ca[m
+Author: Wei Li <hl8609@wayne.edu>
+Date:   Thu Oct 2 15:45:50 2025 -0400
+
+    Sample sqlite implementation
+
+[33mcommit 658277c711d30382fceee6c89189078d4245e276[m
+Author: Justin <hk6959@wayne.edu>
+Date:   Wed Oct 1 19:24:30 2025 -0400
+
+    added quiz results functionality
+
+[33mcommit c0280a168cde3c4486a99ac8213e5282a3886821[m
+Merge: 6dfb8c2 c3a480d
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Wed Oct 1 16:48:19 2025 -0400
+
+    Merge pull request #22 from WSU-4110/master
+    
+    Merging master(set as upstreambranch) to main for demo
+
+[33mcommit c3a480d0811420a69e4bb03f9cbd2238107a36c5[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Oct 1 16:43:19 2025 -0400
+
+    got project ready for demo and integrated kaliphs stuff to homePage
+
+[33mcommit 5d174988e42db237df4162b53248b0c0feef86b7[m
+Merge: 63c3c35 824d3d0
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Oct 1 13:40:45 2025 -0400
+
+    Merge branch 'QuizSection-KhaliphP'
+    adding quiz section to my folders for encorperating into homepage for
+    demo
+
+[33mcommit 63c3c35fdcbbe943856703ab05b45f8140ff9b96[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Oct 1 13:02:32 2025 -0400
+
+    forgot to add git
+
+[33mcommit 3fb791fc85053f9403b15c97520c5fd9a412734b[m
+Author: John Ueberroth <he6063@wayne.edu>
+Date:   Wed Oct 1 12:55:22 2025 -0400
+
+    first commit of my local stuff that I worked on
+
+[33mcommit 824d3d07993cf9552aaeaa4ca3a3a1523495e8c0[m[33m ([m[1;31morigin/QuizSection-KhaliphP[m[33m)[m
+Author: KhaliphP <37785857+KhaliphP@users.noreply.github.com>
+Date:   Wed Oct 1 10:38:38 2025 -0400
+
+    initial commit
+    
+    ui (multiple choice quiz) menu
+    create quiz questions page
+    study quiz questions page
+    .gitignore
+
+[33mcommit 6dfb8c2a4225baef9955cf65c9876a626226271c[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Tue Sep 23 10:53:10 2025 -0400
+
+    Delete meetingMinutes9_16_25.txt
+    
+    moved to wiki page
+
+[33mcommit 8bfabadd2a1b684da7231620324726668d9ead51[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Tue Sep 23 10:52:53 2025 -0400
+
+    Delete MeetingMinutes9_10_25.txt
+    
+    moved to wiki page
+
+[33mcommit 5e55d5b919e148edede8dc02cfba32d5bb227d73[m
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Tue Sep 23 10:47:34 2025 -0400
+
+    Delete Project Outline directory
+    
+    moved to wiki
+
+[33mcommit 6420b8c1fae17a7c8b90837499429532f684e294[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Tue Sep 16 17:51:16 2025 -0400
+
+    Update meetingMinutes9_16_25.txt
+
+[33mcommit 32e53ef95feba9d75536773489b04320012138bf[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Tue Sep 16 17:35:32 2025 -0400
+
+    Add files via upload
+
+[33mcommit e448c4db5bc1b48a720ffe90b3c38a9e19be3690[m
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Thu Sep 11 11:14:18 2025 -0400
+
+    Updated Modular Study Assistant outline.md
+
+[33mcommit e83e3b311069db8b037a30234f3d49544df7d5ab[m
+Author: bbrobst-WSU <ht4883@wayne.edu>
+Date:   Wed Sep 10 20:26:44 2025 -0400
+
+    Add initial project outline
+
+[33mcommit 8458847fd6f083223d644952ba900a63041301f0[m
+Author: John Ueberroth <151757939+John-Ueberroth@users.noreply.github.com>
+Date:   Wed Sep 10 20:09:59 2025 -0400
+
+    Add files via upload
