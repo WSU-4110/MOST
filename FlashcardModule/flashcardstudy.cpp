@@ -4,30 +4,47 @@
 #include <QDebug>
 #include <algorithm>
 #include <random>
+#include <QDir>
 
 
-FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
+FlashCardStudy::FlashCardStudy( QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FlashCardStudy)
-    , currentDbName(dbName)
+
 {
     ui->setupUi(this);
-
-    ui->lblSetName->setText(dbName);
-
-    loadFlashcards();
-    updateDisplay();
-
-    // Connect navigation buttons
-    connect(ui->btnNext, &QPushButton::clicked, this, &FlashCardStudy::on_btnNext_clicked);
-    connect(ui->btnPrevious, &QPushButton::clicked, this, &FlashCardStudy::on_btnPrevious_clicked);
+    setupSetSelection();
 }
 
 FlashCardStudy::~FlashCardStudy()
 {
     delete ui;
 }
+void FlashCardStudy::setupSetSelection() {
+    // Populate combo box with available set files
+    QDir dir("Saves/Cards");
+    QStringList filters = QStringList() << "flashcards_*.db";
+    QStringList fileList = dir.entryList(filters, QDir::Files);
+    if (!dir.exists()) {
+        qDebug() << "Cards directory not found:";
+        return;
+    }
+    ui->setCombo->clear();
+    ui->setCombo->addItem("Select a set...");
+    for (const QString &file : fileList) {
+        ui->setCombo->addItem(file);
+    }
 
+    connect(ui->setCombo, &QComboBox::currentTextChanged,
+            this, &FlashCardStudy::on_setCombo_currentTextChanged);
+
+}
+void FlashCardStudy::on_setCombo_currentTextChanged(const QString &text) {
+    if (text.isEmpty() || text == "Select a set...") return;
+    currentDbName = text;
+    ui->lblSetName->setText(text);
+    loadFlashcards(currentDbName);
+}
 // Home button
 void FlashCardStudy::on_btnHome_clicked()
 {
@@ -36,13 +53,15 @@ void FlashCardStudy::on_btnHome_clicked()
     this->close();
 }
 
+
 // Load all flashcards from database
-void FlashCardStudy::loadFlashcards()
+void FlashCardStudy::loadFlashcards(const QString &dbName)
 {
     flashcards.clear();
+    filteredFlashcards.clear();
 
     // Get all flashcards from the database
-    flashcards = dbFlashcard.getAllFlashcards(currentDbName);
+    flashcards = dbFlashcard.getAllFlashcards(dbName);
 
     if (flashcards.isEmpty()) {
         ui->lblCard->setText("No flashcards found.");
@@ -62,23 +81,40 @@ void FlashCardStudy::loadFlashcards()
 // Show current card
 void FlashCardStudy::updateDisplay()
 {
-    if (flashcards.isEmpty()) return;
+    QVector<Flashcard> *vec = nullptr;
+    if (!filteredFlashcards.isEmpty())
+        vec = &filteredFlashcards;
+    else{
+        vec = &flashcards;
+    }
 
-    const Flashcard &card = flashcards[currentIndex];
+    if (vec->isEmpty()) return;
+
+    const Flashcard &card = (*vec)[currentIndex];
 
     // Update lblCard depending on showingFront
     ui->lblCard->setText(showingFront ? card.front : card.back);
 
-    // Update flashcard counter
+    // Update flashcard counter label
     ui->lblNumberOfFlashcards->setText(
-        QString("%1 of %2").arg(currentIndex + 1).arg(flashcards.size())
+        QString("%1 of %2").arg(currentIndex + 1).arg(vec->size())
         );
+
+    // Update progress bar
+    if (vec->size() > 0) {
+        int progressValue = static_cast<int>(
+            ((currentIndex + 1) / static_cast<double>(vec->size())) * 100
+            );
+        ui->progressBar->setValue(progressValue);
+    }
 }
+
 
 // Next button
 void FlashCardStudy::on_btnNext_clicked()
 {
-    if (currentIndex < flashcards.size() - 1) {
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
+    if (currentIndex < vec.size() - 1) {
         currentIndex++;
         showingFront = true;  // reset to front when moving to next card
         updateDisplay();
@@ -88,6 +124,7 @@ void FlashCardStudy::on_btnNext_clicked()
 // Previous button
 void FlashCardStudy::on_btnPrevious_clicked()
 {
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
     if (currentIndex > 0) {
         currentIndex--;
         showingFront = true;  // reset to front when moving to previous card
@@ -104,6 +141,7 @@ void FlashCardStudy::on_btnFlip_clicked()
 
 void FlashCardStudy::on_btnShuffle_clicked()
 {
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
     // Create a random seed with current time
     std::random_device rd;
     std::mt19937 g(rd());
