@@ -1,4 +1,3 @@
-## Getting Started
 There are two methods to installing this application:
 
 ### Method 1 (easiest)
