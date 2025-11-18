@@ -12,6 +12,11 @@
         <file>images/open-book-icon-19.png</file>
         <file>images/pngfind.com-phone-symbol-png-2755033.png</file>
         <file>images/save-file-icon-14.png</file>
-
+        <file>images/customediticon.png</file>
+        <file>images/customsaveicon.png</file>
+        <file>images/customstudyicon.png</file>
+        <file>images/customcardicon.png</file>
+        <file>images/customquizicon.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

@@ -22,13 +22,14 @@ public:
     bool deleteAnswer(int answerID);
     bool deleteCorrect(int questionID, int answerID);
 
+    QVector<QPair<int, QString>> getAllQuestions();
     QList<QPair<QString, bool>> getQuestionAnswers(int questionID);
-    QList<QString> getAllQuestions();
+    //QList<QString> getAllQuestions();
 
     void setName(QString quizNameInput);
     QString getName();
 
-    void loadQuiz(const QString& quizFile);
+    bool loadQuiz(const QString& quizFile);
 
 private:
     QString quizName;
