@@ -16,8 +16,8 @@ This application will allow users to:
 * SQLite:
   Stores the data for the flashcards & quizzes
 
-# Platform compatibility
-* Windows
+## Platform compatibility
+* Windows desktop
 
 ## Getting started
 Check out the [installation guide](https://github.com/WSU-4110/MOST/blob/main/Installation.md)
