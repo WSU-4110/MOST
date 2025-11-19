@@ -10,7 +10,8 @@
 * CPU: Intel Core i3 or better
 * Memory: 4GB RAM
 * Disk Space: 500 MB available
-* Graphics: SSD for faster load time
+* Graphics: Integrated graphics or dedicated GPU
+* Other: SSD for faster load time
 
 ## Install
 There are two methods to installing this application:
