@@ -12,6 +12,9 @@ struct QuizQuestion {
     QVector<int> correctIndexes;
     QVector<int> userIndexes;
 
+    // If dbID = -1, not saved to DB file
+    int dbID = -1;
+
     // Debug - Print contents
     void debug() const {
         QStringList ansList;

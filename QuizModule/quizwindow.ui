@@ -39,7 +39,7 @@
      <string notr="true">border-radius: 10px</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="pageQuizMenu">
      <widget class="QWidget" name="widget_2" native="true">
@@ -221,14 +221,17 @@ border-radius: 10px;
         <string>Current Set:</string>
        </property>
       </widget>
-      <widget class="QPlainTextEdit" name="plainTextEdit">
+      <widget class="QLabel" name="labelMenuCurrentSet">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>90</x>
          <y>0</y>
          <width>661</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="text">
+        <string>No quiz available.</string>
        </property>
       </widget>
      </widget>
@@ -694,25 +697,10 @@ Answer</string>
        </property>
       </widget>
      </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>70</y>
-        <width>431</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(75, 58, 108, 150);
-border-radius: 10px;
-</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>370</x>
         <y>70</y>
         <width>41</width>
         <height>21</height>
@@ -733,8 +721,8 @@ border-radius: 10px;
      <widget class="QLabel" name="labelCreateQuestionIndex">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>40</y>
+        <x>250</x>
+        <y>70</y>
         <width>111</width>
         <height>21</height>
        </rect>
@@ -751,6 +739,42 @@ border-radius: 10px;
        <set>Qt::AlignmentFlag::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QLineEdit" name="lineEditTitle">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>70</y>
+        <width>251</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Sans Serif Collection</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Quiz has no title set.</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButtonSetName">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>70</y>
+        <width>61</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgba(75, 58, 108, 100);
+border-radius: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Set Name</string>
+      </property>
+     </widget>
      <zorder>quizCreateFrame</zorder>
      <zorder>pushButtonCreateQuestion</zorder>
      <zorder>pushButtonOverwriteQuestion</zorder>
@@ -758,9 +782,10 @@ border-radius: 10px;
      <zorder>pushButtonPreviousQuestion</zorder>
      <zorder>pushButtonNextQuestion</zorder>
      <zorder>pushButtonReturn</zorder>
-     <zorder>plainTextEdit_2</zorder>
      <zorder>label_5</zorder>
      <zorder>labelCreateQuestionIndex</zorder>
+     <zorder>lineEditTitle</zorder>
+     <zorder>pushButtonSetName</zorder>
     </widget>
     <widget class="QWidget" name="pageQuizStudy">
      <widget class="QPushButton" name="pushButtonReturn_2">
@@ -1080,14 +1105,25 @@ border-radius: 10px;
         <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
-      <widget class="QPlainTextEdit" name="textDisplayQuestionNumber">
+      <widget class="QLabel" name="labelDisplayQuestionNumber">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>10</x>
          <y>40</y>
-         <width>71</width>
+         <width>91</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgba(75, 58, 108, 150);
+border-radius: 10px;
+</string>
+       </property>
+       <property name="text">
+        <string>Question</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
        </property>
       </widget>
      </widget>

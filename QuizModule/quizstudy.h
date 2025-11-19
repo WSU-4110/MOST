@@ -20,6 +20,7 @@ private slots:
 
 private:
     QVector<bool> currentStudySelection() const;
+    void updateQuestionDisplayLabel();
 
     QuizWindow* quizWindow;
 };

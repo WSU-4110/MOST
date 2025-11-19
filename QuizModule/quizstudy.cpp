@@ -30,14 +30,11 @@ void QuizStudy::showStudyQuestion() {
         return;
     }
     qDebug() << "Triggered quizstudy.cpp/showStudyQuestion()";
+
     const QuizQuestion &q = quizWindow->getQuizSession()->currentQuestion();
-    const int userIndex = quizWindow->getQuizSession()->userAnswerFor(quizWindow->getQuizSession()->currentIndex());
+    QVector<bool> userIndex = quizWindow->getQuizSession()->userAnswerFor(quizWindow->getQuizSession()->currentIndex());
 
-    /* From merge to fix later
-    QString QNumber = QString::number(i+1) + "/" + QString::number(questionBank.size());
-    ui->textDisplayQuestionNumber->setPlainText(QNumber);
-
-    const QuizQuestion& q = questionBank[i];*/
+    updateQuestionDisplayLabel();
 
     // Question
     quizWindow->getUI()->textDisplayQuestion->setPlainText(q.prompt);
@@ -52,23 +49,24 @@ void QuizStudy::showStudyQuestion() {
 
     // Restore radio selection
 
-    quizWindow->getUI()->radioButtonAnswer1->setAutoExclusive(false);
-    quizWindow->getUI()->radioButtonAnswer2->setAutoExclusive(false);
-    quizWindow->getUI()->radioButtonAnswer3->setAutoExclusive(false);
-    quizWindow->getUI()->radioButtonAnswer4->setAutoExclusive(false);
-    quizWindow->getUI()->radioButtonAnswer5->setAutoExclusive(false);
-    quizWindow->getUI()->radioButtonAnswer6->setAutoExclusive(false);
+    QRadioButton* radios[6] = {
+        quizWindow->getUI()->radioButtonAnswer1,
+        quizWindow->getUI()->radioButtonAnswer2,
+        quizWindow->getUI()->radioButtonAnswer3,
+        quizWindow->getUI()->radioButtonAnswer4,
+        quizWindow->getUI()->radioButtonAnswer5,
+        quizWindow->getUI()->radioButtonAnswer6
+    };
 
-    /* Merge to fix
-    ui->radioButtonAnswer1->setChecked(q.userIndex[0]);
-    ui->radioButtonAnswer2->setChecked(q.userIndex[1]);
-    ui->radioButtonAnswer3->setChecked(q.userIndex[2]);
-    ui->radioButtonAnswer4->setChecked(q.userIndex[3]);
-    ui->radioButtonAnswer5->setChecked(q.userIndex[4]);
-    ui->radioButtonAnswer6->setChecked(q.userIndex[5]);
-    */
+    const QVector<bool>& selection = quizWindow->getQuizSession()->getUserAnswers()[quizWindow->getQuizSession()->currentIndex()];
+    for (int i = 0; i < 6; ++i) {
+        radios[i]->setAutoExclusive(false);
+        radios[i]->setChecked(selection[i]);
+    }
+
 }
 
+// Return QVector<bool> of current question's radio selections
 QVector<bool> QuizStudy::currentStudySelection() const {
     QVector<bool> indexes{
         quizWindow->getUI()->radioButtonAnswer1->isChecked(),
@@ -81,11 +79,22 @@ QVector<bool> QuizStudy::currentStudySelection() const {
     return indexes;
 }
 
+void QuizStudy::updateQuestionDisplayLabel() {
+    qDebug() << "quizstudy.cpp / Update question display label";
+    int total = quizWindow->getQuizSession()->questionCount();
+    int cur = quizWindow->getQuizSession()->currentIndex();
+    QString text = QString("Question %1 / %2")
+                       .arg(cur + 1)
+                       .arg(total);
+    quizWindow->getUI()->labelDisplayQuestionNumber->setText(text);
+}
+
 void QuizStudy::on_pushButtonNextQuestion_2_clicked() {
     if (!quizWindow->getQuizSession()->hasQuestions()) return;
     qDebug() << "quizstudy.cpp / Clicked next question";
+
     // Save current selection
-    //quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
+    quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
 
     if (quizWindow->getQuizSession()->next()) {
         showStudyQuestion();
@@ -95,8 +104,9 @@ void QuizStudy::on_pushButtonNextQuestion_2_clicked() {
 void QuizStudy::on_pushButtonPreviousQuestion_2_clicked() {
     if (!quizWindow->getQuizSession()->hasQuestions()) return;
     qDebug() << "quizstudy.cpp / Clicked previous question";
+
     // Save current selection
-    //quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
+    quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
 
     if (quizWindow->getQuizSession()->previous()) {
         showStudyQuestion();
@@ -126,7 +136,7 @@ void QuizStudy::on_pushButtonSubmitQuiz_clicked() {
     }
 
     // Save the current question's selection before scoring
-    //quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
+    quizWindow->getQuizSession()->answerCurrent(currentStudySelection());
 
     quizWindow->getUI()->stackedQuizWidget->setCurrentWidget(quizWindow->getUI()->pageQuizResults);
 

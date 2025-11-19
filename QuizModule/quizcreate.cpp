@@ -26,7 +26,8 @@ QuizCreate::QuizCreate(QuizWindow* quizWin, QWidget *parent)
     connect(quizWindow->getNextQuestionButton(), &QPushButton::clicked,
             this, &QuizCreate::on_pushButtonNextQuestion_clicked);
 
-    qDebug() << quizWindow->getQuizDB();
+    connect(quizWindow->getSetNameButton(), &QPushButton::clicked,
+            this, &QuizCreate::on_pushButtonSetName_clicked);
 }
 
 bool QuizCreate::readCreateForm(QuizQuestion &out, QString &err) const {
@@ -93,6 +94,7 @@ void QuizCreate::writeCreateForm(const QuizQuestion &q) {
     quizWindow->getUI()->lineEditAnswer4->setText(q.answers[3]);
     quizWindow->getUI()->lineEditAnswer5->setText(q.answers[4]);
     quizWindow->getUI()->lineEditAnswer6->setText(q.answers[5]);
+    quizWindow->getUI()->lineEditTitle->setText(quizWindow->getQuizBank()->getName());
 
     QRadioButton* checkboxes[6] = {
         quizWindow->getUI()->radioButtonCorrect1,
@@ -130,6 +132,12 @@ void QuizCreate::updateQuestionCountLabel() {
 // Create Question - Adds QuizQuestion q to quizBank
 void QuizCreate::on_pushButtonCreateQuestion_clicked() {
     qDebug() << "quizcreate.cpp / Clicked create question";
+
+    if (quizWindow->getQuizBank()->getName() == nullptr) {
+        QMessageBox::warning(this, tr("Create Question"), "Quiz needs a title.");
+        return;
+    }
+
     QuizQuestion q; QString err;
     if (!readCreateForm(q, err)) {
         QMessageBox::warning(this, tr("Create Question"), err);
@@ -221,4 +229,10 @@ void QuizCreate::on_pushButtonNextQuestion_clicked() {
         writeCreateForm(*current);
     }
     updateQuestionCountLabel();
+}
+
+void QuizCreate::on_pushButtonSetName_clicked() {
+    qDebug() << "quizcreate.cpp / Set name";
+    quizWindow->getQuizBank()->setName(quizWindow->getUI()->lineEditTitle->text());
+    qDebug() << "new quiz name: " << quizWindow->getQuizBank()->getName();
 }

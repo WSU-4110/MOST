@@ -2,6 +2,7 @@
 #define DATABASEQUIZ_H
 
 #include "database.h"
+#include <QSqlQuery>
 #include <QString>
 #include <QList>
 
@@ -10,9 +11,9 @@ public:
     DatabaseQuiz();
     DatabaseQuiz(QString dbName);
 
-    bool insertQuestion(QString question);
-    bool insertAnswer(int questionID, QString answer);
-    bool insertCorrect(int questionID, int answerID);
+    int insertQuestion(QString question);
+    int insertAnswer(int questionID, QString answer);
+    int insertCorrect(int questionID, int answerID);
 
     bool updateQuestion(int questionID, QString newQuestion);
     bool updateAnswer(int answerID, QString newAnswer);
@@ -21,16 +22,24 @@ public:
     bool deleteQuestion(int questionID);
     bool deleteAnswer(int answerID);
     bool deleteCorrect(int questionID, int answerID);
+    bool deleteAnswersForQuestion(int questionID);
+    bool deleteCorrectForQuestion(int questionID);
 
     QVector<QPair<int, QString>> getAllQuestions();
     QList<QPair<QString, bool>> getQuestionAnswers(int questionID);
-    //QList<QString> getAllQuestions();
+    int getQuestionIDByOrder(int index);
+    int getAnswerIdByIndex(int questionID, int index);
+    QSet<int> getCorrectAnswerIDs(int questionID);
+
+    bool questionExists(int id);
+    bool answerExists(int id);
 
     void setName(QString quizNameInput);
     QString getName();
 
     bool loadQuiz(const QString& quizFile);
 
+    int lastInsertId() { return QSqlQuery().lastInsertId().toInt(); }
 private:
     QString quizName;
 };

@@ -10,7 +10,7 @@ class QuizCreate : public QWidget
 {
 public:
     explicit QuizCreate(QuizWindow* quizWin, QWidget *parent);
-
+    void writeCreateForm(const QuizQuestion &q);
 private slots:
     // quiz create page buttons
     void on_pushButtonCreateQuestion_clicked();
@@ -18,6 +18,7 @@ private slots:
     void on_pushButtonDeleteQuestion_clicked();
     void on_pushButtonNextQuestion_clicked();
     void on_pushButtonPreviousQuestion_clicked();
+    void on_pushButtonSetName_clicked();
 
 private:
     QuizWindow* quizWindow;
@@ -25,7 +26,6 @@ private:
 protected:
     // basic helper functions
     bool readCreateForm(QuizQuestion &out, QString &err) const;
-    void writeCreateForm(const QuizQuestion &q);
     void clearCreateForm();
     void updateQuestionCountLabel();
 };
