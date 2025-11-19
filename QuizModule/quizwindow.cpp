@@ -1,19 +1,77 @@
-#include "../QuizModule/quizwindow.h"
+#include "quizwindow.h"
 #include "QuizModule/ui_quizwindow.h"
-#include <QMessageBox>
+#include <QMessageBox> // back in for error messages 10/30/2025--KhaliphP
+#include "quizqbuilder.h"
+#include "quizbank.h"
+#include "quizsession.h"
 
 QuizWindow::QuizWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::QuizWindow)
 {
     ui->setupUi(this);
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizMenu);
 
+    // Initialize
+    quizDB = nullptr;
+    quizBank = new QuizBank();
+    quizSession = new QuizSession();
+
+    // Subpages of quizwindow.ui
+    quizMenu = new QuizMenu(this, nullptr);
+    quizCreate = new QuizCreate(this, nullptr);
+    quizStudy = new QuizStudy(this, nullptr);
+    quizReview = new QuizReview(this, nullptr);
+
+    //from merge (fix later?)
+    ui->radioButtonCorrect1->setAutoExclusive(false);
+    ui->radioButtonCorrect2->setAutoExclusive(false);
+    ui->radioButtonCorrect3->setAutoExclusive(false);
+    ui->radioButtonCorrect4->setAutoExclusive(false);
+    ui->radioButtonCorrect5->setAutoExclusive(false);
+    ui->radioButtonCorrect6->setAutoExclusive(false);
+
+    //FOR TESTING
+    /*
+    QVector<QuizQuestion> testQuestions;
+    QuizQuestion q1;
+    q1.prompt = "Test question 1";
+    q1.answers[0] = "Answer 1";
+    q1.answers[1] = "Answer 2";
+    q1.answers[2] = "Answer 3";
+    q1.answers[3] = "Answer 4";
+    q1.answers[4] = "Answer 5";
+    q1.answers[5] = "Answer 6";
+    q1.correctIndex = 0;
+    QuizQuestion q2;
+    q2.prompt = "2 + 2 = ?";
+    q2.answers[0] = "1";
+    q2.answers[1] = "2";
+    q2.answers[2] = "3";
+    q2.answers[3] = "4";
+    q2.answers[4] = "5";
+    q2.answers[5] = "6";
+    q2.correctIndex = 3;
+    QuizQuestion q3;
+    q3.prompt = "KFmkdsfmksfmmfks";
+    q3.answers[0] = "15435";
+    q3.answers[1] = "q2";
+    q3.answers[2] = "q3";
+    q3.answers[3] = "question3";
+    q3.answers[4] = "5fdsfsg";
+    q3.answers[5] = "6fbvcbcbc";
+    q3.correctIndex = 1;
+    quizBank->addQuestion(q1);
+    quizBank->addQuestion(q2);
+    quizBank->addQuestion(q3);
+    */
 }
 
 QuizWindow::~QuizWindow()
 {
     delete ui;
+    delete quizDB;
+    delete quizMenu;
 }
 
 /*
@@ -23,6 +81,7 @@ void MainWindow::showInfo(const QString& msg) {
 }
 */
 
+/*
 // this will clear the fields from the create page
 void QuizWindow::clearCreateForm() {
     ui->lineEditQuestion->clear();
@@ -32,7 +91,14 @@ void QuizWindow::clearCreateForm() {
     ui->lineEditAnswer4->clear();
     ui->lineEditAnswer5->clear();
     ui->lineEditAnswer6->clear();
-    ui->comboBoxCorrect->setCurrentIndex(0);
+
+    ui->radioButtonCorrect1->setChecked(false);
+    ui->radioButtonCorrect2->setChecked(false);
+    ui->radioButtonCorrect3->setChecked(false);
+    ui->radioButtonCorrect4->setChecked(false);
+    ui->radioButtonCorrect5->setChecked(false);
+    ui->radioButtonCorrect6->setChecked(false);
+
 }
 
 void QuizWindow::writeCreateForm(const QuizQuestion &q) {
@@ -44,8 +110,14 @@ void QuizWindow::writeCreateForm(const QuizQuestion &q) {
     ui->lineEditAnswer5->setText(q.answers[4]);
     ui->lineEditAnswer6->setText(q.answers[5]);
 
-    int index = (q.correctIndex >= 0 && q.correctIndex < 6) ? q.correctIndex : 0;
-    ui->comboBoxCorrect->setCurrentIndex(index);
+    ui->radioButtonCorrect1->setChecked(q.correctIndex[0]);
+    ui->radioButtonCorrect2->setChecked(q.correctIndex[1]);
+    ui->radioButtonCorrect3->setChecked(q.correctIndex[2]);
+    ui->radioButtonCorrect4->setChecked(q.correctIndex[3]);
+    ui->radioButtonCorrect5->setChecked(q.correctIndex[4]);
+    ui->radioButtonCorrect6->setChecked(q.correctIndex[5]);
+
+
 }
 
 bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
@@ -57,13 +129,17 @@ bool QuizWindow::readCreateForm(QuizQuestion &out, QString &err) const {
     out.answers[4]   = ui->lineEditAnswer5->text();
     out.answers[5]   = ui->lineEditAnswer6->text();
 
-    int index = ui->comboBoxCorrect->currentIndex();
-    if (index < 0) index = 0;
-    if (index > 5) index = 5;
-    out.correctIndex = index-1;
+    out.correctIndex[0] = ui->radioButtonCorrect1->isChecked();
+    out.correctIndex[1] = ui->radioButtonCorrect2->isChecked();
+    out.correctIndex[2] = ui->radioButtonCorrect3->isChecked();
+    out.correctIndex[3] = ui->radioButtonCorrect4->isChecked();
+    out.correctIndex[4] = ui->radioButtonCorrect5->isChecked();
+    out.correctIndex[5] = ui->radioButtonCorrect6->isChecked();
+
 
     return true;
 }
+*/
 
 // menu -> create page
 void QuizWindow::on_pushButtonCreatePage_clicked() {
@@ -72,11 +148,16 @@ void QuizWindow::on_pushButtonCreatePage_clicked() {
 
 // menu -> study page
 void QuizWindow::on_pushButtonStudyPage_clicked() {
-    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
-    if (!questionBank.isEmpty()) {
-        questionStudyIndex = 0;
-        showStudyQuestion(questionStudyIndex);
+    if (!quizBank->hasQuestions()) {
+        QMessageBox::information(this, tr("Study Quiz"),tr("There are no questions to study yet."));
+        return;
     }
+
+    // Start a new study session using the current contents of the bank
+    quizSession->start(quizBank->all());
+
+    ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
+    quizStudy->showStudyQuestion();
 }
 
 // "non-menu page" -> menu
@@ -97,232 +178,42 @@ void QuizWindow::on_pushButtonReturn_4_clicked() {
 }
 
 // button functionality
-// create page (add better error handling later)
 
-// create question
-void QuizWindow::on_pushButtonCreateQuestion_clicked() {
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) {
-        return;
-    }
-    questionBank.push_back(q);
-    questionCurrent = questionBank.size() - 1;
-}
-
-// overwrite question
-void QuizWindow::on_pushButtonOverwriteQuestion_clicked() {
-    if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
-        return;
-    }
-    QuizQuestion q; QString err;
-    if (!readCreateForm(q, err)) return;
-    questionBank[questionCurrent] = q;
-
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonDeleteQuestion_clicked() {
-    if (questionCurrent < 0 || questionCurrent >= questionBank.size()) {  // temp fix for out of bounds errors
-        return;
-    }
-    questionBank.removeAt(questionCurrent);
-
-    if (questionBank.isEmpty()) {
-        questionCurrent = -1;
-        clearCreateForm();
-        return;
-    }
-    if (questionCurrent >= questionBank.size())
-        questionCurrent = questionBank.size() - 1;
-
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_clicked() {
-    if (questionBank.isEmpty()) return;
-    if (questionCurrent <= 0) {             // temp fix for out of bounds errors? something would cause app to crash
-        questionCurrent = 0;
-    } else {
-        --questionCurrent;
-    }
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-void QuizWindow::on_pushButtonNextQuestion_clicked() {
-    if (questionBank.isEmpty()) return;
-    if (questionCurrent + 1 >= questionBank.size()) {       // temp fix for out of bounds errors? something would cause app to crash
-        questionCurrent = questionBank.size() - 1;
-    } else {
-        ++questionCurrent;
-    }
-    writeCreateForm(questionBank[questionCurrent]);
-}
-
-
-// study page
-
-void QuizWindow::showStudyQuestion(int i) {
-    if (questionBank.isEmpty()) return;
-    if (i < 0) i = 0;
-    if (i >= questionBank.size()) i = questionBank.size() - 1;
-
-    const QuizQuestion& q = questionBank[i];
-
-    // Question
-    ui->textDisplayQuestion->setPlainText(q.prompt);
-
-    // Answers (exactly six slots; empties allowed)
-    ui->textDisplayAnswer1->setPlainText(q.answers[0]);
-    ui->textDisplayAnswer2->setPlainText(q.answers[1]);
-    ui->textDisplayAnswer3->setPlainText(q.answers[2]);
-    ui->textDisplayAnswer4->setPlainText(q.answers[3]);
-    ui->textDisplayAnswer5->setPlainText(q.answers[4]);
-    ui->textDisplayAnswer6->setPlainText(q.answers[5]);
-
-    // Restore radio selection
-
-    ui->radioButtonAnswer1->setAutoExclusive(false);
-    ui->radioButtonAnswer2->setAutoExclusive(false);
-    ui->radioButtonAnswer3->setAutoExclusive(false);
-    ui->radioButtonAnswer4->setAutoExclusive(false);
-    ui->radioButtonAnswer5->setAutoExclusive(false);
-    ui->radioButtonAnswer6->setAutoExclusive(false);
-
-    ui->radioButtonAnswer1->setChecked(q.userIndex == 0);
-    ui->radioButtonAnswer2->setChecked(q.userIndex == 1);
-    ui->radioButtonAnswer3->setChecked(q.userIndex == 2);
-    ui->radioButtonAnswer4->setChecked(q.userIndex == 3);
-    ui->radioButtonAnswer5->setChecked(q.userIndex == 4);
-    ui->radioButtonAnswer6->setChecked(q.userIndex == 5);
-
-    ui->radioButtonAnswer1->setAutoExclusive(true);
-    ui->radioButtonAnswer2->setAutoExclusive(true);
-    ui->radioButtonAnswer3->setAutoExclusive(true);
-    ui->radioButtonAnswer4->setAutoExclusive(true);
-    ui->radioButtonAnswer5->setAutoExclusive(true);
-    ui->radioButtonAnswer6->setAutoExclusive(true);
-}
-
-void QuizWindow::on_pushButtonNextQuestion_2_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    questionBank[questionStudyIndex].userIndex = currentStudySelection();
-
-    if (questionStudyIndex + 1 < questionBank.size()) {
-        ++questionStudyIndex;
-        showStudyQuestion(questionStudyIndex);
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_2_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    questionBank[questionStudyIndex].userIndex = currentStudySelection();
-
-    if (questionStudyIndex > 0) {
-        --questionStudyIndex;
-        showStudyQuestion(questionStudyIndex);
-    }
-}
-
-int QuizWindow::currentStudySelection() const {
-    if (ui->radioButtonAnswer1->isChecked()) return 0;
-    if (ui->radioButtonAnswer2->isChecked()) return 1;
-    if (ui->radioButtonAnswer3->isChecked()) return 2;
-    if (ui->radioButtonAnswer4->isChecked()) return 3;
-    if (ui->radioButtonAnswer5->isChecked()) return 4;
-    if (ui->radioButtonAnswer6->isChecked()) return 5;
-    return -1;
-}
-
-// study page -> results
+/*
 void QuizWindow::on_pushButtonSubmitQuiz_clicked() {
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizResults);
     int correct = 0;
+    int totalPoints = 0;
     for (int i = 0; i < questionBank.size(); i++) {
-        if (questionBank[i].userIndex == questionBank[i].correctIndex) {
-            correct++;
+        for(int j = 0; j < 6; j++) {
+            if (questionBank[i].correctIndex[j]) {
+                totalPoints++;
+                if (questionBank[i].userIndex[j]) {
+                    correct++;
+                }
+            }
         }
     }
-    double percentage = static_cast<double>(correct) / questionBank.size();
+    double percentage = static_cast<double>(correct) / totalPoints;
 
     QString numerator = QString::number(correct);
-    QString denominator = QString::number(questionBank.size());
+    QString denominator = QString::number(totalPoints);
     QString result = QString::number(percentage*100, 'f', 2);
     ui->textResultNum->setPlainText(numerator);
     ui->textResultDen->setPlainText(denominator);
     ui->textResultPer->setPlainText(result);
 }
+*/
 
 // results -> review
 void QuizWindow::on_pushButtonReview_clicked() {
+    if (!quizSession->hasQuestions()) return;
+
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
-    questionStudyIndex = 0;
-    showStudyQuestionReview(0);
+
+    quizReview->setReviewIndex(0);
+    quizReview->showStudyQuestionReview(0);
 }
 
-void QuizWindow::showStudyQuestionReview(int i) {
-    if (questionBank.isEmpty()) return;
-    if (i < 0) i = 0;
-    if (i >= questionBank.size()) i = questionBank.size() - 1;
-
-    const QuizQuestion& q = questionBank[i];
-
-    // Question
-    ui->textDisplayQuestion_2->setPlainText(q.prompt);
-
-    // Answers (exactly six slots; empties allowed)
-    QPlainTextEdit* answers[6] = {
-    ui->textDisplayAnswer1_2,
-    ui->textDisplayAnswer2_2,
-    ui->textDisplayAnswer3_2,
-    ui->textDisplayAnswer4_2,
-    ui->textDisplayAnswer5_2,
-    ui->textDisplayAnswer6_2,
-    };
-
-    QLabel* checkmarks[6] = {
-    ui->labelCheck1,
-    ui->labelCheck2,
-    ui->labelCheck3,
-    ui->labelCheck4,
-    ui->labelCheck5,
-    ui->labelCheck6
-    };
-
-    for (int j = 0; j < 6; ++j) {
-        answers[j]->setStyleSheet("border: none;");
-        checkmarks[j]->setText("");
-    }
-
-    for (int j = 0; j < 6; ++j) {
-        answers[j]->setPlainText(q.answers[j]);
-        if (j == questionBank[i].userIndex && j == questionBank[i].correctIndex) {
-            checkmarks[j]->setText(" ✅");
-        }
-        else if (j == questionBank[i].userIndex && j != questionBank[i].correctIndex) {
-            checkmarks[j]->setText(" ❌");
-            answers[questionBank[i].correctIndex]->setStyleSheet("border: 3px solid lightgreen;");
-        }
-    }
-}
-
-void QuizWindow::on_pushButtonNextQuestion_3_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    if (questionStudyIndex + 1 < questionBank.size()) {
-        ++questionStudyIndex;
-        showStudyQuestionReview(questionStudyIndex);
-    }
-}
-
-void QuizWindow::on_pushButtonPreviousQuestion_3_clicked() {
-    if (questionBank.isEmpty()) return;
-
-    if (questionStudyIndex > 0) {
-        --questionStudyIndex;
-        showStudyQuestionReview(questionStudyIndex);
-    }
-}
 
 
