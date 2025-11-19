@@ -26,8 +26,20 @@ void FlashCardStudy::setupSetSelection() {
 
     ui->setCombo->clear();
     ui->setCombo->addItem("Select a set...");
+
     for (const QString &file : fileList) {
-        ui->setCombo->addItem(file);
+<<<<<<< HEAD
+        int indexRealName=file.indexOf("_");
+        int indexFileExt = file.indexOf(".");
+        ui->setCombo->addItem(file.mid(indexRealName +1,indexFileExt-(indexRealName+1)));
+
+=======
+        QFileInfo fi(file);
+        QString realName = fi.baseName();
+        int indexUserFriendlyName = realName.indexOf("_");
+        realName=realName.mid(indexUserFriendlyName+1);
+        ui->setCombo->addItem(realName,file);
+>>>>>>> main
     }
 
     connect(ui->setCombo, &QComboBox::currentTextChanged,
@@ -36,8 +48,8 @@ void FlashCardStudy::setupSetSelection() {
 
 void FlashCardStudy::on_setCombo_currentTextChanged(const QString &text) {
     if (text.isEmpty() || text == "Select a set...") return;
-
-    currentDbName = text;
+    QString realName= ui->setCombo->currentData().toString();
+    currentDbName = realName;
     ui->lblSetName->setText(text);
     loadFlashcards(currentDbName);
 

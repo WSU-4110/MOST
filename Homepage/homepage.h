@@ -21,6 +21,7 @@ public:
 
 private slots:
     void on_createFlashCardButton_clicked();
+    void on_createMultipleChoiceButton_clicked();
     void on_studyMultipleChoiceButton_clicked();
     void on_btnStudyFlashCards_clicked();
     void on_listRecents_itemClicked(QListWidgetItem *item);
