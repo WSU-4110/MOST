@@ -1,3 +1,18 @@
+## Minimum System Requirements
+* OS: Windows 10 (64-bit)
+* CPU: Any x64-compatible processor
+* Memory: 256MB RAM
+* Disk Space: 300 MB available
+* Graphics: Integrated graphics
+
+## Recommended System Requirements
+* OS: Windows 11
+* CPU: Intel Core i3 or better
+* Memory: 4GB RAM
+* Disk Space: 500 MB available
+* Graphics: SSD for faster load time
+
+## Install
 There are two methods to installing this application:
 
 ### Method 1 (easiest)
