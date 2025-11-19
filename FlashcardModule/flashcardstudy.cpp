@@ -26,8 +26,12 @@ void FlashCardStudy::setupSetSelection() {
 
     ui->setCombo->clear();
     ui->setCombo->addItem("Select a set...");
+
     for (const QString &file : fileList) {
-        ui->setCombo->addItem(file);
+        int indexRealName=file.indexOf("_");
+        int indexFileExt = file.indexOf(".");
+        ui->setCombo->addItem(file.mid(indexRealName +1,indexFileExt-(indexRealName+1)));
+
     }
 
     connect(ui->setCombo, &QComboBox::currentTextChanged,
