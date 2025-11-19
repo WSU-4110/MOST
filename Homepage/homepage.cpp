@@ -101,14 +101,19 @@ void homePage::addToRecents(const QString &setName)
 
 void homePage::on_listRecents_itemClicked(QListWidgetItem *item)
 {
-    QString setName = item->text();
+    QString displayName = item->text();
+
+    // Convert back to actual DB filename
+    QString fileName = "flashcards_" + displayName + ".db";
+
     FlashCardStudy* flashCardStudy = new FlashCardStudy();
 
     connect(flashCardStudy, &FlashCardStudy::setOpened, this, &homePage::addToRecents);
     connect(flashCardStudy, &FlashCardStudy::homeButtonClicked, this, &homePage::show);
 
     flashCardStudy->show();
-    flashCardStudy->selectSet(setName);
+    flashCardStudy->selectSet(fileName);
 
     this->close();
 }
+
