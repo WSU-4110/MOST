@@ -17,7 +17,7 @@ This application will allow users to:
   Stores the data for the flashcards & quizzes
 
 ## Platform compatibility
-* Windows desktop
+* Windows 10/11 desktop
 
 ## Getting started
 Check out the [installation guide](https://github.com/WSU-4110/MOST/blob/main/Installation.md)
