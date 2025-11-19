@@ -49,6 +49,16 @@ void homePage::on_studyMultipleChoiceButton_clicked()
     quizWindow->raise();
     quizWindow->activateWindow();
 }
+void homePage::on_createMultipleChoiceButton_clicked()
+{
+    if (!quizWindow) {
+        quizWindow = new QuizWindow(this);
+    }
+
+    quizWindow->show();
+    quizWindow->raise();
+    quizWindow->activateWindow();
+}
 
 void homePage::on_btnStudyFlashCards_clicked()
 {
