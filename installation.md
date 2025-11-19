@@ -11,7 +11,7 @@
 * Memory: 4GB RAM
 * Disk Space: 500 MB available
 * Graphics: Integrated graphics or dedicated GPU
-* Other: SSD for faster load time
+* Other: SSD for faster load times
 
 ## Install
 There are two methods to installing this application:
