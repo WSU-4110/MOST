@@ -3,7 +3,10 @@
 void QuizSession::start(const QVector<QuizQuestion> &questions) {
     questionsCopy = questions;  // using a copy so that if the original quiz is modified, it wont affect the current study session
     userAnswers.resize(questionsCopy.size());
-    userAnswers.fill(-1);   // initializing with -1 to act as "no answer selected"
+    userAnswers.resize(questions.size());
+    for (auto &sel : userAnswers) {
+        sel = QVector<bool>(6, false); // Initialzie unchecked radio
+    }
     currentIn = 0;
 }
 
@@ -23,6 +26,7 @@ const QuizQuestion& QuizSession::currentQuestion() const {
     return questionsCopy[currentIn];
 }
 
+/*
 void QuizSession::answerCurrent(int answerIndex) {
     if (!hasQuestions()) {
         return;
@@ -34,12 +38,19 @@ void QuizSession::answerCurrent(int answerIndex) {
 
     userAnswers[currentIn] = answerIndex;
 }
+*/
 
-int QuizSession::userAnswerFor(int questionIndex) const {
-    if (questionIndex < 0 || questionIndex >= userAnswers.size()) {
-        return -1;
-    }
+void QuizSession::answerCurrent(const QVector<bool>& answerIndexes) {
+    if (!hasQuestions()) return;
+    if (currentIn < 0 || currentIn >= userAnswers.size()) return;
 
+    // Save the user's selections for the current question
+    userAnswers[currentIn] = answerIndexes;
+}
+
+QVector<bool> QuizSession::userAnswerFor(int questionIndex) const {
+    if (questionIndex < 0 || questionIndex >= userAnswers.size())
+        return QVector<bool>();
     return userAnswers[questionIndex];
 }
 
@@ -65,8 +76,7 @@ const QuizQuestion& QuizSession::questionAt(int index) const {
     return questionsCopy[index];
 }
 
-/*
-int QuizSession::correctCount() const {
+/*int QuizSession::correctCount() const {
     if (!hasQuestions()) {
         return 0;
     }
@@ -79,9 +89,31 @@ int QuizSession::correctCount() const {
         }
     }
     return count;
-}
-*/
+}*/
 
+int QuizSession::correctCount() const {
+    if (!hasQuestions()) {
+        return 0;
+    }
+    int count = 0;
+    for (int i = 0; i < questionsCopy.size(); ++i) {
+        const QVector<bool>& userSelected = userAnswers[i];
+        const QVector<int>& correct = questionsCopy[i].correctIndexes;
+        bool allCorrect = true;
+        for (int j = 0; j < 6; ++j) {
+            bool shouldBeChecked = correct.contains(j);
+            if (userSelected[j] != shouldBeChecked) {
+                allCorrect = false;
+                break;  // mismatch found
+            }
+        }
+        if (allCorrect)
+            ++count;
+    }
+    return count;
+}
+
+/*
 double QuizSession::percentage() const {
     const int total = questionCount();
     if (total == 0)
@@ -89,4 +121,9 @@ double QuizSession::percentage() const {
 
     //return static_cast<double>(correctCount()) / static_cast<double>(total);
     return 2.0;
+}*/
+
+double QuizSession::percentage() const {
+    if (questionsCopy.isEmpty()) return 0.0;
+    return (static_cast<double>(correctCount()) / questionsCopy.size()) * 100.0;
 }

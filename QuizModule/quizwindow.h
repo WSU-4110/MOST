@@ -59,6 +59,7 @@ public:
     QPushButton* getDeleteQuestionButton() const { return ui->pushButtonDeleteQuestion; }
     QPushButton* getPreviousQuestionButton() const { return ui->pushButtonPreviousQuestion; }
     QPushButton* getNextQuestionButton() const { return ui->pushButtonNextQuestion; }
+    QPushButton* getSetNameButton() const { return ui->pushButtonSetName; }
 
     // Get pageQuizStudy buttons for quizstudy
     QPushButton* getNextQuestion2Button() const { return ui->pushButtonNextQuestion_2; }

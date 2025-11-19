@@ -24,10 +24,14 @@ public:
     QVector<QuizQuestion> getQuestions() const { return questions; }
     QuizQuestion getQuestions(int i) const { return questions.at(i); }
 
+    void setName(QString name) { quizName = name; }
+    QString getName() const { return quizName; }
+
     void clear();
     void debugAll() const;
 
 private:
+    QString quizName;
     QVector<QuizQuestion> questions;
     int currentIn = -1;
 };

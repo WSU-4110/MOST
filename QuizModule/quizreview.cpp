@@ -26,7 +26,7 @@ void QuizReview::showStudyQuestionReview(int i) {
     if (reviewIndex >= count) reviewIndex = count - 1;
 
     const QuizQuestion &q = quizWindow->getQuizSession()->questionAt(reviewIndex);
-    const int userIndex = quizWindow->getQuizSession()->userAnswerFor(reviewIndex);
+    QVector<bool> userIndex = quizWindow->getQuizSession()->userAnswerFor(reviewIndex);
     //const int correctIndex = q.correctIndex;
 
     QString QNumber = QString::number(i+1) + "/" + QString::number(quizWindow->getQuizBank()->getQuestions().size());
