@@ -116,17 +116,8 @@ void QuizStudy::on_pushButtonPreviousQuestion_2_clicked() {
 void QuizStudy::on_pushButtonShuffle_clicked() {
     if (quizWindow->getQuizBank()->getQuestions().isEmpty()) return;
 
-    QVector<QuizQuestion> tempBank;
-    std::srand(std::time(NULL));
-    int size = quizWindow->getQuizBank()->getQuestions().size();
-    while (size > 0) {
-        int rng = std::rand() % size;
-        tempBank.append(quizWindow->getQuizBank()->getQuestions()[rng]);
-        quizWindow->getQuizBank()->getQuestions().removeAt(rng);
-        size--;
-    }
-    quizWindow->getQuizBank()->getQuestions() = tempBank;
-    //showStudyQuestion(questionStudyIndex);
+    quizWindow->getQuizSession()->shuffle();
+    showStudyQuestion();
 }
 
 void QuizStudy::on_pushButtonSubmitQuiz_clicked() {
