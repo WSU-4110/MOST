@@ -282,32 +282,6 @@ QListWidget::item:hover {
 }
 </string>
         </property>
-        <item>
-         <property name="text">
-          <string>Chem 101: Biology</string>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>15</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>HIST 113: American Civil War</string>
-         </property>
-         <property name="font">
-          <font>
-           <pointsize>15</pointsize>
-          </font>
-         </property>
-         <property name="textAlignment">
-          <set>AlignCenter</set>
-         </property>
-        </item>
        </widget>
       </item>
       <item>

@@ -5,6 +5,7 @@
 #include "../FlashcardModule/flashcardstudy.h"
 #include "../QuizModule/quizwindow.h"
 #include <QMainWindow>
+#include <QListWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class homePage; }
@@ -20,8 +21,12 @@ public:
 
 private slots:
     void on_createFlashCardButton_clicked();
+    void on_createMultipleChoiceButton_clicked();
     void on_studyMultipleChoiceButton_clicked();
     void on_btnStudyFlashCards_clicked();
+    void on_listRecents_itemClicked(QListWidgetItem *item);
+
+    void addToRecents(const QString &setName); // New slot to handle recents
 
 private:
     Ui::homePage *ui;

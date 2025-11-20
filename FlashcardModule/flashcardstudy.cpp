@@ -4,19 +4,14 @@
 #include <QDebug>
 #include <algorithm>
 #include <random>
+#include <QDir>
 
-
-FlashCardStudy::FlashCardStudy(QString dbName, QWidget *parent)
+FlashCardStudy::FlashCardStudy(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::FlashCardStudy)
-    , currentDbName(dbName)
 {
     ui->setupUi(this);
-
-    ui->lblSetName->setText(dbName);
-
-    loadFlashcards();
-    updateDisplay();
+    setupSetSelection();
 }
 
 FlashCardStudy::~FlashCardStudy()
@@ -24,102 +19,117 @@ FlashCardStudy::~FlashCardStudy()
     delete ui;
 }
 
-// Home button
+void FlashCardStudy::setupSetSelection() {
+    QDir dir("Saves/Cards");
+    QStringList filters = QStringList() << "flashcards_*.db";
+    QStringList fileList = dir.entryList(filters, QDir::Files);
+
+    ui->setCombo->clear();
+    ui->setCombo->addItem("Select a set...");
+
+    for (const QString &file : fileList) {
+        QFileInfo fi(file);
+        QString realName = fi.baseName();
+        int indexUserFriendlyName = realName.indexOf("_");
+        realName=realName.mid(indexUserFriendlyName+1);
+        ui->setCombo->addItem(realName,file);
+
+    }
+
+    connect(ui->setCombo, &QComboBox::currentTextChanged,
+            this, &FlashCardStudy::on_setCombo_currentTextChanged);
+}
+
+void FlashCardStudy::on_setCombo_currentTextChanged(const QString &text) {
+    if (text.isEmpty() || text == "Select a set...") return;
+    QString realName= ui->setCombo->currentData().toString();
+    currentDbName = realName;
+    ui->lblSetName->setText(text);
+    loadFlashcards(currentDbName);
+
+    emit setOpened(currentDbName); // Emit signal for homepage
+}
+
 void FlashCardStudy::on_btnHome_clicked()
 {
-    homePage* home = new homePage();
-    home->show();
+    emit homeButtonClicked();
     this->close();
 }
 
-// Load all flashcards from database
-void FlashCardStudy::loadFlashcards()
+void FlashCardStudy::loadFlashcards(const QString &dbName)
 {
     flashcards.clear();
+    filteredFlashcards.clear();
 
-    // Get all flashcards from the database
-    flashcards = dbFlashcard.getAllFlashcards(currentDbName);
+    flashcards = dbFlashcard.getAllFlashcards(dbName);
 
     if (flashcards.isEmpty()) {
         ui->lblCard->setText("No flashcards found.");
         return;
     }
 
-    // Start at the first card and show the front
     currentIndex = 0;
     showingFront = true;
-
-    // Display the first card
     updateDisplay();
 }
 
-
-
-// Show current card
 void FlashCardStudy::updateDisplay()
 {
-    if (flashcards.isEmpty()) return;
+    QVector<Flashcard> *vec = filteredFlashcards.isEmpty() ? &flashcards : &filteredFlashcards;
+    if (vec->isEmpty()) return;
 
-    const Flashcard &card = flashcards[currentIndex];
-
-    // Update lblCard depending on showingFront
+    const Flashcard &card = (*vec)[currentIndex];
     ui->lblCard->setText(showingFront ? card.front : card.back);
-
-    // Update flashcard counter label
     ui->lblNumberOfFlashcards->setText(
-        QString("%1 of %2").arg(currentIndex + 1).arg(flashcards.size())
+        QString("%1 of %2").arg(currentIndex + 1).arg(vec->size())
         );
 
-    // Update progress bar
-    if (flashcards.size() > 0) {
-        int progressValue = static_cast<int>(
-            ((currentIndex + 1) / static_cast<double>(flashcards.size())) * 100
-            );
-        ui->progressBar->setValue(progressValue);
-    }
+    int progressValue = static_cast<int>(((currentIndex + 1) / static_cast<double>(vec->size())) * 100);
+    ui->progressBar->setValue(progressValue);
 }
 
-
-// Next button
 void FlashCardStudy::on_btnNext_clicked()
 {
-    if (currentIndex < flashcards.size() - 1) {
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
+    if (currentIndex < vec.size() - 1) {
         currentIndex++;
-        showingFront = true;  // reset to front when moving to next card
+        showingFront = true;
         updateDisplay();
     }
 }
 
-// Previous button
 void FlashCardStudy::on_btnPrevious_clicked()
 {
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
     if (currentIndex > 0) {
         currentIndex--;
-        showingFront = true;  // reset to front when moving to previous card
+        showingFront = true;
         updateDisplay();
     }
 }
 
-// Flip button
 void FlashCardStudy::on_btnFlip_clicked()
 {
-    showingFront = !showingFront;  // toggle front/back
+    showingFront = !showingFront;
     updateDisplay();
 }
 
 void FlashCardStudy::on_btnShuffle_clicked()
 {
-    // Create a random seed with current time
+    QVector<Flashcard> &vec = filteredFlashcards.isEmpty() ? flashcards : filteredFlashcards;
     std::random_device rd;
     std::mt19937 g(rd());
-
-    // Shuffle the flashcards vector
     std::shuffle(flashcards.begin(), flashcards.end(), g);
 
-    // Reset to the first card and show front
     currentIndex = 0;
     showingFront = true;
-
     updateDisplay();
 }
 
+void FlashCardStudy::selectSet(const QString &setName)
+{
+    int index = ui->setCombo->findText(setName);
+    if (index != -1) {
+        ui->setCombo->setCurrentIndex(index); // trigger on_setCombo_currentTextChanged
+    }
+}
