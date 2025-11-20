@@ -20,7 +20,7 @@ DatabaseQuiz::DatabaseQuiz(QString quizNameInput) {
 
 // Insert the text of a question to table questions
 int DatabaseQuiz::insertQuestion(QString question) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("INSERT INTO questions (question) VALUES (:question)");
     query.bindValue(":question", question);
     if (!query.exec()) {
@@ -32,7 +32,7 @@ int DatabaseQuiz::insertQuestion(QString question) {
 
 // Insert the text of an answer to table answers, and questionID matches the answer to a question in table questions
 int DatabaseQuiz::insertAnswer(int questionID, QString answer) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("INSERT INTO answers (question_id, answer) VALUES (:question_id, :answer)");
     query.bindValue(":question_id", questionID);
     query.bindValue(":answer", answer);
@@ -46,7 +46,7 @@ int DatabaseQuiz::insertAnswer(int questionID, QString answer) {
 
 // Mark an answerID correct for a questionID in table correct
 int DatabaseQuiz::insertCorrect(int questionID, int answerID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("INSERT INTO correct (question_id, answer_id) VALUES (:question_id, :answer_id)");
     query.bindValue(":question_id", questionID);
     query.bindValue(":answer_id", answerID);
@@ -60,7 +60,7 @@ int DatabaseQuiz::insertCorrect(int questionID, int answerID) {
 
 // Update questionID to have text newQuestion
 bool DatabaseQuiz::updateQuestion(int questionID, QString newQuestion) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("UPDATE questions SET question = :question WHERE id = :id");
     query.bindValue(":question", newQuestion);
     query.bindValue(":id", questionID);
@@ -74,7 +74,7 @@ bool DatabaseQuiz::updateQuestion(int questionID, QString newQuestion) {
 
 // Update answerID to have text newAnswer
 bool DatabaseQuiz::updateAnswer(int answerID, QString newAnswer) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("UPDATE answers SET answer = :answer WHERE id = :id");
     query.bindValue(":answer", newAnswer);
     query.bindValue(":id", answerID);
@@ -89,7 +89,7 @@ bool DatabaseQuiz::updateAnswer(int answerID, QString newAnswer) {
 // Update questionID's correct answers given a list of answerIDs to be marked correct
 bool DatabaseQuiz::updateCorrect(int questionId, QList<int> correctAnswerIDs) {
     // Deletes existing correct answers for the question
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM correct WHERE question_id = :question_id");
     query.bindValue(":question_id", questionId);
 
@@ -109,7 +109,7 @@ bool DatabaseQuiz::updateCorrect(int questionId, QList<int> correctAnswerIDs) {
 
 // Delete questionID
 bool DatabaseQuiz::deleteQuestion(int questionID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM questions WHERE id = :id");
     query.bindValue(":id", questionID);
 
@@ -122,7 +122,7 @@ bool DatabaseQuiz::deleteQuestion(int questionID) {
 
 // Delete answerID
 bool DatabaseQuiz::deleteAnswer(int answerID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM answers WHERE id = :id");
     query.bindValue(":id", answerID);
 
@@ -135,7 +135,7 @@ bool DatabaseQuiz::deleteAnswer(int answerID) {
 
 // Delete correct mark based on specific question id and answer id
 bool DatabaseQuiz::deleteCorrect(int questionID, int answerID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM correct WHERE question_id = :question_id AND answer_id = :answer_id");
     query.bindValue(":question_id", questionID);
     query.bindValue(":answer_id", answerID);
@@ -148,14 +148,14 @@ bool DatabaseQuiz::deleteCorrect(int questionID, int answerID) {
 }
 
 bool DatabaseQuiz::deleteAnswersForQuestion(int questionID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM answers WHERE question_id = :qid");
     query.bindValue(":qid", questionID);
     return query.exec();
 }
 
 bool DatabaseQuiz::deleteCorrectForQuestion(int questionID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("DELETE FROM correct WHERE question_id = :qid");
     query.bindValue(":qid", questionID);
     return query.exec();
@@ -163,7 +163,7 @@ bool DatabaseQuiz::deleteCorrectForQuestion(int questionID) {
 
 // Returns a QList of pairs of <Question text, Is it correct?> for a question id
 QList<QPair<QString, bool>> DatabaseQuiz::getQuestionAnswers(int questionID) {
-    QSqlQuery query;
+    QSqlQuery query(db);
 
     // Join the answers table with the correct table to get answer and correct values corresponding to question id
     query.prepare(R"(
@@ -194,7 +194,8 @@ QList<QPair<QString, bool>> DatabaseQuiz::getQuestionAnswers(int questionID) {
 // Return a QVector containing QPairs of <id, question text> for all questions in question table
 QVector<QPair<int, QString>> DatabaseQuiz::getAllQuestions() {
     QVector<QPair<int, QString>> questions;
-    QSqlQuery query("SELECT id, question FROM questions");
+    QSqlQuery query(db);
+    query.prepare("SELECT id, question FROM questions");
     if (query.exec()) {
         while (query.next()) {
             int id = query.value(0).toInt();
@@ -208,16 +209,16 @@ QVector<QPair<int, QString>> DatabaseQuiz::getAllQuestions() {
 }
 
 int DatabaseQuiz::getQuestionIDByOrder(int index) {
-    QSqlQuery q;
-    q.prepare("SELECT id FROM questions ORDER BY id LIMIT 1 OFFSET :off");
-    q.bindValue(":off", index);
+    QSqlQuery query(db);
+    query.prepare("SELECT id FROM questions ORDER BY id LIMIT 1 OFFSET :off");
+    query.bindValue(":off", index);
 
-    if (!q.exec() || !q.next()) return -1;
-    return q.value(0).toInt();
+    if (!query.exec() || !query.next()) return -1;
+    return query.value(0).toInt();
 }
 
 int DatabaseQuiz::getAnswerIdByIndex(int questionID, int index) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare(
         "SELECT id FROM answers "
         "WHERE question_id = :qid "
@@ -240,7 +241,7 @@ int DatabaseQuiz::getAnswerIdByIndex(int questionID, int index) {
 
 QSet<int> DatabaseQuiz::getCorrectAnswerIDs(int questionID) {
     QSet<int> s;
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("SELECT answer_id FROM correct WHERE question_id = :qid");
     query.bindValue(":qid", questionID);
     if (!query.exec()) {
@@ -254,7 +255,7 @@ QSet<int> DatabaseQuiz::getCorrectAnswerIDs(int questionID) {
 
 // Check if question exists given id
 bool DatabaseQuiz::questionExists(int id) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("SELECT COUNT(*) FROM questions WHERE id = :id");
     query.bindValue(":id", id);
     if (!query.exec()) {
@@ -269,7 +270,7 @@ bool DatabaseQuiz::questionExists(int id) {
 
 // Check if answer exists given id
 bool DatabaseQuiz::answerExists(int id) {
-    QSqlQuery query;
+    QSqlQuery query(db);
     query.prepare("SELECT COUNT(*) FROM answers WHERE id = :id");
     query.bindValue(":id", id);
     if (!query.exec()) {
@@ -284,7 +285,7 @@ bool DatabaseQuiz::answerExists(int id) {
 
 void DatabaseQuiz::setName(QString quizNameInput) {
     quizName = quizNameInput;
-    qDebug() << "set quizName to" << quizName;
+    qDebug() << "databasequiz.cpp / set quizName to" << quizName;
 }
 
 // Get the name of the quiz (NOT the quiz filename)

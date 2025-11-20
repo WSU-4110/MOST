@@ -110,19 +110,24 @@ bool Database::openDatabase(QString dbName) {
         qDebug() << "Error: dbName does not start with 'flashcards_' or 'quiz_'";
         return false;
     }
+
     QString dbPath = dir.filePath(dbName);
-    QString connectionName = dbPath;
-    if(QSqlDatabase::contains(connectionName)){
+    QString connectionName = "CONN_" + QFileInfo(dbPath).completeBaseName();
+    qDebug() << "database.cpp / connectionName is" << connectionName;
+
+    if (QSqlDatabase::contains(connectionName)) {
         db = QSqlDatabase::database(connectionName);
     }
-    else{
+    else {
         db = QSqlDatabase::addDatabase("QSQLITE", connectionName);
         db.setDatabaseName(dbPath);
     }
+
     if (!db.isOpen()) {
-        if(!db.open())
-        qDebug() << "Failed to open database";
-        return false;
+        if(!db.open()) {
+            qDebug() << "Failed to open database";
+            return false;
+        }
     }
     qDebug() << "Opened database " + dbName;
     return true;
