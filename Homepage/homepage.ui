@@ -58,106 +58,6 @@ border: 1px black;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="btnHome">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>40</width>
-           <height>160</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-color: white;
-background-color: lightblue;
-
-}
-QPushButton:hover {
-    border: 2px solid #888;
-border-radius: 6px;
-}
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources.qrc">
-           <normaloff>:/icons/images/home.png</normaloff>:/icons/images/home.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>21</width>
-           <height>21</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnFlashcards">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-color: white;
-background-color: lightblue;
-
-}
-QPushButton:hover {
-    border: 2px solid #888;
-border-radius: 6px;
-}
-
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources.qrc">
-           <normaloff>:/icons/images/flash-cards.png</normaloff>:/icons/images/flash-cards.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>21</width>
-           <height>21</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="btnQuizzes">
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-color: white;
-background-color: lightblue;
-
-}
-QPushButton:hover {
-    border: 2px solid #888;
-border-radius: 6px;
-}
-</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../resources.qrc">
-           <normaloff>:/icons/images/quiz.png</normaloff>:/icons/images/quiz.png</iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>21</width>
-           <height>21</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Orientation::Vertical</enum>
@@ -368,7 +268,10 @@ margin-bottom: 25px;</string>
          <property name="styleSheet">
           <string notr="true">padding-left: 40px;
 border: none;
-background: transparent;</string>
+background: transparent;
+padding-right: 30px;
+
+</string>
          </property>
          <property name="text">
           <string/>

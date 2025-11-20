@@ -114,7 +114,7 @@ void homePage::on_listRecents_itemClicked(QListWidgetItem *item)
     QString displayName = item->text();
 
     // Convert back to actual DB filename
-    QString fileName = "flashcards_" + displayName + ".db";
+    QString fileName = displayName;
 
     FlashCardStudy* flashCardStudy = new FlashCardStudy();
 
