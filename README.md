@@ -20,7 +20,7 @@ This application will allow users to:
 * Windows 10/11 desktop
 
 ## Getting started
-Check out the [installation guide](https://github.com/WSU-4110/MOST/blob/main/Installation.md)
+Check out the [installation guide](https://github.com/WSU-4110/MOST/blob/main/installation.md)
 
 ## Authors
 * John Ueberroth
