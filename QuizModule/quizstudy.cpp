@@ -146,5 +146,5 @@ void QuizStudy::on_pushButtonSubmitQuiz_clicked() {
 
     quizWindow->getUI()->textResultNum->setPlainText(QString::number(correct));
     quizWindow->getUI()->textResultDen->setPlainText(QString::number(total));
-    quizWindow->getUI()->textResultPer->setPlainText(QString::number(percentage * 100.0, 'f', 2));
+    quizWindow->getUI()->textResultPer->setPlainText(QString::number(percentage, 'f', 2));
 }
