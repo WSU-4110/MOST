@@ -127,3 +127,22 @@ double QuizSession::percentage() const {
     if (questionsCopy.isEmpty()) return 0.0;
     return (static_cast<double>(correctCount()) / questionsCopy.size()) * 100.0;
 }
+
+void QuizSession::shuffle() {
+    if (questionsCopy.isEmpty()) return;
+
+    QVector<QuizQuestion> tempBank;
+    QVector<QVector<bool>> tempAnswers;
+    std::srand(std::time(NULL));
+    int size = questionsCopy.size();
+    while (size > 0) {
+        int rng = std::rand() % size;
+        tempBank.append(questionsCopy[rng]);
+        questionsCopy.removeAt(rng);
+        tempAnswers.append(userAnswers[rng]);
+        userAnswers.removeAt(rng);
+        size--;
+    }
+    questionsCopy = tempBank;
+    userAnswers = tempAnswers;
+}

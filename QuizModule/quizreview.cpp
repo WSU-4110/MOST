@@ -22,6 +22,7 @@ void QuizReview::showStudyQuestionReview(int i) {
     qDebug() << "Triggered quizreview.cpp/showStudyQuestionReview";
 
     const int count = quizWindow->getQuizSession()->questionCount();
+    qDebug() << count;
     if (reviewIndex < 0) reviewIndex = i;
     if (reviewIndex >= count) reviewIndex = count - 1;
 
@@ -75,7 +76,7 @@ void QuizReview::showStudyQuestionReview(int i) {
         answers[j]->setPlainText(q.answers[j]);
 
         QVector<bool> userI = quizWindow->getQuizSession()->userAnswerFor(i);
-        QVector<int> correctI = quizWindow->getQuizBank()->getQuestions(i).correctIndexes;
+        QVector<int> correctI = quizWindow->getQuizSession()->questionAt(i).correctIndexes;
 
         if (userI[j] && correctI.contains(j)) {
             checkmarks[j]->setText(" ✅");

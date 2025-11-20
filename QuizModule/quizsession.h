@@ -28,6 +28,8 @@ public:
     //int userAnswerFor(int questionIndex) const;
     QVector<bool> userAnswerFor(int questionIndex) const;
 
+    void shuffle();
+
     bool next();
     bool previous();
 
