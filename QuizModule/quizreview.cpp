@@ -96,6 +96,7 @@ void QuizReview::on_pushButtonNextQuestion_3_clicked() {
     qDebug() << "Clicked quizreview.cpp / Next Question";
     if (questionStudyIndex + 1 < quizWindow->getQuizBank()->getQuestions().size()) {
         ++questionStudyIndex;
+        ++reviewIndex;
         showStudyQuestionReview(questionStudyIndex);
     }
 }
@@ -105,6 +106,7 @@ void QuizReview::on_pushButtonPreviousQuestion_3_clicked() {
     qDebug() << "Clicked quizreview.cpp / Previous Question";
     if (questionStudyIndex > 0) {
         --questionStudyIndex;
+        --reviewIndex;
         showStudyQuestionReview(questionStudyIndex);
     }
 }
