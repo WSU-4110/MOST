@@ -61,6 +61,9 @@ void QuizWindow::on_pushButtonStudyPage_clicked() {
     quizSession->start(quizBank->all());
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizStudy);
+    if (quizBank->getName() != nullptr) {
+        ui->lineEditSetTitle->setText(quizBank->getName());
+    }
     quizStudy->showStudyQuestion();
 }
 
@@ -90,6 +93,9 @@ void QuizWindow::on_pushButtonReview_clicked() {
     if (!quizSession->hasQuestions()) return;
 
     ui->stackedQuizWidget->setCurrentWidget(ui->pageQuizReview);
+    if (quizBank->getName() != nullptr) {
+        ui->lineEditSetTitle_3->setText(quizBank->getName());
+    }
 
     quizReview->setReviewIndex(0);
     quizReview->showStudyQuestionReview(0);

@@ -140,6 +140,11 @@ void QuizStudy::on_pushButtonSubmitQuiz_clicked() {
 
     quizWindow->getUI()->stackedQuizWidget->setCurrentWidget(quizWindow->getUI()->pageQuizResults);
 
+    QString name = quizWindow->getQuizBank()->getName();
+    if (!name.isNull()) {
+        quizWindow->getUI()->lineEditSetTitle_2->setText(name);;
+    }
+
     const int correct = quizWindow->getQuizSession()->correctCount();
     const int total   = quizWindow->getQuizSession()->questionCount();
     const double percentage = quizWindow->getQuizSession()->percentage();
