@@ -229,9 +229,22 @@ void tst_flashcardstudy::testShuffle_ResetsIndex_ShowFront() {
     // Counter must go to "1 of 3"
     QCOMPARE(lblCount->text(), QString("1 of 3"));
 
-    // Card should be front of *some* card
-    QString t = lblCard->text();
-    QVERIFY(t == "Q1" || t == "Q2" || t == "Q3");
+    // Showing front of some card
+    QString firstAfterShuffle = lblCard->text();
+    QVERIFY(firstAfterShuffle == "Q1" || firstAfterShuffle == "Q2" || firstAfterShuffle == "Q3");
+
+    // Move through all cards after shufle
+    QStringList shuffledOrder;
+    shuffledOrder << lblCard->text();         // current (index 0)
+    study.on_btnNext_clicked();               // index 1
+    shuffledOrder << lblCard->text();
+    study.on_btnNext_clicked();               // index 2
+    shuffledOrder << lblCard->text();
+
+    qDebug() << "Shuffled order:";
+    for (const QString &s : shuffledOrder) {
+        qDebug() << "Card: " << s;
+    }
 }
 
 // Testing home button
