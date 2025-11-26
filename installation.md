@@ -1,5 +1,5 @@
 ## Minimum System Requirements
-* OS: Windows 10 (64-bit)
+* OS: Windows 11 (64-bit)
 * CPU: Any x64-compatible processor
 * Memory: 256MB RAM
 * Disk Space: 300 MB available
